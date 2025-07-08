@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Contact from "./pages/Contact";
-import logo from "./assets/logo.png"
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,38 +12,7 @@ export default function App() {
   return (
     <Router>
       <div className="font-sans min-h-screen flex flex-col justify-between">
-        {/* Navbar */}
-        <header className="bg-white/70 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 className="text-2xl font-extrabold text-primary tracking-wide">
-                  Ingraham Institute Girls Degree College</h1>
-
-            <nav className="space-x-6 text-gray-800 font-medium flex items-center">
-              <img src={logo} alt="" />
-              {[
-                { path: "/", label: "Home" },
-                { path: "/about", label: "About" },
-                { path: "/programs", label: "Programs" },
-                { path: "/contact", label: "Contact" },
-              ].map((item, index) => (
-                <div key={index} className="inline-block group relative">
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `pb-1 transition-all hover:text-primary ${
-                        isActive ? "text-secondary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    {item.label}
-                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-secondary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-                  </NavLink>
-                </div>
-              ))}
-            </nav>
-          </div>
-        </header>
-
+        <Navbar></Navbar>
         {/* Main Content */}
         <main className="flex-grow">
           <Routes>
