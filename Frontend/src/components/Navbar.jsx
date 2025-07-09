@@ -7,18 +7,17 @@ export default function Navbar() {
 
 <header className="bg-white/70 backdrop-blur-md sticky top-0 z-50 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-              <img src={logo} className="w-[6rem] h-[6rem] " alt="" />
-            <h1 className="text-3xl font-extrabold text-primary tracking-wide">
+              
+            <h1 className="text-2xl font-extrabold text-primary tracking-wide">
                   Ingraham Institute Girls Degree College</h1>
 
-            <nav className="space-x-6 text-gray-800 font-medium flex items-center">
+            <nav className="space-x-5 text-gray-800 font-medium flex items-center">
               {[
-                { path: "/", label: "Home" },
-                { path: "/about", label: "About" },
-                { path: "/programs", label: "Programs" },
-                { path: "/contact", label: "Contact" },
+                { path: "/about us", label: "About us" },
+                { path: "/contact", label: "Contact Us" },
+                { path: "/FAQ", label: "FAQ's" },
               ].map((item, index) => (
-                <div key={index} className="inline-block group relative">
+                <div key={index} className="inline-block  group relative">
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>

@@ -5,21 +5,30 @@ import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
+import RightSidebarToggle from "./components/Sidebar";
+import Faculty from "./components/Faculty";
 
 export default function App() {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <Router>
-      <div className="font-sans min-h-screen flex flex-col justify-between">
+       
+      
+       
         <Navbar></Navbar>
-        {/* Main Content */}
+        <RightSidebarToggle />
         <main className="flex-grow">
+           
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faculty" element={<Faculty></Faculty>} />
+            
+
+            
           </Routes>
         </main>
 
@@ -28,7 +37,7 @@ export default function App() {
                 <p>&copy; 2025 Ingraham Institute Girls Degree College. All rights reserved.</p>
             </footer>
 
-      </div>
+      
 
       {/* 📌 Floating Apply Now Menu */}
       <div className="fixed bottom-6 right-6 z-50 text-right">

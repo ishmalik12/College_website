@@ -1,47 +1,107 @@
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Testimonials from "../components/Testimonials";
-import Gallery from "../components/Gallery";
+import sample1 from "../assets/sample1.jpg"
+import { ChevronLeft, ChevronRight, ChevronsDown } from "lucide-react";
+import NoticeTicker from "../components/NoticeTicker";
+
+
+const slides = [
+  {
+    image: sample1,
+    title: "Welcome to Our College",
+    subtitle: "Excellence in Education since 1980",
+  },
+  {
+    image: sample1,
+    title: "Modern Infrastructure",
+    subtitle: "Smart classrooms and modern labs",
+  },
+  {
+    image: sample1,
+    title: "Join the Future",
+    subtitle: "Empowering the leaders of tomorrow",
+  },
+];
+
 
 export default function Home() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+ 
+  const [current, setCurrent] = useState(0);
+
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prevSlide = () =>
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       {/* ✅ Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-white bg-gradient-to-br from-primary via-blue-400 to-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm"></div>
-
+      <section className="relative min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
+       <div className="w-full h-screen relative overflow-hidden">
+      {slides.map((slide, index) => (
         <div
-          data-aos="fade-up"
-          className="relative z-10 text-center px-4 max-w-3xl"
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-md">
-  Unlock Your Future at{" "}
-  <span className="text-secondary">Ingraham Institute Girls Degree College</span>
-</h1>
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
 
-          <p className="mt-6 text-lg md:text-xl text-gray-100">
-            Dive into innovation, research, and world-class learning from mentors who care.
-          </p>
-          <button className="mt-8 px-8 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-secondary hover:text-white transition">
-            Explore Programs
-          </button>
+          {/* Content at Bottom Center */}
+          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 text-white text-center px-4 transition duration-300 hover:scale-105 hover:bg-black/50 rounded-xl">
+            <h1 className="text-3xl md:text-5xl font-bold">{slide.title}</h1>
+            <p className="text-md md:text-xl mt-2">{slide.subtitle}</p>
+          </div>
+
+          {/* Scroll Down Animation */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <ChevronsDown size={32} />
+          </div>
         </div>
+      ))}
 
-        {/* Glowing effects */}
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl z-0" />
-        <div className="absolute -top-20 -right-20 w-72 h-72 bg-secondary/30 rounded-full blur-2xl z-0" />
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-20"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-20"
+      >
+        <ChevronRight size={24} />
+      </button>
+    </div>
       </section>
+      <NoticeTicker></NoticeTicker>
 
       {/* ✅ Testimonials Section */}
       <Testimonials />
 
       {/* ✅ Gallery Section */}
-      <Gallery />
+     
     </>
   );
 }
+
+
+
+

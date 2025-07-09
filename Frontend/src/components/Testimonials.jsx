@@ -31,8 +31,8 @@ export default function Testimonials() {
     dots: true,
     infinite: true,
     autoplay: true,
-    speed: 800,
-    autoplaySpeed: 5000,
+    speed: 600,
+    autoplaySpeed: 6000,
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -41,25 +41,29 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-primary via-sky-200 to-white py-20 px-4">
-      <h2 className="text-4xl font-extrabold text-center text-secondary mb-12">
-        What Our Students Say
+    <section className="bg-white py-20 px-6">
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-[#47A8BD] mb-16 tracking-tight">
+        Voices of Our Students
       </h2>
-      <div className="max-w-4xl mx-auto">
+
+      <div className="max-w-5xl mx-auto">
         <Slider {...settings}>
           {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl shadow-xl p-8 md:p-12 flex flex-col items-center text-center transition-transform duration-500"
-            >
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-24 h-24 rounded-full border-4 border-secondary mb-4 shadow-md"
-              />
-              <p className="text-lg text-gray-700 italic mb-6">“{t.message}”</p>
-              <h4 className="text-xl font-bold text-primary">{t.name}</h4>
-              <span className="text-sm text-gray-500">{t.role}</span>
+            <div key={i} className="flex flex-col items-center text-center px-4 md:px-20">
+              <div className="bg-[#F9FAFB] rounded-xl shadow-lg px-8 py-10 md:py-12 max-w-3xl mx-auto">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-24 h-24 rounded-full border-4 border-[#47A8BD] mx-auto mb-6 shadow"
+                />
+                <p className="text-lg md:text-xl text-gray-700 italic leading-relaxed mb-6">
+                  “{t.message}”
+                </p>
+                <h4 className="text-xl md:text-2xl font-semibold text-[#47A8BD] mb-1">
+                  {t.name}
+                </h4>
+                <span className="text-sm text-gray-500">{t.role}</span>
+              </div>
             </div>
           ))}
         </Slider>
