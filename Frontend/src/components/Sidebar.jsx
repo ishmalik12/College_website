@@ -14,6 +14,7 @@ import {
   Image,
   Bell,
   School,
+  HandHeart,
   LogOut,
 } from "lucide-react";
 
@@ -26,6 +27,7 @@ export default function RightSidebarToggle() {
     { name: "Programs / Courses", icon: <BookOpen size={20} />, path: "/programs" },
     { name: "Faculty", icon: <Users size={20} />, path: "/faculty" },
     { name: "Achievements", icon: <Award size={20} />, path: "/achievements" },
+    { name: "Social Initiatives", icon: <HandHeart size={20} />, path: "/socialinitiative" },
     { name: "Gallery", icon: <Image size={20} />, path: "/gallery" },
     { name: "Notices", icon: <Bell size={20} />, path: "/notices" },
     { name: "Facilities", icon: <School size={20} />, path: "/facilities" },
@@ -37,7 +39,7 @@ export default function RightSidebarToggle() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed top-12 right-4 z-[60] bg-[#47A8BD] text-white p-3 rounded-full shadow-lg hover:bg-[#3997aa] transition"
+          className="fixed top-4 right-4 z-[60] bg-[#47A8BD] text-white p-3 rounded-full shadow-lg hover:bg-[#3997aa] transition"
         >
           <Menu size={24} />
         </button>
@@ -59,7 +61,7 @@ export default function RightSidebarToggle() {
       >
         {/* Header */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-white/20">
-          <h2 className="text-xl font-bold tracking-wide">MyCollege</h2>
+         
           <button
             onClick={() => setOpen(false)}
             className="text-white hover:text-red-300 transition"

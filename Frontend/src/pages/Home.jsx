@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Testimonials from "../components/Testimonials";
-import sample1 from "../assets/sample1.jpg"
+import sample1 from "../assets/slideshow1.jpeg"
+import sample2 from "../assets/slideshow2.jpeg"
+import sample3 from "../assets/slideshow3.jpeg"
+import sample4 from "../assets/slideshow4.jpeg"
+import sample5 from "../assets/slideshow5.jpeg"
+import sample6 from "../assets/slideshow6.jpeg"
 import { ChevronLeft, ChevronRight, ChevronsDown } from "lucide-react";
 import NoticeTicker from "../components/NoticeTicker";
 
@@ -11,18 +16,21 @@ import NoticeTicker from "../components/NoticeTicker";
 const slides = [
   {
     image: sample1,
-    title: "Welcome to Our College",
-    subtitle: "Excellence in Education since 1980",
   },
   {
-    image: sample1,
-    title: "Modern Infrastructure",
-    subtitle: "Smart classrooms and modern labs",
+    image: sample2,
   },
   {
-    image: sample1,
-    title: "Join the Future",
-    subtitle: "Empowering the leaders of tomorrow",
+    image: sample3,
+  },
+  {
+    image: sample4,
+  },
+   {
+    image: sample5,
+  },
+   {
+    image: sample6,
   },
 ];
 
@@ -48,7 +56,7 @@ export default function Home() {
   return (
     <>
       {/* ✅ Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
+      <section className="relative  min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
        <div className="w-full h-screen relative overflow-hidden">
       {slides.map((slide, index) => (
         <div

@@ -7,13 +7,15 @@ export default function Navbar() {
 
 <header className="bg-white/70 backdrop-blur-md sticky top-0 z-50 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+              <div className="flex justify-center items-center"><img src={logo} className="w-[3rem] h-[3rem] mr-4"></img>
+              <h1 className="text-2xl font-extrabold text-primary tracking-wide">
               
-            <h1 className="text-2xl font-extrabold text-primary tracking-wide">
-                  Ingraham Institute Girls Degree College</h1>
+                  Ingraham Institute Girls Degree College</h1></div>
+            
 
-            <nav className="space-x-5 text-gray-800 font-medium flex items-center">
+            <nav className="space-x-5 text-gray-800 font-medium flex items-center mr-9">
               {[
-                { path: "/about us", label: "About us" },
+                { path: "/about us", label: "About" },
                 { path: "/contact", label: "Contact Us" },
                 { path: "/FAQ", label: "FAQ's" },
               ].map((item, index) => (
