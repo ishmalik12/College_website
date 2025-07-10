@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
+import Gallery from './components/Gallery'; 
 import RightSidebarToggle from "./components/Sidebar";
 import Faculty from "./components/Faculty";
 
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/programs" element={<Programs />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faculty" element={<Faculty></Faculty>} />
+            <Route path="/gallery" element={<Gallery></Gallery>} />
             
 
             
