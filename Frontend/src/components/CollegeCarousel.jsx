@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     image: "https://source.unsplash.com/1600x900/?college,campus",
-    title: "Welcome to Our College",
-    subtitle: "Excellence in Education since 1980",
+   
   },
   {
     image: "https://source.unsplash.com/1600x900/?university,lecture",

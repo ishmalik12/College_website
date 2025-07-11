@@ -1,40 +1,86 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import React from 'react'
-import logo from "../assets/logo.png"
+import React, { useEffect, useState } from "react";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setScrolled(offset > window.innerHeight - 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled ? "bg-[#47A8BD] shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="flex items-center justify-between px-8 py-4 text-white relative">
+        {/* Logo Left */}
+        <img src={logo} alt="Logo" className="h-10" />
 
-<header className="bg-white/70 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-              <div className="flex justify-center items-center"><img src={logo} className="w-[3rem] h-[3rem] mr-4"></img>
-              <h1 className="text-2xl font-extrabold text-primary tracking-wide">
-              
-                  Ingraham Institute Girls Degree College</h1></div>
-            
+        {/* Nav Links Right */}
+        <div className="flex space-x-6 font-medium text-sm md:text-base relative">
+          {/* ABOUT with dropdown */}
+          <div
+            className="relative group cursor-pointer"
+            onMouseEnter={() => setShowAboutDropdown(true)}
+            onMouseLeave={() => setShowAboutDropdown(false)}
+          >
+            <span className="hover:text-gray-200">ABOUT</span>
 
-            <nav className="space-x-5 text-gray-800 font-medium flex items-center mr-9">
-              {[
-                { path: "/about us", label: "About" },
-                { path: "/contact", label: "Contact Us" },
-                { path: "/FAQ", label: "FAQ's" },
-              ].map((item, index) => (
-                <div key={index} className="inline-block  group relative">
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `pb-1 transition-all hover:text-primary ${
-                        isActive ? "text-secondary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    {item.label}
-                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-secondary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-                  </NavLink>
-                </div>
-              ))}
-            </nav>
+            {/* Dropdown */}
+            {showAboutDropdown && (
+              <div className="absolute top-full left-0 mt-2 bg-white text-black shadow-lg rounded-lg py-2 w-56 z-50">
+                <a href="#about" className="block px-4 py-2 hover:bg-gray-100">
+                  About
+                </a>
+                <a href="#leadership" className="block px-4 py-2 hover:bg-gray-100">
+                  Leadership
+                </a>
+                <a href="#mission" className="block px-4 py-2 hover:bg-gray-100">
+                  Our Mission & Objective
+                </a>
+                <a href="#initiatives" className="block px-4 py-2 hover:bg-gray-100">
+                  Social Initiatives
+                </a>
+                <a href="#placements" className="block px-4 py-2 hover:bg-gray-100">
+                  Placements
+                </a>
+              </div>
+            )}
           </div>
-        </header>
-          )
+
+          <a href="programs" className="hover:text-gray-200 uppercase">
+            Courses
+          </a>
+          <a href="#Faculty" className="hover:text-gray-200 uppercase">
+            Faculty
+          </a>
+          <a href="#Achievements" className="hover:text-gray-200 uppercase">
+            Achievements
+          </a>
+          <a href="#Gallery" className="hover:text-gray-200 uppercase">
+            Gallery
+          </a>
+         
+          <a href="#Facilities" className="hover:text-gray-200 uppercase">
+            Facilities
+          </a>
+           <a href="#Notices" className="hover:text-gray-200 uppercase">
+            Notices
+          </a>
+          <a href="#Contactus" className="hover:text-gray-200 uppercase">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
 }

@@ -18,7 +18,7 @@ export default function App() {
       
        
         <Navbar></Navbar>
-        <RightSidebarToggle />
+       
         <main className="flex-grow">
            
           <Routes>
