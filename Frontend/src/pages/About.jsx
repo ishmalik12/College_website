@@ -2,6 +2,9 @@ import React from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import cllgimg from "../assets/cllgimg.jpeg"
+import { Info, Target, Flag, CheckCircle } from "lucide-react";
+import visionBg from "../assets/blurimg.jpeg";
 export default function About() {
   useEffect(() => {
   AOS.init({
@@ -17,8 +20,19 @@ export default function About() {
 
       
       {/* About Section */}
-      <section id="about"  data-aos="fade-up" className="bg-white shadow-md rounded-xl p-8 border-l-4 border-primary">
-        <h2 className="text-3xl font-bold text-primary mb-4">About</h2>
+      <section id="about"  data-aos="fade-up" className="bg-transparent  rounded-xl p-8 ">
+        <div className="text-center mb-10">
+  <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
+    About
+    <span className="block h-1 w-22 bg-[#47A8BD] rounded-full mx-auto mt-2"></span>
+  </h2>
+</div>
+        
+  <img
+    src={cllgimg}
+    alt="College View"
+    className="w-full max-h-[500px] object-cover rounded-xl shadow-lg mb-8"
+  />
         <p className="text-gray-700 leading-relaxed text-justify" style={{fontFamily:"Arvo"}}>
           Realizing the importance of girls education Ingraham Institute Girls degree College started its girls degree college from July 2017 with B.A (Eng. Eco., Pol. Sci. Education, History, Sociology and Hindi with 140 seats for all) B.Sc. (Bio with 60 seats) and B.Sc. (Maths with 60 seats) & B. Com. (with 60 seats) courses. Since then it is constantly progressing to develop young girls through enquiry based learning. The institution has wide reputation for its quality of learning and a holistic approach towards grooming the students.
 
@@ -29,22 +43,59 @@ The Institution basically aims to make and Endeavour to mould the young mind in 
 The approach of the Institution does not make it’s student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
         </p>
       </section>
+  
 
       {/* Vision & Mission */}
-      <section id="vision" data-aos="fade-left" className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white shadow-lg rounded-xl p-6 border-t-4 border-blue-500">
-          <h3 className="text-2xl font-semibold text-blue-700 mb-2">Our Vision</h3>
-          <p className="text-gray-700 leading-relaxed">
-            To be a premier institution for women's education, fostering innovation, social responsibility, and holistic development that empowers women to be global citizens.
-          </p>
-        </div>
-        <div className="bg-white shadow-lg rounded-xl p-6 border-t-4 border-green-500">
-          <h3 className="text-2xl font-semibold text-green-700 mb-2">Our Mission</h3>
-          <p className="text-gray-700 leading-relaxed">
-            To provide quality education that enhances intellectual, moral, and social capabilities, and promotes leadership, entrepreneurship, and lifelong learning among women.
-          </p>
-        </div>
-      </section>
+    
+
+<section
+  id="vision"
+  data-aos="fade-left"
+  className="ml-0 bg-cover  bg-center bg-no-repeat  relative"
+  style={{
+    backgroundImage: `url(${visionBg}),`,
+  }}
+>
+  {/* Blur + Overlay */}
+  <div className="backdrop-blur-xs bg-white/60 w-full h-full  py-20 md:px-20">
+    <div className="grid md:grid-cols-2 gap-10">
+      {/* Objective */}
+      <div className="bg-white shadow-xl rounded-xl p-8 border-t-4 border-blue-500">
+        <h3 className="text-2xl font-semibold text-blue-700 mb-4">Our Objective</h3>
+        <p className="text-gray-700 leading-relaxed text-justify" style={{ fontFamily: "Arvo" }}>
+          The idea to establish Ingraham Institute Girls' Degree College (a Christian Minority Institution) is to provide higher education to the poor, needy and marginalised Girls of our society...
+        </p>
+      </div>
+
+      {/* Mission */}
+      <div className="bg-white shadow-xl rounded-xl p-8 border-t-4 border-green-500">
+        <h3 className="text-2xl font-semibold text-green-700 mb-4">Our Mission</h3>
+        <p className="text-lg text-center font-medium text-gray-800 mb-6">
+          Educating the whole person in mind, body and spirit.
+        </p>
+        <ul className="space-y-4">
+          {[
+            "Lifelong learning",
+            "Creation of learning culture",
+            "Regional economic regeneration",
+            "Pure research, scholarship and discipline",
+            "Technology innovation",
+            "Social cohesion and action",
+            "Public accountability",
+          ].map((item, index) => (
+            <li
+              key={index}
+              className="flex items-start gap-3 hover:bg-[#e6f9fd] transition-all p-3 rounded-lg"
+            >
+              <CheckCircle className="text-[#47A8BD] mt-1" size={20} />
+              <span className="text-base md:text-lg">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Leadership */}
       <section id="leadership" data-aos="fade-down" className="bg-white shadow-md rounded-xl p-8 border-l-4 border-purple-600">
