@@ -1,156 +1,401 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useState } from 'react';
+import { Target, Eye, Heart, Globe, Users, Award, Globe2, HeartHandshake , TrendingUp, Building , CheckCircle , Droplet, Leaf, Sun } from 'lucide-react';
+import logo from "../assets/logo.png";
 import cllgimg from "../assets/cllgimg.jpeg";
-import visionBg from "../assets/blurimg.jpeg";
-import { CheckCircle, Users, Award, Globe2, HeartHandshake } from "lucide-react";
+import { motion } from "framer-motion";
+import flower from '../assets/flower.gif';
+const About = () => {
+  const [activeTab, setActiveTab] = useState('objective-mission');
 
-export default function About() {
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
+  const tabs = [
+    { id: 'objective-mission', label: 'Objective & Mission', icon: <Target className="h-5 w-5" /> },
+    { id: 'leadership', label: 'Leadership', icon: <Users className="h-5 w-5" /> },
+    { id: 'social-initiative', label: 'Social Initiative', icon: <Heart className="h-5 w-5" /> },
+    { id: 'placement', label: 'Placement', icon: <TrendingUp className="h-5 w-5" /> }
+  ];
+
+const initiatives = [
+  {
+    title: "Rain Water Harvesting",
+    description:
+      "Conserving water through rainwater collection systems to recharge groundwater and reduce dependency on external sources.",
+    impact: "20+ installations across campus",
+    icon: <Droplet className="h-8 w-8" />,
+    image: "/images/rainwater.jpg"
+  },
+  {
+    title: "Organic Farming",
+    description:
+      "Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.",
+    impact: "15 acres of organic cultivation",
+    icon: <Leaf className="h-8 w-8" />,
+    image: "/images/organic.jpg"
+  },
+  {
+    title: "Solar Panel Installation",
+    description:
+      "Harnessing solar energy to power infrastructure sustainably, reducing carbon emissions and reliance on non-renewable energy.",
+    impact: "75% energy needs met by solar",
+    icon: <Sun className="h-8 w-8" />,
+    image: "/images/solar.jpg"
+  }
+];
+
+
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-pink-50 min-h-screen px-6 py-12 sm:px-12 md:px-24 space-y-20">
-      {/* Hero Section */}
-      <section className="text-center space-y-6" data-aos="fade-down">
-        
-        <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900">About </h1>
-         <img
-          src={cllgimg}
-          alt="A vibrant view of the college campus"
-          className="mx-auto w-full max-w-3xl max-h-[400px] object-cover rounded-2xl shadow-2xl"
+    <div className="min-h-screen bg-gray-50">
+      <section className="grid md:grid-cols-4 gap-8 text-center p-12" data-aos="fade-up">
+  {[
+    {
+      icon: <Award className="mx-auto text-blue-600" size={36} />,
+      title: "Founded",
+      desc: "2017",
+    },
+    {
+      icon: <Users className="mx-auto text-green-600" size={36} />,
+      title: "Students",
+      desc: "320+ enrolled",
+    },
+    {
+      icon: <Globe2 className="mx-auto text-pink-600" size={36} />,
+      title: "Courses",
+      desc: "B.A., B.Sc. (Bio/Maths), B.Com.",
+    },
+    {
+      icon: <HeartHandshake className="mx-auto text-yellow-600" size={36} />,
+      title: "Community",
+      desc: "Active outreach & social impact",
+    },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-2xl p-6 transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-white/20"
+    >
+      {item.icon}
+      <h3 className="font-bold text-xl mt-3 text-blue-700">{item.title}</h3>
+      <p className="text-blue-600">{item.desc}</p>
+    </div>
+  ))}
+</section>
+
+   <section className="relative py-32 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
+  {/* Background effects */}
+  <div className="absolute inset-0">
+    <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+    <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+  </div>
+
+  {/* Content Container */}
+  <div className="relative max-w-6xl mx-auto px-2 sm:px-2 lg:px-2 ">
+    <h1 className="text-5xl font-bold text-white mb-6">About</h1>
+    <p className="text-lg lg:text-xl text-blue-100 leading-relaxed">
+    Realizing the importance of girls education Ingraham Institute Girls degree College started its girls degree college from July 2017 with B.A (Eng. Eco., Pol. Sci. Education, History, Sociology and Hindi with 140 seats for all) B.Sc. (Bio with 60 seats) and B.Sc. (Maths with 60 seats) & B. Com. (with 60 seats) courses. Since then it is constantly progressing to develop young girls through enquiry based learning.
+     The institution has wide reputation for its quality of learning and a holistic approach towards grooming the students. Infact, an Institution is known well by its highly qualified and ideal teachers and not merely by its building and infrastructure alone. The citizens of Ghaziabad metropolis and its enviros feel proud of the Ingraham Institute Girls degree college Ghaziabad, because it does not consist of only adequate space , modern building but it has highly qualified and ideal teachers also to impart girls education through the best use of modern technology. 
+     <br></br><br></br>The Institution basically aims to make and Endeavour to mould the young mind in such a way that they evolve and emerge as potential individuals, who push the convectional boundaries and harness their potential to become a force to make a better tomorrow. The approach of the Institution does not make it’s student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
+    </p>
+  </div>
+
+  {/* Images Below */}
+  <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Left Image */}
+       <div className="flex justify-center">
+        <img
+          src={logo}
+          alt="Campus"
+          className="rounded-xl  w-[15rem] max-w-md object-cover"
         />
-        <p style={{fontFamily:"Arvo"}} className="text-lg md:text-xl text-gray-700 mx-auto">
-          Realizing the importance of girls education Ingraham Institute Girls degree College started its girls degree college from July 2017 with B.A (Eng. Eco., Pol. Sci. Education, History, Sociology and Hindi with 140 seats for all) B.Sc. (Bio with 60 seats) and B.Sc. (Maths with 60 seats) & B. Com. (with 60 seats) courses. Since then it is constantly progressing to develop young girls through enquiry based learning. The institution has wide reputation for its quality of learning and a holistic approach towards grooming the students. Infact, an Institution is known well by its highly qualified and ideal teachers and not merely by its building and infrastructure alone. The citizens of Ghaziabad metropolis and its enviros feel proud of the Ingraham Institute Girls degree college Ghaziabad, because it does not consist of only adequate space , modern building but it has highly qualified and ideal teachers also to impart girls education through the best use of modern technology. The Institution basically aims to make and Endeavour to mould the young mind in such a way that they evolve and emerge as potential individuals, who push the convectional boundaries and harness their potential to become a force to make a better tomorrow. The approach of the Institution does not make it’s student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
+      </div>
+    
+
+      {/* Right Image */}
+       <div className="flex justify-center">
+        <img
+          src={cllgimg}
+          alt="Classroom"
+          className=" shadow-lg w-[25rem] max-w-md object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
 
-        </p>
-       
-      </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="flex flex-wrap justify-center mb-16 bg-blue-700 rounded-2xl p-3 shadow-xl">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center space-x-2 px-6 py-4 rounded-xl font-medium transition-all duration-300 m-1 ${
+                activeTab === tab.id
+                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg transform scale-105'
+                  : 'text-white hover:text-blue-600 hover:bg-blue-50'
+              }`}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </div>
+ <div className="min-h-[600px]">
+        
 
-      {/* Quick Facts */}
-      <section className="grid md:grid-cols-4 gap-8 text-center" data-aos="fade-up">
-        <div>
-          <Award className="mx-auto text-blue-600" size={36} />
-          <h3 className="font-bold text-xl mt-2">Founded</h3>
-          <p className="text-gray-600">2017</p>
-        </div>
-        <div>
-          <Users className="mx-auto text-green-600" size={36} />
-          <h3 className="font-bold text-xl mt-2">Students</h3>
-          <p className="text-gray-600">320+ enrolled</p>
-        </div>
-        <div>
-          <Globe2 className="mx-auto text-pink-600" size={36} />
-          <h3 className="font-bold text-xl mt-2">Courses</h3>
-          <p className="text-gray-600">B.A., B.Sc. (Bio/Maths), B.Com.</p>
-        </div>
-        <div>
-          <HeartHandshake className="mx-auto text-yellow-600" size={36} />
-          <h3 className="font-bold text-xl mt-2">Community</h3>
-          <p className="text-gray-600">Active outreach & social impact</p>
-        </div>
-      </section>
-
-      {/* Vision & Mission */}
-      <section
-        id="vision"
-        data-aos="fade-right"
-        className="relative rounded-2xl overflow-hidden"
-        style={{
-          backgroundImage: `url(${visionBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
-        <div className="backdrop-blur-sm bg-white/70 w-full h-full py-16 px-6 md:px-20">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Objective */}
-            <div className="bg-white/90 shadow-lg rounded-xl p-8 border-l-4 border-blue-500">
-              <h3 className="text-2xl font-semibold text-blue-700 mb-4">Our Objective</h3>
-              <p className="text-gray-700 leading-relaxed">
-                To provide higher education opportunities to underprivileged and marginalized girls, nurturing them into confident, capable individuals ready to shape a brighter future.
-              </p>
-            </div>
-            {/* Mission */}
-            <div className="bg-white/90 shadow-lg rounded-xl p-8 border-l-4 border-green-500">
-              <h3 className="text-2xl font-semibold text-green-700 mb-4">Our Mission</h3>
-              <ul className="space-y-3">
-                {[
-                  "Lifelong learning and curiosity",
-                  "Building a culture of inclusivity",
-                  "Promoting research and innovation",
-                  "Empowering regional development",
-                  "Fostering social responsibility",
-                  "Championing technology and progress",
-                  "Ensuring public accountability"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2">
-                    <CheckCircle className="text-[#47A8BD]" size={20} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section id="leadership" data-aos="fade-up" className="bg-white shadow-lg rounded-2xl p-10 border-l-4 border-purple-600">
-        <h2 className="text-3xl font-bold text-purple-700 mb-6 text-center">Leadership</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6">
-          {/* Replace with real data */}
-          {[
-            { role: "Principal", name: "Dr. Anjali Sharma" },
-            { role: "Vice Principal", name: "Ms. Neha Verma" },
-            { role: "Dean", name: "Prof. Ritu Singh" }
-          ].map((leader, idx) => (
-            <div key={idx} className="bg-gray-100 rounded-lg p-6 shadow-md text-center hover:shadow-xl transition">
-              <div className="w-24 h-24 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-blue-700">
-                {leader.name.split(" ").map(n => n[0]).join("")}
+          {activeTab === 'objective-mission' && (
+            <div className="grid lg:grid-cols-2 gap-12 animate-fade-in">
+              <div className="bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                  <Eye className="h-10 w-10 text-white" />
+                </div>
+                <h3 className="text-4xl font-bold text-blue-900 mb-6">Our Objective</h3>
+                  <p className="text-gray-700 leading-relaxed text-justify">
+        The idea to establish Ingraham Institute Girls' Degree College (a
+        Christian Minority Institution) is to provide higher education to the
+        poor, needy and marginalised Girls of our society in Ghaziabad and
+        neighbouring irrespective of caste, creed and colour. Through imparting
+        purposeful learning and education to build their character and
+        personality imbued with the knowledge and wisdom revealed by the
+        teachings of Jesus Christ, so that they become worthy citizens of this
+        great country India. Besides, to provide them through Ingraham Institute
+        Ghaziabad, opportunities and other services, in accordance with the
+        policies and purpose of Methodist Church in India and its successor body
+        within the bounds of directives given by the Board of Governors of the
+        Ingraham Institute from time to time. The objective of the Ingraham
+        Institute shall be to share the facilities and opportunity provided by
+        the Institute, within the ambit of Christian education for Christian
+        youth and other children.
+      </p>
               </div>
-              <h4 className="text-lg font-semibold">{leader.role}</h4>
-              <p className="text-sm text-gray-600">{leader.name}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Social Initiatives */}
-      <section id="initiatives" data-aos="fade-left" className="bg-white shadow-lg rounded-2xl p-10 border-l-4 border-rose-500">
-        <h2 className="text-3xl font-bold text-rose-600 mb-6 text-center">Social Initiatives</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {[
-            { icon: <Globe2 className="text-green-500" />, title: "Cleanliness Drives" },
-            { icon: <CheckCircle className="text-blue-500" />, title: "Tree Plantation" },
-            { icon: <HeartHandshake className="text-rose-500" />, title: "Women Empowerment" },
-            { icon: <Award className="text-yellow-500" />, title: "Health & Blood Donation Camps" }
-          ].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 bg-gray-50 p-6 rounded-xl shadow hover:bg-blue-50 transition">
-              {item.icon}
-              <span className="text-lg font-medium">{item.title}</span>
+              <div className="bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                <div className="bg-gradient-to-r from-red-600 to-red-700 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                  <Target className="h-10 w-10 text-white" />
+                </div>
+                <h3 className="text-4xl font-bold text-blue-900 mb-6">Our Mission</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  To provide transformative education that empowers students to become global leaders and innovators, 
+                  making a positive impact on society and the world.
+                </p>
+                <ul className="space-y-3 text-gray-800">
+        {[
+          "Lifelong learning and curiosity",
+          "Building a culture of inclusivity",
+          "Promoting research and innovation",
+          "Empowering regional development",
+          "Fostering social responsibility",
+          "Championing technology and progress",
+          "Ensuring public accountability",
+        ].map((item, idx) => (
+          <li key={idx} className="flex items-center gap-2">
+            <CheckCircle className="text-[#47A8BD]" size={20} />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          )}
 
-      {/* Placements */}
-      <section id="placements" data-aos="fade-up" className="bg-white shadow-lg rounded-2xl p-10 border-l-4 border-yellow-500">
-        <h2 className="text-3xl font-bold text-yellow-600 mb-6 text-center">Placements</h2>
-        <p className="text-gray-700 text-center mb-8">
-          Our placement cell connects students with top organizations, offering career guidance, internships, and job opportunities.
-        </p>
-        <div className="flex flex-wrap justify-center gap-6">
-          {/* Replace with real company logos */}
-          {["TCS", "Infosys", "Wipro", "HDFC Bank", "ICICI", "Amazon"].map((company, idx) => (
-            <div key={idx} className="bg-gray-100 px-6 py-4 rounded-lg shadow text-center font-semibold text-gray-700 hover:bg-yellow-50 transition">
-              {company}
+          {activeTab === 'leadership' && (
+            <section
+  id="leadership"
+  data-aos="fade-up"
+  className="bg-white shadow-lg rounded-2xl px-6 md:px-16 py-12 "
+>
+ 
+  <div className="flex flex-col md:flex-row items-center gap-10">
+    {/* Director's Photo */}
+    <div className="flex-shrink-0">
+      <img
+        src="/path-to-director-photo.jpg" // 🔁 Replace with actual image path
+        alt="Director"
+        className="rounded-xl shadow-md w-64 h-64 object-cover"
+      />
+    </div>
+
+    {/* Director's Message */}
+    <div className="text-gray-700 text-[1.05rem] leading-relaxed text-justify">
+      <h3 className="text-2xl font-semibold text-teal-600 mb-4">
+        Director's Message
+      </h3>
+      <p className="mb-4">
+        Life is a never-ending learning process for all those, who have explored to
+        gain education through learning to enhance their knowledge and skills in
+        the field of academics. During the learning process irrespective of its
+        nature many challenges and unforeseen obstacles come, which can be tackled
+        with determination and singleness of the purpose to our day to day
+        responsibilities with best of our ability, with honesty and hard work
+        imbued with integrity of heart.
+      </p>
+      <p className="mb-4">
+        As an educator, our endeavour will be to help, shape and bring out the
+        best out of our students. Our efforts will be to ensure that during the
+        learning process of our students they are not only be confined to gain
+        their academic degrees but also to uplift their physical, mental,
+        emotional and spiritual facilities to build their character and
+        personality. I am sure, our qualified and learned teachers are committed
+        to impart outcome based education to all, including those who are
+        under-privileged and deprived of their legitimate right to receive proper
+        education, irrespective of their caste, creed and colour and subsequently
+        contribute towards the mission of our great country to become the leading
+        nation of the world.
+      </p>
+      <p className="mt-6 font-medium text-teal-700 italic">
+        With good wishes and God's blessings.
+      </p>
+    </div>
+    {/* Flower - Top Left */}
+  <motion.img
+    src={flower}
+    alt="flower"
+    initial={{ opacity: 0, x: -20, y: -20, scale: 0.5 }}
+    whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+    transition={{ duration: 1, delay: 0.1 }}
+    className="absolute top-0 left-0 w-10 h-10 md:w-14 md:h-14 pointer-events-none"
+  />
+
+  {/* Flower - Top Right */}
+  <motion.img
+    src={flower}
+    alt="flower"
+    initial={{ opacity: 0, x: 20, y: -20, scale: 0.5 }}
+    whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+    transition={{ duration: 1, delay: 0.2 }}
+    className="absolute top-0 right-0 w-10 h-10 md:w-14 md:h-14 pointer-events-none"
+  />
+
+  {/* Flower - Bottom Left */}
+  <motion.img
+    src={flower}
+    alt="flower"
+    initial={{ opacity: 0, x: -20, y: 20, scale: 0.5 }}
+    whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+    transition={{ duration: 1, delay: 0.3 }}
+    className="absolute bottom-0 left-0 w-10 h-10 md:w-14 md:h-14 pointer-events-none"
+  />
+
+  {/* Flower - Bottom Right */}
+  <motion.img
+    src={flower}
+    alt="flower"
+    initial={{ opacity: 0, x: 20, y: 20, scale: 0.5 }}
+    whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+    transition={{ duration: 1, delay: 0.4 }}
+    className="absolute bottom-0 right-0 w-10 h-10 md:w-14 md:h-14 pointer-events-none"
+  />
+  </div>
+</section>
+          )}
+
+          {activeTab === 'social-initiative' && (
+            <div className="space-y-16 animate-fade-in">
+              <div className="text-center">
+                <h3 className="text-4xl font-bold text-blue-900 mb-6">Social Initiatives</h3>
+                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                  Ingraham Institute Girls Degree College University is committed to making a positive impact on society through various community outreach and social responsibility programs.
+                </p>
+              </div>
+<div className="grid md:grid-cols-3 gap-10">
+  {initiatives.map((initiative, index) => (
+    <div
+      key={index}
+      className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+    >
+      <img
+        src={initiative.image}
+        alt={initiative.title}
+        className="w-full h-48 object-cover rounded-xl mb-6"
+      />
+      <div className="bg-gradient-to-br from-blue-600 to-red-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 text-white mx-auto">
+        {initiative.icon}
+      </div>
+      <h4 className="text-2xl font-bold text-blue-900 text-center mb-4">{initiative.title}</h4>
+      <p className="text-gray-600 mb-6 leading-relaxed text-center text-lg">{initiative.description}</p>
+      <div className="bg-gradient-to-r from-blue-50 to-red-50 rounded-xl p-4 text-center">
+        <p className="text-blue-600 font-bold text-lg">Impact: {initiative.impact}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
             </div>
-          ))}
+          )}
+
+          {activeTab === 'placement' && (
+            <div className="space-y-16 animate-fade-in">
+              <div className="text-center">
+                <h3 className="text-4xl font-bold text-blue-900 mb-6">Placement & Career Services</h3>
+                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                  Our dedicated placement cell ensures that students are well-prepared for successful careers with top employers worldwide.
+                </p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-16">
+                <div className="space-y-10">
+                  <div className="bg-white rounded-2xl p-10 shadow-xl">
+                    <h4 className="text-3xl font-bold text-blue-900 mb-8">Placement Statistics</h4>
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                        <div className="text-4xl font-bold text-blue-600 mb-3">95%</div>
+                        <div className="text-gray-600 font-medium">Placement Rate</div>
+                      </div>
+                      <div className="text-center p-6 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                        <div className="text-4xl font-bold text-red-600 mb-3">$85K</div>
+                        <div className="text-gray-600 font-medium">Average Package</div>
+                      </div>
+                      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                        <div className="text-4xl font-bold text-blue-600 mb-3">500+</div>
+                        <div className="text-gray-600 font-medium">Partner Companies</div>
+                      </div>
+                      <div className="text-center p-6 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                        <div className="text-4xl font-bold text-red-600 mb-3">$150K</div>
+                        <div className="text-gray-600 font-medium">Highest Package</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-10 shadow-xl">
+                    <h4 className="text-3xl font-bold text-blue-900 mb-8">Top Recruiters</h4>
+                    <div className="grid grid-cols-2 gap-6">
+                      {['Google', 'Microsoft', 'Amazon', 'Apple', 'Meta', 'Tesla'].map((company, idx) => (
+                        <div key={idx} className="p-6 bg-gray-50 rounded-xl text-center font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
+                          {company}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-600 to-red-600 rounded-2xl p-10 text-white">
+                  <h4 className="text-3xl font-bold mb-8">Career Services</h4>
+                  <div className="space-y-6">
+                    {[
+                      'Resume building and interview preparation',
+                      'Industry mentorship programs',
+                      'Internship and job placement assistance',
+                      'Career counseling and guidance',
+                      'Alumni networking opportunities',
+                      'Skill development workshops'
+                    ].map((service, idx) => (
+                      <div key={idx} className="flex items-center space-x-4">
+                        <div className="w-4 h-4 bg-white rounded-full"></div>
+                        <span className="text-lg">{service}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button className="mt-10 bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors duration-200 font-bold text-lg transform hover:scale-105">
+                    Contact Career Services
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </section>
+      </div>
     </div>
   );
-}
+};
+
+export default About;
+

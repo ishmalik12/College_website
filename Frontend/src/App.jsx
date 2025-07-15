@@ -1,13 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { useState } from "react";
+import 'leaflet/dist/leaflet.css';
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
-import Contact from "./pages/Contact";
+import Contact from "./pages/Contact"
 import Navbar from "./components/Navbar";
 import Gallery from './components/Gallery'; 
 import RightSidebarToggle from "./components/Sidebar";
 import Faculty from "./components/Faculty";
+import Notice from "./pages/Notices";
+import Footer from "./components/Footer";
+
 
 export default function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,21 +28,20 @@ export default function App() {
            
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<Home />} />
             <Route path="/programs" element={<Programs />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<Contact></Contact>} />
             <Route path="/faculty" element={<Faculty></Faculty>} />
             <Route path="/gallery" element={<Gallery></Gallery>} />
-            
+            <Route path="/notices" element={<Notice></Notice>}/>
+
 
             
           </Routes>
         </main>
 
         {/* Footer */}
-        <footer className="bg-primary text-white py-6 text-center">
-                <p>&copy; 2025 Ingraham Institute Girls Degree College. All rights reserved.</p>
-            </footer>
+       <Footer></Footer>
 
       
 

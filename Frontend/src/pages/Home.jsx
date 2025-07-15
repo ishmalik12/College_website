@@ -43,7 +43,7 @@ export default function Home() {
     <>
       {/* ✅ Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
-        <div className="w-full h-screen border-8 border-white relative overflow-hidden">
+        <div className="w-full h-screen relative overflow-hidden">
   {/* Slides */}
   {slides.map((slide, index) => (
     <div

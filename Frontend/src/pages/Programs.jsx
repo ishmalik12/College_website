@@ -7,6 +7,7 @@ import {
   ChevronUp
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import sample6 from "../assets/slideshow6.jpeg"
 
 const programs = [
   {
@@ -79,22 +80,23 @@ export default function Programs() {
     filter === "All" ? programs : programs.filter((p) => p.category === filter);
 
   return (
-    <section className="min-h-screen bg-gradient-to-tr from-blue-50 to-white py-20 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-500 rounded-full mb-6 shadow-lg">
-          <GraduationCap className="w-10 h-10 text-white" />
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-800">
-          Explore Our Programs
-        </h1>
-        <p className="text-gray-600 mt-4 text-base max-w-3xl mx-auto">
-          Discover diverse academic pathways and future-ready skills offered at Ingraham Institute Girls Degree College.
+    <>
+  {/* Hero Image Section */}
+  <section
+    className="w-full h-screen bg-cover bg-center relative"
+    style={{ backgroundImage: `url(${sample6})` }}
+  >
+    <div className="absolute inset-0 bg-black/40 flex items-end justify-center">
+      <div className="text-center m-8 text-white px-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">COURSES</h1>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+          Explore a wide range of undergraduate and skill-based programs built for your success.
         </p>
-
-        <div className="flex flex-wrap justify-center gap-4 mt-8">
-          
-        </div>
       </div>
+    </div>
+  </section>
+    <section className="min-h-screen bg-gradient-to-tr from-blue-50 to-white py-20 px-6 md:px-12">
+     
 
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
@@ -105,7 +107,8 @@ export default function Programs() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.4 }}
-              className="rounded-xl border border-blue-100 bg-white shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between"
+              className="rounded-xl border-2 border-blue-200 bg-white shadow-md hover:shadow-lg hover:border-blue-400 transition-all duration-300 flex flex-col justify-between"
+
             >
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-blue-800 mb-1">{prog.title}</h3>
@@ -142,18 +145,7 @@ export default function Programs() {
         </AnimatePresence>
       </div>
 
-      <div className="text-center mt-24">
-        <h2 className="text-2xl text-blue-900 font-bold mb-2">
-          Need Help Choosing a Program?
-        </h2>
-        <p className="text-gray-600 mb-4">Speak to our counselors and plan your academic journey with confidence.</p>
-        <a
-          href="/contact"
-          className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
-        >
-          Contact Counseling Desk
-        </a>
-      </div>
     </section>
+    </>
   );
 }
