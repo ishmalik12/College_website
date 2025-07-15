@@ -10,8 +10,11 @@ import Navbar from "./components/Navbar";
 import Gallery from './components/Gallery'; 
 import RightSidebarToggle from "./components/Sidebar";
 import Faculty from "./components/Faculty";
+import Achievements from "./pages/Achievements";
 import Notice from "./pages/Notices";
 import Footer from "./components/Footer";
+import Facilities from './components/Facilities';
+
 
 
 export default function App() {
@@ -34,7 +37,8 @@ export default function App() {
             <Route path="/faculty" element={<Faculty></Faculty>} />
             <Route path="/gallery" element={<Gallery></Gallery>} />
             <Route path="/notices" element={<Notice></Notice>}/>
-
+            <Route path="/achievements" element={<Achievements />} />
+          <Route path="/facilities" element={<Facilities />} />
 
             
           </Routes>
