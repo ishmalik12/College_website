@@ -1,164 +1,203 @@
-import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  Trophy, 
+  Award, 
+  BookOpen, 
+  Users, 
+  Building, 
+  Target, 
+  Medal,
+  GraduationCap,
+  Lightbulb,
+  Globe,
+  Star
+} from 'lucide-react';
 
-const achievements = [
-  {
-    id: '1',
-    years: '1838-1861',
-    title: 'The Bombay Times',
-    description: 'The Bombay Times and Journal of Commerce',
-    color: 'bg-orange-500',
-    position: 'bottom'
-  },
-  {
-    id: '2',
-    years: '1952-1962',
-    title: 'Filmfare Magazine',
-    description: 'Filmfare Magazine Launched',
-    color: 'bg-teal-500',
-    position: 'top'
-  },
-  {
-    id: '3',
-    years: '1990-1999',
-    title: 'Global Recognition',
-    description: 'Times Of India Got Featured Among The World',
-    color: 'bg-blue-500',
-    position: 'bottom'
-  },
-  {
-    id: '4',
-    years: '2000-2004',
-    title: 'Milestone Achievement',
-    description: 'The Times Of India Crossed 2 Millions Mark',
-    color: 'bg-red-500',
-    position: 'top'
-  },
-  {
-    id: '5',
-    years: '2005-2007',
-    title: 'Digital Expansion',
-    description: 'Launch Of Simply Marry And Mumbai Mirror',
-    color: 'bg-purple-500',
-    position: 'bottom'
-  },
-  {
-    id: '6',
-    years: '2009-2016',
-    title: 'Modern Era',
-    description: 'Launch Of ET NOW And Bennett University',
-    color: 'bg-yellow-500',
-    position: 'top'
-  }
-];
-
-const Achievements = () => {
-  return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-
-      {/* Main content */}
-      <div className="relative z-10 px-6 py-16">
-        {/* Title */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-wide">
-            Ingraham Institue Girl's Degree College
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+const AchievementCard = ({ icon, title, description, year }) => (
+  <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+    <div className="flex items-start space-x-4">
+      <div className="bg-blue-100 p-3 rounded-lg text-blue-600 flex-shrink-0">
+        {icon}
+      </div>
+      <div className="flex-1">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+          {year && <span className="text-sm text-blue-600 font-medium">{year}</span>}
         </div>
-
-        {/* Desktop Timeline */}
-        <div className="hidden lg:block max-w-7xl mx-auto">
-          <div className="relative">
-            {/* Main timeline line */}
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-slate-600 via-slate-400 to-slate-600 transform -translate-y-1/2"></div>
-
-            {/* Timeline items */}
-            <div className="relative flex justify-between items-center min-h-[400px]">
-              {achievements.map((achievement) => (
-                <div key={achievement.id} className="relative flex-1 px-2">
-                  {/* Timeline dot */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="w-4 h-4 bg-white rounded-full border-4 border-slate-300 shadow-lg"></div>
-                  </div>
-
-                  {/* Colored segment */}
-                  <div className={`absolute top-1/2 left-0 right-0 h-2 ${achievement.color} transform -translate-y-1/2 z-10`}></div>
-
-                  {/* Achievement card */}
-                  <div className={`absolute left-1/2 transform -translate-x-1/2 w-64 ${
-                    achievement.position === 'top' ? 'bottom-full mb-8' : 'top-full mt-8'
-                  }`}>
-                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                      <div className={`inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 ${achievement.color} text-white shadow-lg`}>
-                        {achievement.years}
-                      </div>
-                      <div className="text-white">
-                        <h3 className="text-lg font-bold mb-2 leading-tight">
-                          {achievement.title}
-                        </h3>
-                        <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                          {achievement.description}
-                        </p>
-                        <button className="group flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:scale-105">
-                          Know More
-                          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className={`absolute left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-white/40 ${
-                      achievement.position === 'top' ? 'top-full' : 'bottom-full'
-                    }`}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile/Tablet Vertical Timeline */}
-        <div className="lg:hidden max-w-2xl mx-auto">
-          <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-600 via-slate-400 to-slate-600"></div>
-            <div className="space-y-12">
-              {achievements.map((achievement) => (
-                <div key={achievement.id} className="relative flex items-start">
-                  <div className="absolute left-8 transform -translate-x-1/2 z-20">
-                    <div className="w-4 h-4 bg-white rounded-full border-4 border-slate-300 shadow-lg"></div>
-                  </div>
-                  <div className="ml-20 w-full">
-                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                      <div className={`inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 ${achievement.color} text-white shadow-lg`}>
-                        {achievement.years}
-                      </div>
-                      <div className="text-white">
-                        <h3 className="text-lg font-bold mb-2 leading-tight">
-                          {achievement.title}
-                        </h3>
-                        <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                          {achievement.description}
-                        </p>
-                        <button className="group flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:scale-105">
-                          Know More
-                          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-teal-500/10 rounded-full blur-lg animate-pulse delay-2000"></div>
+        <p className="text-gray-600 leading-relaxed">{description}</p>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-export default Achievements;
+function App() {
+  const [activeTab, setActiveTab] = useState('academic');
+
+  const achievements = {
+    academic: [
+      {
+        icon: <GraduationCap className="w-6 h-6" />,
+        title: "NAAC A++ Accreditation",
+        description: "Received the highest grade of A++ from National Assessment and Accreditation Council, recognizing our commitment to academic excellence and quality education.",
+        year: "2023"
+      },
+      {
+        icon: <BookOpen className="w-6 h-6" />,
+        title: "Top 10 Engineering College",
+        description: "Ranked among the top 10 engineering colleges in the state by National Institutional Ranking Framework (NIRF) for three consecutive years.",
+        year: "2021-2023"
+      },
+      {
+        icon: <Award className="w-6 h-6" />,
+        title: "NBA Accreditation",
+        description: "All major engineering programs accredited by National Board of Accreditation, ensuring international standards in technical education.",
+        year: "2022"
+      },
+      {
+        icon: <Trophy className="w-6 h-6" />,
+        title: "Best Innovation Award",
+        description: "Awarded the Best Innovation in Higher Education by the State Government for implementing cutting-edge teaching methodologies.",
+        year: "2023"
+      }
+    ],
+    research: [
+      {
+        icon: <Lightbulb className="w-6 h-6" />,
+        title: "Research Excellence Award",
+        description: "Recognized for outstanding research contributions in artificial intelligence and machine learning with over 500 publications in peer-reviewed journals.",
+        year: "2023"
+      },
+      {
+        icon: <Globe className="w-6 h-6" />,
+        title: "International Collaboration",
+        description: "Established research partnerships with 15 international universities, facilitating student and faculty exchange programs.",
+        year: "2022"
+      },
+      {
+        icon: <Target className="w-6 h-6" />,
+        title: "Patent Portfolio",
+        description: "Filed 50+ patents in emerging technologies including renewable energy, biotechnology, and smart systems.",
+        year: "2021-2023"
+      },
+      {
+        icon: <Building className="w-6 h-6" />,
+        title: "Research Funding",
+        description: "Secured $2.5 million in research grants from government agencies and industry partners for innovative projects.",
+        year: "2023"
+      }
+    ],
+    student: [
+      {
+        icon: <Users className="w-6 h-6" />,
+        title: "100% Placement Record",
+        description: "Achieved 100% placement rate for the graduating class of 2023, with average salary package of $85,000 annually.",
+        year: "2023"
+      },
+      {
+        icon: <Medal className="w-6 h-6" />,
+        title: "National Competition Winners",
+        description: "Students won first place in 12 national-level technical competitions, including robotics, coding, and innovation challenges.",
+        year: "2023"
+      },
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: "Student Startup Success",
+        description: "25 successful startups launched by our students and alumni, with combined valuation exceeding $50 million.",
+        year: "2020-2023"
+      },
+      {
+        icon: <Trophy className="w-6 h-6" />,
+        title: "Sports Excellence",
+        description: "Inter-university champions in 8 different sports categories, with 15 students representing the country in international competitions.",
+        year: "2023"
+      }
+    ]
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Our Achievements
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+              Celebrating excellence in education, research, and innovation. 
+              Discover how we're shaping the future through outstanding accomplishments.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                View All Achievements
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Achievement Categories */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Our Key Achievements
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explore our accomplishments across different domains
+            </p>
+          </div>
+
+          {/* Tab Navigation */}
+          <div className="flex flex-col sm:flex-row justify-center mb-12">
+            <div className="bg-white rounded-lg shadow-sm p-1 flex flex-col sm:flex-row">
+              <button
+                onClick={() => setActiveTab('academic')}
+                className={`px-6 py-3 rounded-md font-semibold transition-colors ${
+                  activeTab === 'academic'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                Academic Excellence
+              </button>
+              <button
+                onClick={() => setActiveTab('research')}
+                className={`px-6 py-3 rounded-md font-semibold transition-colors ${
+                  activeTab === 'research'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                Research & Innovation
+              </button>
+              <button
+                onClick={() => setActiveTab('student')}
+                className={`px-6 py-3 rounded-md font-semibold transition-colors ${
+                  activeTab === 'student'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                Student Success
+              </button>
+            </div>
+          </div>
+
+          {/* Achievement Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {achievements[activeTab].map((achievement, index) => (
+              <AchievementCard key={index} {...achievement} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+     
+    </div>
+  );
+}
+
+export default App;

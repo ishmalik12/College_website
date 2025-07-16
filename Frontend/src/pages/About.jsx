@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Target, Eye, Heart, Globe, Users, Award, Globe2, HeartHandshake , TrendingUp, Building , CheckCircle , Droplet, Leaf, Sun } from 'lucide-react';
+import { Target, Eye, Heart, Globe, Users, Award, Globe2, HeartHandshake , TrendingUp, Building , CheckCircle , Droplets, Leaf, Sun } from 'lucide-react';
 import logo from "../assets/logo.png";
 import cllgimg from "../assets/cllgimg.jpeg";
 import { motion } from "framer-motion";
 import flower from '../assets/flower.gif';
+
 const About = () => {
   const [activeTab, setActiveTab] = useState('objective-mission');
 
@@ -20,7 +21,7 @@ const initiatives = [
     description:
       "Conserving water through rainwater collection systems to recharge groundwater and reduce dependency on external sources.",
     impact: "20+ installations across campus",
-    icon: <Droplet className="h-8 w-8" />,
+    icon: <Droplets className="h-8 w-8" />,
     image: "/images/rainwater.jpg"
   },
   {
@@ -92,7 +93,7 @@ const initiatives = [
     <p className="text-lg lg:text-xl text-blue-100 leading-relaxed">
     Realizing the importance of girls education Ingraham Institute Girls degree College started its girls degree college from July 2017 with B.A (Eng. Eco., Pol. Sci. Education, History, Sociology and Hindi with 140 seats for all) B.Sc. (Bio with 60 seats) and B.Sc. (Maths with 60 seats) & B. Com. (with 60 seats) courses. Since then it is constantly progressing to develop young girls through enquiry based learning.
      The institution has wide reputation for its quality of learning and a holistic approach towards grooming the students. Infact, an Institution is known well by its highly qualified and ideal teachers and not merely by its building and infrastructure alone. The citizens of Ghaziabad metropolis and its enviros feel proud of the Ingraham Institute Girls degree college Ghaziabad, because it does not consist of only adequate space , modern building but it has highly qualified and ideal teachers also to impart girls education through the best use of modern technology. 
-     <br></br><br></br>The Institution basically aims to make and Endeavour to mould the young mind in such a way that they evolve and emerge as potential individuals, who push the convectional boundaries and harness their potential to become a force to make a better tomorrow. The approach of the Institution does not make it’s student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
+     <br></br><br></br>The Institution basically aims to make and Endeavour to mould the young mind in such a way that they evolve and emerge as potential individuals, who push the convectional boundaries and harness their potential to become a force to make a better tomorrow. The approach of the Institution does not make it's student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
     </p>
   </div>
 
@@ -296,30 +297,92 @@ const initiatives = [
                   Ingraham Institute Girls Degree College University is committed to making a positive impact on society through various community outreach and social responsibility programs.
                 </p>
               </div>
-<div className="grid md:grid-cols-3 gap-10">
-  {initiatives.map((initiative, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-    >
-      <img
-        src={initiative.image}
-        alt={initiative.title}
-        className="w-full h-48 object-cover rounded-xl mb-6"
-      />
-      <div className="bg-gradient-to-br from-blue-600 to-red-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 text-white mx-auto">
-        {initiative.icon}
-      </div>
-      <h4 className="text-2xl font-bold text-blue-900 text-center mb-4">{initiative.title}</h4>
-      <p className="text-gray-600 mb-6 leading-relaxed text-center text-lg">{initiative.description}</p>
-      <div className="bg-gradient-to-r from-blue-50 to-red-50 rounded-xl p-4 text-center">
-        <p className="text-blue-600 font-bold text-lg">Impact: {initiative.impact}</p>
-      </div>
-    </div>
-  ))}
-</div>
+              
+              <div className="space-y-20">
+                {/* Rain Water Harvesting - Card Left, Visualization Right */}
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+                    <div className="bg-gradient-to-br from-teal-500 to-green-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                      <Droplets className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Rain Water Harvesting</h4>
+                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                      Conserving water through rainwater collection systems to recharge groundwater and reduce dependency on external sources.
+                    </p>
+                    
+                    
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
+                    <Droplets className="w-16 h-16 text-teal-600 mb-6" />
+                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
+                  </div>
+                </div>
 
+                {/* Organic Farming - Visualization Left, Card Right */}
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
+                    <Leaf className="w-16 h-16 text-green-600 mb-6" />
+                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
+                  </div>
+                  
+                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+                    <div className="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                      <Leaf className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Organic Farming</h4>
+                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                      Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.
+                    </p>
+                  
+                    
+                      </div>
+                </div>
+
+                {/* Solar Panel Installation - Card Left, Visualization Right */}
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+                    <div className="bg-gradient-to-br from-yellow-500 to-orange-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                      <Sun className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Solar Panel Installation</h4>
+                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                      Harnessing solar energy to power infrastructure sustainably, reducing carbon emissions and reliance on non-renewable energy.
+                    </p>
+                    
+                   
+                  </div>
+                  
+                  
+                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
+                    <Sun className="w-16 h-16 text-yellow-600 mb-6" />
+                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
+                  </div>
+                </div>
+              </div>
+
+              {/* Organic Farming - Visualization Left, Card Right */}
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
+                    <Leaf className="w-16 h-16 text-green-600 mb-6" />
+                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
+                  </div>
+                  
+                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+                    <div className="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+                      <Leaf className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Sadak Suraksha</h4>
+                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                      Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.
+                    </p>
+                  
+                    
+                      </div>
+                </div>
             </div>
+
+            
           )}
 
           {activeTab === 'placement' && (
@@ -375,7 +438,7 @@ const initiatives = [
                       'Industry mentorship programs',
                       'Internship and job placement assistance',
                       'Career counseling and guidance',
-                      'Alumni networking opportunities',
+                      'Alumni networking opportunities',  
                       'Skill development workshops'
                     ].map((service, idx) => (
                       <div key={idx} className="flex items-center space-x-4">
@@ -398,4 +461,3 @@ const initiatives = [
 };
 
 export default About;
-
