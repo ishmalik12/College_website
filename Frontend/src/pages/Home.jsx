@@ -90,7 +90,7 @@ export default function Home() {
 
       </section>
 
-      {/* ✅ Ticker & About Section */}
+
       <NoticeTicker />
       <About />
     </>

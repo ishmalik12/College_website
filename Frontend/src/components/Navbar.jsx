@@ -51,6 +51,9 @@ export default function Navbar() {
           <a href="Notices" className="hover:text-gray-200 uppercase">
             Notices
           </a>
+           <a href="apply-alumni" className="hover:text-gray-200 uppercase">
+            Alumni
+          </a>
           <a href="contact" className="hover:text-gray-200 uppercase">
             Contact Us
           </a>
