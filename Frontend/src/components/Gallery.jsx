@@ -1,253 +1,271 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import {
+  Camera,
   X,
   ChevronLeft,
   ChevronRight,
-  Camera,
-  Calendar,
-  Users,
-  Award,
-  Heart,
-  Sparkles,
-  ArrowRight,
-  ImageIcon,
-  Clock,
-  MapPin
-} from 'lucide-react';
+} from "lucide-react";
 
+// Import your images here
 import angawadi1 from "../assets/Angawadi-01.png";
 import angawadi2 from "../assets/Angawadi-02.jpg";
 import angawadi3 from "../assets/Angawadi-03.jpg";
-
 import fssai1 from "../assets/FSSAI-01.jpg";
 import fssai2 from "../assets/FSSAI-02.jpg";
 import fssai3 from "../assets/FSSAI-03.jpg";
-
 import shark1 from "../assets/SharkTank-01.png";
 import shark2 from "../assets/SharkTank-02.png";
 import shark3 from "../assets/SharkTank-03.png";
 import shark4 from "../assets/SharkTank-04.png";
 import shark5 from "../assets/SharkTank-05.png";
-
 import women1 from "../assets/womensday-01.png";
 import women2 from "../assets/womensday-02.png";
 import women3 from "../assets/womensday-03.png";
 import women4 from "../assets/womensday-04.png";
 import women5 from "../assets/womensday-05.png";
 import women6 from "../assets/womensday-06.png";
+import christmas1 from "../assets/Christmas01.png";
+import christmas2 from "../assets/Christmas02.png";
+import christmas3 from "../assets/Christmas03.png";
+import freshers1 from "../assets/Freshers01.png";
+import freshers2 from "../assets/Freshers02.png";
+import freshers3 from "../assets/freshers03.png";
+import hindi1 from "../assets/HindiDiwas01.png";
+import hindi2 from "../assets/HindiDiwas02.png";
+import independence1 from "../assets/IndependenceDay01.png";
+import independence2 from "../assets/IndependenceDay02.png";
+import poshan1 from "../assets/poshanMela01.png";
+import poshan2 from "../assets/poshanMela02.png";
+import poshan3 from "../assets/poshanMela03.png";
+import poshan4 from "../assets/poshanMela04.png";
+import poshan5 from "../assets/poshanMela05.png";
+import poshan6 from "../assets/poshanMela06.png";
+import poshan7 from "../assets/poshanMela07.png";
+import sadak1 from "../assets/SadakSuraksha01.png";
+import sadak2 from "../assets/SadakSuraksha02.png";
+import teachers1 from "../assets/TeachersDay01.png";
+import yoga1 from "../assets/YogaDay01.png";
+import yoga2 from "../assets/YogaDay02.png";
 
-// ✅ Gallery Data
-const groupedGallery = {
-  '2024': [
-    {
-      section: 'Anganwadi Visit',
-      color: 'red',
-      icon: Heart,
-      location: 'Community Center',
-      date: 'March 15, 2024',
-      items: [
-        { title: 'Community Outreach', description: 'Students visiting Anganwadi center.', src: angawadi1, tags: ['Community', 'Health'] },
-        { title: 'Child Interaction', description: 'Interacting with children.', src: angawadi2, tags: ['Children'] },
-        { title: 'Educational Activities', description: 'Fun learning activities.', src: angawadi3, tags: ['Learning'] }
-      ]
-    },
-    {
-      section: 'FSSAI Awareness Program',
-      color: 'blue',
-      icon: Award,
-      location: 'Main Auditorium',
-      date: 'April 22, 2024',
-      items: [
-        { title: 'Food Safety Summit', description: 'Presentation on food safety.', src: fssai1, tags: ['Safety'] },
-        { title: 'Interactive Workshop', description: 'Demonstrating practices.', src: fssai2, tags: ['Workshop'] },
-        { title: 'Student Engagement', description: 'Students participating actively.', src: fssai3, tags: ['Engagement'] }
-      ]
-    },
-    {
-      section: 'Shark Tank Event',
-      color: 'red',
-      icon: Sparkles,
-      location: 'Innovation Hub',
-      date: 'May 10, 2024',
-      items: [
-        { title: 'Pitch Presentations', description: 'Students pitch ideas.', src: shark1, tags: ['Pitch'] },
-        { title: 'Expert Panel', description: 'Panel evaluates ideas.', src: shark2, tags: ['Panel'] },
-        { title: 'Winning Team', description: 'Top team awarded.', src: shark3, tags: ['Winners'] },
-        { title: 'Collaboration', description: 'Team efforts.', src: shark4, tags: ['Teamwork'] },
-        { title: 'Grand Finale', description: 'Closing ceremony.', src: shark5, tags: ['Finale'] }
-      ]
-    }
-  ],
-  '2025': [
-    {
-      section: "Women's Day Celebration",
-      color: 'blue',
-      icon: Users,
-      location: 'Central Campus',
-      date: 'March 8, 2025',
-      items: [
-        { title: 'Inspiring Keynote', description: 'Leadership talk.', src: women1, tags: ['Leadership'] },
-        { title: 'Unity & Strength', description: 'Group photo.', src: women2, tags: ['Unity'] },
-        { title: 'Cultural Showcase', description: 'Performances.', src: women3, tags: ['Culture'] },
-        { title: 'Stories of Success', description: 'Women achievements.', src: women4, tags: ['Success'] },
-        { title: 'Recognition Awards', description: 'Outstanding women honored.', src: women5, tags: ['Awards'] },
-        { title: 'Celebration Finale', description: 'Closing event.', src: women6, tags: ['Celebration'] }
-      ]
-    }
-  ]
-};
+// Accent colors
+const accentColors = [
+  "bg-blue-600",
+  "bg-green-600",
+  "bg-orange-500",
+  "bg-red-600",
+  "bg-violet-600",
+  "bg-amber-500",
+  "bg-cyan-700",
+  "bg-pink-600",
+  "bg-teal-700",
+];
 
-const Gallery = () => {
-  const [activeYear, setActiveYear] = useState('2024');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalImages, setModalImages] = useState([]);
-  const [hoveredCard, setHoveredCard] = useState(null);
+const tileSizes = [
+  "col-span-1 row-span-1",
+  "col-span-2 row-span-1",
+  "col-span-1 row-span-2",
+  "col-span-2 row-span-2",
+];
 
-  const openModal = (images, index) => {
-    setModalImages(images);
-    setSelectedImage(index);
-  };
+// Titles for each image — replace or adapt these as needed
+const imageData = [
+  { src: angawadi1, title: "Anganwadi Visit" },
+  { src: angawadi2, title: "Anganwadi - Child Interaction" },
+  { src: angawadi3, title: "Anganwadi - Activities" },
+  { src: fssai1, title: "FSSAI Food Safety" },
+  { src: fssai2, title: "FSSAI Workshop" },
+  { src: fssai3, title: "FSSAI Engagement" },
+  { src: shark1, title: "Shark Tank Pitch" },
+  { src: shark2, title: "Shark Tank Experts" },
+  { src: shark3, title: "Shark Tank Winners" },
+  { src: shark4, title: "Team Collaboration" },
+  { src: shark5, title: "Grand Finale" },
+  { src: women1, title: "Women's Day Keynote" },
+  { src: women2, title: "Women's Day Unity" },
+  { src: women3, title: "Cultural Showcase" },
+  { src: women4, title: "Inspiring Stories" },
+  { src: women5, title: "Recognition Awards" },
+  { src: women6, title: "Celebration Finale" },
+  { src: christmas1, title: "Christmas Decorations" },
+  { src: christmas2, title: "Carol Singing" },
+  { src: christmas3, title: "Gift Exchange" },
+  { src: freshers1, title: "Freshers Welcome" },
+  { src: freshers2, title: "Cultural Program" },
+  { src: freshers3, title: "Group Activities" },
+  { src: hindi1, title: "Hindi Poetry" },
+  { src: hindi2, title: "Hindi Literature" },
+  { src: independence1, title: "Flag Hoisting" },
+  { src: independence2, title: "Patriotic Program" },
+  { src: poshan1, title: "Nutrition Awareness" },
+  { src: poshan2, title: "Food Exhibition" },
+  { src: poshan3, title: "Cooking Demo" },
+  { src: poshan4, title: "Health Checkup" },
+  { src: poshan5, title: "Interactive Session" },
+  { src: poshan6, title: "Community Participation" },
+  { src: poshan7, title: "Award Ceremony" },
+  { src: sadak1, title: "Road Safety Awareness" },
+  { src: sadak2, title: "Safety Demonstration" },
+  { src: teachers1, title: "Teachers Appreciation" },
+  { src: yoga1, title: "Morning Yoga" },
+  { src: yoga2, title: "Meditation Workshop" },
+];
 
-  const closeModal = () => {
-    setSelectedImage(null);
-    setModalImages([]);
-  };
+function getRandomFrom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
 
-  const nextImage = () => {
-    setSelectedImage((prev) => (prev + 1) % modalImages.length);
-  };
+const LumiaGallery = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const dialogRef = useRef(null);
 
-  const prevImage = () => {
-    setSelectedImage((prev) => (prev === 0 ? modalImages.length - 1 : prev - 1));
-  };
+  useEffect(() => {
+    if (!modalOpen) return;
+    const handler = (e) => {
+      if (e.key === "Escape") setModalOpen(false);
+      if (e.key === "ArrowRight")
+        setCurrentIdx((idx) => (idx + 1) % imageData.length);
+      if (e.key === "ArrowLeft")
+        setCurrentIdx((idx) => (idx - 1 + imageData.length) % imageData.length);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [modalOpen]);
 
-  const getColorClasses = (color) => ({
-    red: {
-      primary: 'text-red-600',
-      accent: 'bg-red-600',
-    },
-    blue: {
-      primary: 'text-blue-600',
-      accent: 'bg-blue-600',
-    },
-    default: {
-      primary: 'text-gray-600',
-      accent: 'bg-gray-600',
-    }
-  }[color] || { primary: 'text-gray-600', accent: 'bg-gray-600' });
+  useEffect(() => {
+    if (modalOpen && dialogRef.current) dialogRef.current.focus();
+  }, [modalOpen]);
+
+  // Consistent tile meta
+  const tileMeta = React.useMemo(
+    () =>
+      imageData.map((img, i) => ({
+        color: accentColors[i % accentColors.length],
+        size: tileSizes[i % tileSizes.length],
+      })),
+    []
+  );
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 text-center">
-        <div className="mb-6 flex justify-center">
-          <div className="bg-white/10 p-5 rounded-full">
-            <Camera className="w-10 h-10" />
+    <div
+      className="min-h-screen bg-gray-900 font-sans"
+      style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}
+    >
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          <div className="mb-8 flex justify-center">
+            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-3xl shadow-2xl border border-white/20">
+              <Camera className="w-12 h-12 text-white" />
+            </div>
           </div>
+          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+            Campus Gallery
+          </h1>
+          <p className="text-xl text-purple-100 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Explore campus moments in a vibrant Lumia tile-inspired gallery.
+          </p>
         </div>
-        <h1 className="text-5xl font-bold mb-4">Campus Gallery</h1>
-        <p className="text-blue-100 max-w-xl mx-auto mb-10">
-          Explore vibrant memories and milestones of our academic community.
-        </p>
-        <div className="flex justify-center gap-4">
-          {['2024', '2025'].map((year) => (
+      </section>
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div
+          className="grid auto-rows-[160px] sm:auto-rows-[220px] md:auto-rows-[240px] gap-4
+           grid-cols-2 sm:grid-cols-4 md:grid-cols-6"
+        >
+          {imageData.map(({ src, title }, idx) => (
             <button
-              key={year}
-              onClick={() => setActiveYear(year)}
-              className={`px-6 py-3 rounded-xl font-semibold ${
-                activeYear === year ? 'bg-white text-blue-900' : 'bg-white/10 text-white'
-              }`}
+              key={idx}
+              type="button"
+              tabIndex={0}
+              onClick={() => {
+                setCurrentIdx(idx);
+                setModalOpen(true);
+              }}
+              className={`overflow-hidden flex flex-col justify-end
+                transition-transform duration-200 focus:outline-none group
+                ${tileMeta[idx].color} ${tileMeta[idx].size}
+                rounded-sm relative hover:scale-105 shadow-lg cursor-pointer`}
+              style={{
+                margin: "2px",
+              }}
+              aria-label={`View image: ${title}`}
             >
-              <Calendar className="inline-block w-4 h-4 mr-1" />
-              {year}
+              <img
+                src={src}
+                alt={title}
+                className="object-cover w-full h-full
+                  transition-transform duration-200 group-hover:scale-110 group-focus:scale-110"
+                loading="lazy"
+                draggable="false"
+                style={{
+                  aspectRatio: "1/1",
+                  display: "block",
+                  background: "#222",
+                }}
+              />
+              <div
+                className="absolute inset-x-0 bottom-0 p-3"
+                style={{ background: "rgba(0,0,0,0.45)" }}
+              >
+                <span
+                  className="text-white font-bold text-lg select-none"
+                  style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}
+                >
+                  {title}
+                </span>
+              </div>
             </button>
           ))}
         </div>
-      </section>
-
-      {/* Event Sections */}
-      {groupedGallery[activeYear].map((group, idx) => {
-        const colors = getColorClasses(group.color);
-        const IconComponent = group.icon;
-
-        return (
-          <section
-            key={idx}
-            className={`py-16 px-6 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
-          >
-            <div className="max-w-6xl mx-auto text-center mb-12">
-              <div className={`w-16 h-16 mx-auto mb-4 rounded-full ${colors.accent} flex items-center justify-center`}>
-                <IconComponent className="text-white w-8 h-8" />
-              </div>
-              <h2 className="text-4xl font-bold">{group.section}</h2>
-              <div className="mt-2 flex justify-center gap-6 text-gray-600">
-                <span className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2" /> {group.location}
-                </span>
-                <span className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" /> {group.date}
-                </span>
-                <span className="flex items-center">
-                  <ImageIcon className="w-4 h-4 mr-2" /> {group.items.length} Photos
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {group.items.map((img, i) => (
-                <div
-                  key={i}
-                  className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer group"
-                  onClick={() => openModal(group.items, i)}
-                  onMouseEnter={() => setHoveredCard(`${idx}-${i}`)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.title}
-                    className="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                    <ArrowRight className="text-white w-6 h-6" />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-700">
-                      {img.title}
-                    </h3>
-                    <p className="text-sm text-gray-600">{img.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      })}
-
-      {/* Modal */}
-      {selectedImage !== null && (
-        <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
+      </div>
+      {modalOpen && (
+        <div
+          ref={dialogRef}
+          tabIndex={-1}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur"
+          onClick={() => setModalOpen(false)}
+          aria-modal="true"
+          role="dialog"
+        >
           <button
-            onClick={closeModal}
-            className="absolute top-6 right-6 text-white bg-white/20 hover:bg-white/30 p-2 rounded-full z-[10000]"
+            aria-label="Close"
+            onClick={() => setModalOpen(false)}
+            className="absolute top-8 right-10 text-white text-4xl font-bold focus:outline-none z-50"
+            tabIndex={0}
+            style={{ lineHeight: 1 }}
           >
-            <X className="w-6 h-6" />
+            <X size={36} />
           </button>
-          <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 text-white z-[9999]">
-            <ChevronLeft className="w-10 h-10" />
+          <button
+            aria-label="Previous"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIdx((idx) => (idx - 1 + imageData.length) % imageData.length);
+            }}
+            className="absolute left-6 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 z-50"
+            tabIndex={0}
+          >
+            <ChevronLeft size={36} />
           </button>
-          <div className="max-w-[98vw] max-h-[95vh] flex flex-col items-center justify-center">
-            <img
-              src={modalImages[selectedImage].src}
-              alt={modalImages[selectedImage].title}
-              className="rounded-lg object-contain w-[98vw] h-[95vh]"
-            />
-            <div className="mt-4 text-center text-white">
-              <h3 className="text-2xl font-bold">{modalImages[selectedImage].title}</h3>
-              <p className="mt-2 text-gray-300">{modalImages[selectedImage].description}</p>
-            </div>
-          </div>
-          <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 text-white z-[9999]">
-            <ChevronRight className="w-10 h-10" />
+          <img
+            src={imageData[currentIdx].src}
+            alt={imageData[currentIdx].title}
+            className="max-w-4xl w-[92vw] max-h-[80vh] rounded-xl shadow-2xl outline-none transition-transform duration-200 scale-100"
+            style={{ background: "#222" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            aria-label="Next"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIdx((idx) => (idx + 1) % imageData.length);
+            }}
+            className="absolute right-6 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 z-50"
+            tabIndex={0}
+          >
+            <ChevronRight size={36} />
           </button>
         </div>
       )}
@@ -255,4 +273,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default LumiaGallery;
