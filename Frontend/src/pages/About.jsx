@@ -4,6 +4,14 @@ import logo from "../assets/logo.png";
 import cllgimg from "../assets/cllgimg.jpeg";
 import { motion } from "framer-motion";
 import flower from '../assets/flower.gif';
+import directorImg from "../assets/DIR.jpg";
+import SolarPan from "../assets/solarpannel.jpg";
+import solarImg from "../assets/solarpannel.jpg";
+import farmingImg from "../assets/organicfarming.jpg";
+import sadakImg from "../assets/SadakSuraksha01.png";
+
+
+
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('objective-mission');
@@ -209,10 +217,11 @@ const initiatives = [
     {/* Director's Photo */}
     <div className="flex-shrink-0">
       <img
-        src="/path-to-director-photo.jpg" // 🔁 Replace with actual image path
-        alt="Director"
-        className="rounded-xl shadow-md w-64 h-64 object-cover"
-      />
+  src={directorImg}
+  alt="Director"
+  className="rounded-xl shadow-md w-64 h-64 object-cover"
+/>
+
     </div>
 
     {/* Director's Message */}
@@ -220,6 +229,7 @@ const initiatives = [
       <h3 className="text-2xl font-semibold text-teal-600 mb-4">
         Director's Message
       </h3>
+      
       <p className="mb-4">
         Life is a never-ending learning process for all those, who have explored to
         gain education through learning to enhance their knowledge and skills in
@@ -289,102 +299,88 @@ const initiatives = [
 </section>
           )}
 
-          {activeTab === 'social-initiative' && (
-            <div className="space-y-16 animate-fade-in">
-              <div className="text-center">
-                <h3 className="text-4xl font-bold text-blue-900 mb-6">Social Initiatives</h3>
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                  Ingraham Institute Girls Degree College University is committed to making a positive impact on society through various community outreach and social responsibility programs.
-                </p>
-              </div>
-              
-              <div className="space-y-20">
-                {/* Rain Water Harvesting - Card Left, Visualization Right */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
-                    <div className="bg-gradient-to-br from-teal-500 to-green-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
-                      <Droplets className="w-10 h-10 text-white" />
-                    </div>
-                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Rain Water Harvesting</h4>
-                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                      Conserving water through rainwater collection systems to recharge groundwater and reduce dependency on external sources.
-                    </p>
-                    
-                    
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
-                    <Droplets className="w-16 h-16 text-teal-600 mb-6" />
-                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
-                  </div>
-                </div>
 
-                {/* Organic Farming - Visualization Left, Card Right */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
-                    <Leaf className="w-16 h-16 text-green-600 mb-6" />
-                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
-                  </div>
-                  
-                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
-                    <div className="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
-                      <Leaf className="w-10 h-10 text-white" />
-                    </div>
-                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Organic Farming</h4>
-                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                      Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.
-                    </p>
-                  
-                    
-                      </div>
-                </div>
-
-                {/* Solar Panel Installation - Card Left, Visualization Right */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
-                    <div className="bg-gradient-to-br from-yellow-500 to-orange-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
-                      <Sun className="w-10 h-10 text-white" />
-                    </div>
-                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Solar Panel Installation</h4>
-                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                      Harnessing solar energy to power infrastructure sustainably, reducing carbon emissions and reliance on non-renewable energy.
-                    </p>
-                    
-                   
-                  </div>
-                  
-                  
-                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
-                    <Sun className="w-16 h-16 text-yellow-600 mb-6" />
-                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
-                  </div>
-                </div>
-              </div>
-
-              {/* Organic Farming - Visualization Left, Card Right */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-16 flex flex-col items-center justify-center min-h-[500px]">
-                    <Leaf className="w-16 h-16 text-green-600 mb-6" />
-                    <h6 className="text-xl font-semibold text-gray-700">Initiative Visualization</h6>
-                  </div>
-                  
-                  <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
-                    <div className="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
-                      <Leaf className="w-10 h-10 text-white" />
-                    </div>
-                    <h4 className="text-3xl font-bold text-gray-800 mb-6">Sadak Suraksha</h4>
-                    <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                      Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.
-                    </p>
-                  
-                    
-                      </div>
-                </div>
-            </div>
-
-            
-          )}
-
+{activeTab === 'social-initiative' && (
+  <div className="space-y-16 animate-fade-in">
+    <div className="text-center">
+      <h3 className="text-4xl font-bold text-blue-900 mb-6">Social Initiatives</h3>
+      <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        Ingraham Institute Girls Degree College University is committed to making a positive impact on society through various community outreach and social responsibility programs.
+      </p>
+    </div>
+    
+    <div className="space-y-20">
+      {/* Rain Water Harvesting - Card Left, Visualization Right */}
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div className="bg-gradient-to-br from-teal-500 to-green-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+            <Droplets className="w-10 h-10 text-white" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-800 mb-6">Rain Water Harvesting</h4>
+          <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+            Conserving water through rainwater collection systems to recharge groundwater and reduce dependency on external sources.
+          </p>
+        </div>
+        <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-8 flex flex-col items-center">
+          {/* You can use an existing illustration or a relevant photo here */}
+          <Droplets className="w-16 h-16 text-teal-600 mb-4" />
+          <h6 className="text-xl font-semibold text-gray-700 mb-4">Initiative Visualization</h6>
+        </div>
+      </div>
+      
+      {/* Organic Farming - Visualization Left, Card Right */}
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-8 flex flex-col items-center">
+          <img src={farmingImg} alt="Organic Farming" className="w-full max-h-52 rounded-xl shadow-lg object-cover mb-4" />
+          <h6 className="text-xl font-semibold text-gray-700">Organic Farming</h6>
+        </div>
+        <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div className="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+            <Leaf className="w-10 h-10 text-white" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-800 mb-6">Organic Farming</h4>
+          <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+            Promoting sustainable agriculture by cultivating crops without synthetic fertilizers or pesticides, encouraging healthy ecosystems.
+          </p>
+        </div>
+      </div>
+      
+      {/* Solar Panel Installation - Card Left, Visualization Right */}
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+            <Sun className="w-10 h-10 text-white" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-800 mb-6">Solar Panel Installation</h4>
+          <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+            Harnessing solar energy to power infrastructure sustainably, reducing carbon emissions and reliance on non-renewable energy.
+          </p>
+        </div>
+        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 flex flex-col items-center">
+          <img src={solarImg} alt="Solar Panel Installation" className="w-full max-h-52 rounded-xl shadow-lg object-cover mb-4" />
+          <h6 className="text-xl font-semibold text-gray-700">Solar Panels</h6>
+        </div>
+      </div>
+      
+      {/* Sadak Suraksha - Visualization Left, Card Right */}
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-8 flex flex-col items-center">
+          <img src={sadakImg} alt="Sadak Suraksha" className="w-full max-h-52 rounded-xl shadow-lg object-cover mb-4" />
+          <h6 className="text-xl font-semibold text-gray-700">Sadak Suraksha</h6>
+        </div>
+        <div className="bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div className="bg-gradient-to-br from-red-500 to-yellow-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-8">
+            <Droplets className="w-10 h-10 text-white" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-800 mb-6">Sadak Suraksha</h4>
+          <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+            Road safety awareness initiative to promote safe travel and traffic conduct.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
           {activeTab === 'placement' && (
             <div className="space-y-16 animate-fade-in">
               <div className="text-center">
