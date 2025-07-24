@@ -1,89 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GraduationCap, Award, Users, Star } from 'lucide-react';
 import facultyBanner from '../assets/womensday-04.png';
 
-import img0 from '../assets/Dr.rachna.png';
-import img1 from '../assets/DOP.png';
-import img2 from '../assets/Dr Sangeetika .png';
-import img3 from '../assets/Dr Sarika Singha.png';
-import img4 from '../assets/Dr.Alpna.png';
-import img5 from '../assets/Mr.ShivaniSharma.png';
-import img6 from '../assets/Dr. Monika Govil .png';
-import img7 from '../assets/Dr Hemlata Agarwal.png';
-import img8 from '../assets/Dr. Amarvati Chauhan .png';
-import img9 from '../assets/Dr Durgesh sharma.png';
-import img10 from '../assets/Dr. Upasana Dixit.png';
-
 const Faculty = () => {
-  const facultyList = [
-    {
-      name: "Dr. Rachna Gaur Murari",
-      position: "Vice Principal",
-      specialization:
-        "MSc (Microbiology) – Dr. RML Avadh University | Ph.D – GBPUAT Pantnagar | Trained in Soil Molecular Biology – Switzerland | Gus Tagging – BHU | Mycorrhiza Handling – TERI Delhi",
-    },
-    {
-      name: "Dr. Kalpana Tyagi",
-      position: "Assistant Professor, Department of Physics",
-      specialization: "M.Sc (Physics) – HNB Garhwal University | Ph.D – MJP Rohilkhand University",
-    },
-    {
-      name: "Dr. Sangeetika",
-      position: "Assistant Professor, HOD – Science",
-      specialization:
-        "MSc Chemistry – Dr. B.R. Ambedkar University, Agra | Ph.D – Delhi University | NET Qualified",
-    },
-    {
-      name: "Dr. Sarika Singhal",
-      position: "Assistant Professor, Department of Zoology",
-      specialization: "M.Sc & Ph.D (Zoology) – CCS University Meerut",
-    },
-    {
-      name: "Dr. Alpna Sharma",
-      position: "Assistant Professor, Department of Chemistry",
-      specialization: "M.Sc & Ph.D (Chemistry) – MJP Rohilkhand University",
-    },
-    {
-      name: "Ms. Shivani Sharma",
-      position: "Department of Commerce",
-      specialization:
-        "B.Com & M.Com – University of Delhi | NET Qualified | Educational YouTube Channel – Sneh Shiksha",
-    },
-    {
-      name: "Dr. Monika Govil",
-      position: "Assistant Professor, Department of Education",
-      specialization:
-        "Triple MA – English, Economics, Education | M.Ed & Ph.D (Education) – Jiwaji University, Gwalior",
-    },
-    {
-      name: "Dr. Hemlata Agarwal",
-      position: "",
-      specialization: "B.Com, M.Com | Ph.D (Finance)",
-    },
-    {
-      name: "Dr. Amarvati Chauhan",
-      position: "Assistant Professor, Department of History",
-      specialization:
-        "Ph.D & NET (History) – CCSU Meerut | Double M.A. – History and Education – CCSU Meerut",
-    },
-    {
-      name: "Dr. Durgesh Sharma",
-      position: "Assistant Professor, Department of Political Science",
-      specialization:
-        "PDF – ICSSR, New Delhi | Ph.D (Political Science) – CCSU Meerut | Double M.A. – Political Science, Sociology",
-    },
-    {
-      name: "Dr. Upasana Dixit",
-      position: "Department of Hindi",
-      specialization:
-        "Double M.A. – Hindi & Education | Ph.D (Hindi) | Pursuing M.A. in Bhagavad Gita | Secretary – Shri Umesh Memorial Trust, Delhi | President – Neer-Ksheer Publications | Regional President – ABRSS, Western U.P. | Secretary – Narayani Sansthan | Associate Editor – Kavitambara (Kashi)",
-    },
-  ];
+  const [facultyList, setFacultyList] = useState([]);
 
-  const facultyImages = [
-    img0, img1, img2, img3, img4, img5,
-    img6, img7, img8, img9, img10
-  ];
+  useEffect(() => {
+    const fetchFaculty = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/faculty/public'); // <-- Replace with your deployed URL if needed
+        const data = await res.json();
+        if (data.success) {
+          setFacultyList(data.faculty);
+        }
+      } catch (err) {
+        console.error('Error fetching faculty:', err);
+      }
+    };
+
+    fetchFaculty();
+  }, []);
 
   return (
     <>
@@ -146,52 +82,69 @@ const Faculty = () => {
               to provide world-class learning experiences.
             </p>
           </div>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {facultyList.map((faculty, index) => (
               <div
                 key={index}
                 className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100 overflow-hidden relative"
               >
-                {/* Background Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
-                
-                <div className="relative p-8">
-                  <div className="flex flex-col items-center">
-                    <div className="relative mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity scale-110"></div>
-                      <div className="relative">
-                        <img
-                          src={facultyImages[index]}
-                          alt={faculty.name}
-                          className="relative w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl ring-4 ring-blue-100 group-hover:ring-blue-200 transition-all duration-300"
-                        />
-                        <div className="absolute -bottom-3 -right-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <GraduationCap className="text-white w-6 h-6" />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors duration-300 leading-tight">
-                      {faculty.name}
-                    </h3>
-                    
-                    {faculty.position && (
-                      <div className="bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full mb-4 group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-300">
-                        <p className="text-blue-700 font-semibold text-sm text-center">
-                          {faculty.position}
-                        </p>
-                      </div>
-                    )}
-                    
-                    <div className="border-t border-gray-100 pt-4 w-full group-hover:border-gray-200 transition-colors duration-300">
-                      <p className="text-gray-600 text-sm text-center leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                        {faculty.specialization}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+<div className="relative p-8">
+  <div className="flex flex-col items-center">
+    <div className="relative mb-6 group-hover:scale-110 transition-transform duration-500">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity scale-110"></div>
+      <div className="relative">
+        <img
+          src={
+            faculty.photoUrl?.startsWith('http')
+              ? faculty.photoUrl
+              : `http://localhost:5000${faculty.photoUrl}`
+          }
+          alt={faculty.name}
+         className="w-32 h-32 rounded-full object-cover"
+        />
+        <div className="absolute -bottom-3 -right-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
+          <GraduationCap className="text-white w-6 h-6" />
+        </div>
+      </div>
+    </div>
+
+    <h3 className="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+      {faculty.name}
+    </h3>
+
+    {faculty.designation && (
+      <div className="bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full mb-2 group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-300">
+        <p className="text-blue-700 font-semibold text-sm text-center">
+          {faculty.designation}
+        </p>
+      </div>
+    )}
+
+    {/* New: Department */}
+    {faculty.department && (
+      <p className="text-sm text-gray-700 font-medium mb-1">
+        Dept: {faculty.department}
+      </p>
+    )}
+
+    {/* New: Experience */}
+    {faculty.experience && (
+      <p className="text-sm text-gray-600 mb-4">
+        Experience: {faculty.experience}
+      </p>
+    )}
+
+    <div className="border-t border-gray-100 pt-4 w-full group-hover:border-gray-200 transition-colors duration-300">
+      <p className="text-gray-600 text-sm text-center leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+        {faculty.specialization || faculty.bio || 'No description provided.'}
+      </p>
+    </div>
+  </div>
+</div>
+
               </div>
             ))}
           </div>
@@ -200,25 +153,24 @@ const Faculty = () => {
         {/* CTA Section */}
         <div className="mt-32 relative">
           <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-3xl p-16 text-white text-center shadow-2xl overflow-hidden relative">
-            {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent)]"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-white/5 to-transparent rounded-full -translate-y-48 translate-x-48"></div>
-            
+
             <div className="relative max-w-5xl mx-auto">
               <div className="bg-white/20 backdrop-blur-sm rounded-full p-8 w-fit mx-auto mb-10 border border-white/30 shadow-2xl">
                 <GraduationCap className="h-20 w-20 mx-auto" />
               </div>
-              
+
               <h3 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent leading-tight">
                 Join Our Faculty
               </h3>
-              
+
               <p className="text-xl md:text-2xl mb-12 text-blue-100 leading-relaxed max-w-4xl mx-auto font-light">
                 Are you passionate about education and research? Join our team of distinguished faculty
                 members and help shape the future of education at Ingraham Institute Girls Degree College.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <button className="group bg-white text-blue-600 px-12 py-5 rounded-2xl hover:bg-gray-50 transition-all duration-300 font-bold text-xl shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1">
                   <span className="flex items-center justify-center gap-3">

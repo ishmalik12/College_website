@@ -1,75 +1,37 @@
-import React from 'react';
-import { Bell, Calendar, AlertCircle, Info, CheckCircle, Clock, Download, Pin } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Bell, Calendar,Eye, AlertCircle, Info, CheckCircle, Clock, Download, Pin } from 'lucide-react';
 
 const Notice = () => {
-  const notices = [
-    {
-      id: 1,
-      type: 'urgent',
-      icon: <AlertCircle className="h-6 w-6" />,
-      title: "Final Exam Schedule Released",
-      content: "The final examination schedule for Spring 2024 semester has been published. Students are advised to check their exam dates and venues on the student portal immediately.",
-      date: "2024-03-15",
-      category: "Academic",
-      priority: "high",
-      pinned: true
-    },
-    {
-      id: 2,
-      type: 'info',
-      icon: <Info className="h-6 w-6" />,
-      title: "Library Extended Hours",
-      content: "The central library will remain open 24/7 during the final exam period from March 20-30, 2024. Additional study spaces have been arranged in the student union building.",
-      date: "2024-03-14",
-      category: "Facilities",
-      priority: "medium",
-      pinned: false
-    },
-    {
-      id: 3,
-      type: 'success',
-      icon: <CheckCircle className="h-6 w-6" />,
-      title: "Scholarship Applications Open",
-      content: "Applications for merit-based scholarships for the 2024-25 academic year are now open. Deadline for submission is April 15, 2024. Apply through the student portal.",
-      date: "2024-03-13",
-      category: "Financial Aid",
-      priority: "high",
-      pinned: true
-    },
-    {
-      id: 4,
-      type: 'info',
-      icon: <Calendar className="h-6 w-6" />,
-      title: "Spring Break Schedule",
-      content: "Spring break will be observed from March 25-29, 2024. Classes will resume on April 1, 2024. Campus facilities will have limited hours during this period.",
-      date: "2024-03-12",
-      category: "Academic",
-      priority: "medium",
-      pinned: false
-    },
-    {
-      id: 5,
-      type: 'urgent',
-      icon: <AlertCircle className="h-6 w-6" />,
-      title: "Campus Safety Alert",
-      content: "Due to construction work in the north campus area, students are advised to use alternative routes. Temporary parking arrangements have been made in the east parking lot.",
-      date: "2024-03-11",
-      category: "Safety",
-      priority: "high",
-      pinned: true
-    },
-    {
-      id: 6,
-      type: 'info',
-      icon: <Info className="h-6 w-6" />,
-      title: "Career Fair Registration",
-      content: "Registration for the Annual Career Fair 2024 is now open. The event will be held on April 5, 2024, in the Student Union. Over 100 companies will participate.",
-      date: "2024-03-10",
-      category: "Career Services",
-      priority: "medium",
-      pinned: false
-    }
-  ];
+  const [notices, setNotices] = useState([]);
+  const [loading, setLoading] = useState(true);
+ const [isModalOpen, setIsModalOpen] = useState(false);
+const [preview, setPreview] = useState(null);
+
+
+const openPreview = (file) => {
+  setPreview(file);
+  setIsModalOpen(true);
+};
+
+const closePreview = () => {
+  setIsModalOpen(false);
+  setPreview(null);
+};
+
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/notices/public') // ✅ Your backend public route
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setNotices(data.notices);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching notices:', error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   const getNoticeStyle = (type) => {
     switch (type) {
@@ -113,6 +75,18 @@ const Notice = () => {
     });
   };
 
+  const getIcon = (type) => {
+    switch (type) {
+      case 'urgent':
+        return <AlertCircle className="h-6 w-6" />;
+      case 'success':
+        return <CheckCircle className="h-6 w-6" />;
+      case 'info':
+      default:
+        return <Info className="h-6 w-6" />;
+    }
+  };
+
   const pinnedNotices = notices.filter(notice => notice.pinned);
   const regularNotices = notices.filter(notice => !notice.pinned);
 
@@ -124,7 +98,7 @@ const Notice = () => {
           <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-8">
             <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl mr-6">
@@ -142,89 +116,175 @@ const Notice = () => {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    
-        {/* Pinned Notices */}
-        {pinnedNotices.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center mb-8">
-              <Pin className="h-6 w-6 text-red-600 mr-3" />
-              <h2 className="text-3xl font-bold text-blue-900">Pinned Notices</h2>
-            </div>
-            <div className="space-y-6">
-              {pinnedNotices.map((notice) => (
-                <div key={notice.id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1`}>
-                  <div className="flex items-start space-x-6">
-                    <div className={`${getIconColor(notice.type)} mt-1 bg-white p-3 rounded-xl shadow-md`}>
-                      {notice.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-blue-900">{notice.title}</h3>
-                        <div className="flex items-center space-x-3">
-                          <Pin className="h-5 w-5 text-red-600" />
-                          <span className={`px-4 py-2 rounded-full text-sm font-bold ${getPriorityBadge(notice.priority)}`}>
-                            {notice.priority.toUpperCase()}
-                          </span>
-                          <span className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">
-                            {notice.category}
-                          </span>
-                        </div>
-                      </div>
-                      <p className="text-gray-700 leading-relaxed text-lg mb-6">{notice.content}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center text-gray-500">
-                          <Clock className="h-5 w-5 mr-2" />
-                          <span className="font-medium">Posted on {formatDate(notice.date)}</span>
-                        </div>
-                        <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold flex items-center space-x-2">
-                          <Download className="h-4 w-4" />
-                          <span>Download</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* Regular Notices */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-blue-900 mb-8">Recent Notices</h2>
-          <div className="space-y-6">
-            {regularNotices.map((notice) => (
-              <div key={notice.id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
-                <div className="flex items-start space-x-6">
-                  <div className={`${getIconColor(notice.type)} mt-1`}>
-                    {notice.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-bold text-blue-900">{notice.title}</h3>
-                      <div className="flex items-center space-x-2">
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getPriorityBadge(notice.priority)}`}>
-                          {notice.priority.toUpperCase()}
-                        </span>
-                        <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
-                          {notice.category}
-                        </span>
+        {loading ? (
+          <div className="text-center text-gray-500 text-xl py-20">Loading Notices...</div>
+        ) : (
+          <>
+            {/* Pinned Notices */}
+            {pinnedNotices.length > 0 && (
+              <div className="mb-16">
+                <div className="flex items-center mb-8">
+                  <Pin className="h-6 w-6 text-red-600 mr-3" />
+                  <h2 className="text-3xl font-bold text-blue-900">Pinned Notices</h2>
+                </div>
+                <div className="space-y-6">
+                  {pinnedNotices.map((notice) => (
+                    <div key={notice._id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1`}>
+                      <div className="flex items-start space-x-6">
+                        <div className={`${getIconColor(notice.type)} mt-1 bg-white p-3 rounded-xl shadow-md`}>
+                          {getIcon(notice.type)}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-start justify-between mb-4">
+                            <h3 className="text-2xl font-bold text-blue-900">{notice.title}</h3>
+                            <div className="flex items-center space-x-3">
+                              <Pin className="h-5 w-5 text-red-600" />
+                              <span className={`px-4 py-2 rounded-full text-sm font-bold ${getPriorityBadge(notice.priority)}`}>
+                                {notice.priority?.toUpperCase()}
+                              </span>
+                              <span className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">
+                                {notice.category}
+                              </span>
+                            </div>
+                          </div>
+                          <p className="text-gray-700 leading-relaxed text-lg mb-6">{notice.content}</p>
+                          <div className="flex justify-between items-end mt-6">
+  {/* Date - Left side */}
+  <div className="text-gray-500 flex items-center text-sm">
+    <Clock className="h-4 w-4 mr-1" />
+    <span>Posted on {formatDate(notice.createdAt)}</span>
+  </div>
+
+  {/* Download button - Right side */}
+ {notice.attachments?.[0]?.url && (
+  <button
+  onClick={() => {
+    setPreview(notice.attachments?.[0]);
+    setIsModalOpen(true);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+>
+  Preview & Download
+</button>
+
+)}
+
+</div>
+
+
+                    
+
+                        </div>
                       </div>
+                     
+
                     </div>
-                    <p className="text-gray-700 leading-relaxed mb-4">{notice.content}</p>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Clock className="h-4 w-4 mr-2" />
-                      <span>Posted on {formatDate(notice.date)}</span>
-                    </div>
-                  </div>
+                    
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
 
-    
+            {/* Regular Notices */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-blue-900 mb-8">Recent Notices</h2>
+              <div className="space-y-6">
+                {regularNotices.map((notice) => (
+                  <div key={notice._id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                    <div className="flex items-start space-x-6">
+                      <div className={`${getIconColor(notice.type)} mt-1`}>
+                        {getIcon(notice.type)}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-xl font-bold text-blue-900">{notice.title}</h3>
+                          <div className="flex items-center space-x-2">
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getPriorityBadge(notice.priority)}`}>
+                              {notice.priority?.toUpperCase()}
+                            </span>
+                            <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+                              {notice.category}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed mb-4">{notice.content}</p>
+                        <div className="flex justify-between items-end mt-6">
+  {/* Date - Left side */}
+  <div className="text-gray-500 flex items-center text-sm">
+    <Clock className="h-4 w-4 mr-1" />
+    <span>Posted on {formatDate(notice.createdAt)}</span>
+  </div>
+
+  {/* Download button - Right side */}
+ {notice.attachments?.[0]?.url && (
+  <button
+  onClick={() => {
+    setPreview(notice.attachments?.[0]);
+    setIsModalOpen(true);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+>
+  Preview & Download
+</button>
+
+)}
+
+</div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
+ {isModalOpen && preview && (
+  <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="bg-[whitesmoke] rounded-lg shadow-lg max-w-2xl w-full p-4 relative">
+      <button
+        onClick={() => setIsModalOpen(false)}
+        className="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl"
+      >
+        &times;
+      </button>
+
+     <div className="mb-4 max-h-[75vh] overflow-auto flex justify-center items-center">
+  {preview.url.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+    <div className="relative group">
+      <img
+        src={`http://localhost:5000${preview.url}`}
+        alt="Preview"
+        className="max-w-full max-h-[70vh] rounded-lg transition-transform duration-300 group-hover:scale-110 object-contain"
+      />
+      <p className="text-xs text-gray-500 text-center mt-2">Hover to zoom</p>
+    </div>
+  ) : preview.url.match(/\.pdf$/i) ? (
+    <a href={`http://localhost:5000${preview.url}`} target="_blank" rel="noopener noreferrer" className='bg-black rounded-md text-white px-3 py-3'>
+  Click to Veiw 
+</a>
+  ) : (
+    <p className="text-center text-gray-500">No preview available.</p>
+  )}
+</div>
+
+
+      <div className="text-right">
+        <a
+          href={`http://localhost:5000/download/${preview.url.split('/').pop()}`}
+          className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+        >
+          Download File
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 };

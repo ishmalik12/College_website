@@ -1,33 +1,105 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { BellDot } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { ScrollText } from 'lucide-react';
 
-const notices = [
-  { title: "Admission Open for 2025", url: "/notices/admission-2025" },
-  { title: "Upcoming Seminar on AI & ML", url: "/notices/seminar-ai" },
-  { title: "Annual Sports Meet Registration", url: "/notices/sports-meet" },
-  { title: "Mid Term Exam Schedule", url: "/notices/midterms" },
-  { title: "Teacher’s Day Celebration", url: "/notices/teachers-day" },
-];
+const NoticeTicker = () => {
+  const [notices, setNotices] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [preview, setPreview] = useState(null);
 
-export default function NoticeTicker() {
+  const openPreview = (file) => {
+    setPreview(file);
+    setIsModalOpen(true);
+  };
+
+  const closePreview = () => {
+    setIsModalOpen(false);
+    setPreview(null);
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/notices/public')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setNotices(data.notices);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching notices:', error);
+      });
+  }, []);
+
   return (
-    <div className="w-full bg-[#00008b] overflow-hidden py-2 border-b-2 border-red-600">
-      <div className="whitespace-nowrap animate-marquee flex gap-10 text-white font-medium px-4">
-        {notices.map((notice, index) => (
-          <Link
-            to={notice.url}
-            key={index}
-            className="hover:underline hover:text-red-400 transition text-sm"
-          >
-          <span className="inline-flex items-center">
-  <BellDot size={14} className="mr-1" />
-  {notice.title}
-</span>
+    <>
+      {/* Notice Ticker Strip */}
+      <div className="w-full bg-yellow-100 border-y border-yellow-300 py-2 overflow-hidden relative">
+        <div className="absolute left-2 top-2 text-yellow-800 font-bold flex items-center gap-1 z-10">
+          <ScrollText size={18} /> Notices
+        </div>
 
-          </Link>
-        ))}
+        <div className="pl-28 whitespace-nowrap animate-marquee">
+          {notices.map((notice, index) => (
+            notice.attachments?.[0]?.url && (
+              <span
+                key={index}
+                onClick={() => openPreview(notice.attachments[0])}
+                className="inline-block mx-6 cursor-pointer text-sm text-blue-800 hover:underline"
+              >
+                📌 {notice.title}
+              </span>
+            )
+          ))}
+        </div>
       </div>
-    </div>
+
+      {/* Modal Preview */}
+      {isModalOpen && preview && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-[whitesmoke] rounded-lg shadow-lg max-w-2xl w-full p-4 relative">
+            <button
+              onClick={closePreview}
+              className="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl"
+            >
+              &times;
+            </button>
+
+            <div className="mb-4 max-h-[75vh] overflow-auto flex justify-center items-center">
+              {preview.url.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+                <div className="relative group">
+                  <img
+                    src={`http://localhost:5000${preview.url}`}
+                    alt="Preview"
+                    className="max-w-full max-h-[70vh] rounded-lg transition-transform duration-300 group-hover:scale-110 object-contain"
+                  />
+                  <p className="text-xs text-gray-500 text-center mt-2">Hover to zoom</p>
+                </div>
+              ) : preview.url.match(/\.pdf$/i) ? (
+                <a
+                  href={`http://localhost:5000${preview.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black rounded-md text-white px-4 py-3"
+                >
+                  Click to View PDF
+                </a>
+              ) : (
+                <p className="text-center text-gray-500">No preview available.</p>
+              )}
+            </div>
+
+            <div className="text-right">
+              <a
+                href={`http://localhost:5000/download/${preview.url.split('/').pop()}`}
+                className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+              >
+                Download File
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
+
+export default NoticeTicker;

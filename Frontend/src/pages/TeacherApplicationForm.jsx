@@ -32,11 +32,56 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // Replace with your submission logic
-    onClose();
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const form = new FormData();
+  for (const key in formData) {
+    form.append(key, formData[key]);
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/teacher-applications/submit", {
+      method: "POST",
+      body: form,
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      alert("Application submitted successfully!");
+      onClose(); // close modal
+
+      // Optionally reset form
+      setFormData({
+        jobProfile: "",
+        fullName: "",
+        mobile: "",
+        email: "",
+        gender: "",
+        dob: "",
+        city: "",
+        ug: "",
+        pg: "",
+        specialization: "",
+        otherQual: "",
+        org: "",
+        designation: "",
+        currentSalary: "",
+        expectedSalary: "",
+        academicExp: "",
+        industryExp: "",
+        phdStatus: "",
+        ugcNet: "",
+        resume: null,
+      });
+    } else {
+      alert("Submission failed: " + data.message);
+    }
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Something went wrong. Please try again later.");
+  }
+};
 
   if (!isOpen) return null;
 

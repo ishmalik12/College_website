@@ -14,30 +14,36 @@ export default function ContactUs() {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Please fill all fields");
-      return;
+  if (!formData.name || !formData.email || !formData.message) {
+    toast.error("Please fill all fields");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/contact/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      toast.error(data.message || "Submission failed.");
     }
-
-    emailjs
-      .send(
-        "YOUR_SERVICE_ID",      // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID",     // Replace with your template ID
-        formData,
-        "YOUR_PUBLIC_KEY"       // Replace with your public API key
-      )
-      .then(() => {
-        toast.success("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch((err) => {
-        toast.error("Something went wrong. Try again.");
-        console.error(err);
-      });
-  };
+  } catch (error) {
+    console.error("Submission error:", error);
+    toast.error("Server error. Try again.");
+  }
+};
 
   return (
     <section

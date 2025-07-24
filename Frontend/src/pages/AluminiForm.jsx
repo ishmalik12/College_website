@@ -18,6 +18,45 @@ export default function AlumniFormPage() {
     linkedin: "",
     photo: null,
   });
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const form = new FormData();
+  for (const key in formData) {
+    form.append(key, formData[key]);
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/alumni-applications/submit", {
+      method: "POST",
+      body: form,
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      alert("Alumni form submitted successfully!");
+      setFormData({
+        program: "",
+        fullName: "",
+        passingYear: "",
+        mobile: "",
+        email: "",
+        dob: "",
+        organization: "",
+        designation: "",
+        testimonial: "",
+        linkedin: "",
+        photo: null,
+      });
+    } else {
+      alert("Failed to submit. " + (data.message || "Please try again."));
+    }
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Something went wrong. Please try again later.");
+  }
+};
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -25,12 +64,6 @@ export default function AlumniFormPage() {
       ...formData,
       [name]: files ? files[0] : value,
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // Send to backend
-    alert("Alumni form submitted successfully!");
   };
 
   return (
@@ -204,7 +237,7 @@ export default function AlumniFormPage() {
                 }
                 className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-600"
               >
-                Close
+                Clear
               </button>
             </div>
           </form>

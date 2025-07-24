@@ -137,7 +137,7 @@ export default function LumiaGalleryDropdown() {
   }, [modalOpen, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-gray-900 font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
+    <div className="min-h-screen bg-white font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
@@ -193,7 +193,7 @@ export default function LumiaGalleryDropdown() {
       </div>
 
       {/* Lumia Grid */}
-      <div className="max-w-7xl mx-auto px-4 pb-16">
+      <div className="max-w-7xl  mx-auto px-4 pb-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 auto-rows-[120px] sm:auto-rows-[160px] md:auto-rows-[180px]">
           {filteredImages.map(({ src, title, category }, idx) => (
             <button

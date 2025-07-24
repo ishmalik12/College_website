@@ -9,6 +9,10 @@ import SolarPan from "../assets/solarpannel.jpg";
 import solarImg from "../assets/solarpannel.jpg";
 import farmingImg from "../assets/organicfarming.jpg";
 import sadakImg from "../assets/SadakSuraksha01.png";
+import img3 from "../assets/slideshow6.jpeg";
+import img2 from "../assets/cllgimg.jpeg";
+import img1 from "../assets/blurimg.jpeg";
+import img4 from "../assets/aboutpage.png";
 
 
 
@@ -105,29 +109,24 @@ const initiatives = [
     </p>
   </div>
 
-  {/* Images Below */}
-  <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Left Image */}
-       <div className="flex justify-center">
+ {/* Image Grid Below - Fullscreen, No Gaps */}
+<div className="w-screen mt-16">
+  <div className="grid grid-cols-1 grid-rows-1 w-full h-[60vh] sm:h-[70vh] md:h-[80vh]">
+    {[img1].map((src, idx) => (
+      <div
+        key={idx}
+        className="group relative w-full h-full overflow-hidden"
+      >
         <img
-          src={logo}
-          alt="Campus"
-          className="rounded-xl  w-[15rem] max-w-md object-cover"
+          src={src}
+          alt={`Image ${idx + 1}`}
+          className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
         />
       </div>
-    
-
-      {/* Right Image */}
-       <div className="flex justify-center">
-        <img
-          src={cllgimg}
-          alt="Classroom"
-          className=" shadow-lg w-[25rem] max-w-md object-cover"
-        />
-      </div>
-    </div>
+    ))}
   </div>
+</div>
+
 </section>
 
 
