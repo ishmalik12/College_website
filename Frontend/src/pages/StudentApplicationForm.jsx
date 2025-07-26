@@ -60,11 +60,13 @@ export default function StudentApplicationModal({ isOpen, onClose }) {
               <option value="">Select Course</option>
               <option value="Bachelor of Arts (B.A.)">Bachelor of Arts (B.A.)</option>
               <option value="Bachelor of Commerce (B.Com.)">Bachelor of Commerce (B.Com.)</option>
-              <option value="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.)</option>
-              <option value="Skill Development Programs">Skill Development Programs</option>
+              <option value="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.) Maths</option>
+                            <option value="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.) biology</option>
+
+              
             
             </select>
-            <input name="branch" required placeholder="Preferred Branch / Stream" onChange={handleChange} className="p-2 border rounded" />
+            {/* <input name="branch" required placeholder="Preferred Branch / Stream" onChange={handleChange} className="p-2 border rounded" /> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -75,12 +77,7 @@ export default function StudentApplicationModal({ isOpen, onClose }) {
 
           <input name="fatherName" required placeholder="Father's Name" onChange={handleChange} className="w-full p-2 border rounded" />
 
-          <div>
-            <label className="block mb-1 text-sm font-medium text-red-600">
-              Upload your resume or documents in PDF (less than 5MB)
-            </label>
-            <input type="file" accept="application/pdf" name="resume" onChange={handleChange} className="w-full p-2 border rounded" />
-          </div>
+          
 
           <div className="flex justify-end space-x-2 mt-4">
             <button type="button" onClick={onClose} className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">

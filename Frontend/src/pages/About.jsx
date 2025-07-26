@@ -17,6 +17,7 @@ import img4 from "../assets/aboutpage.png";
 
 
 
+
 const About = () => {
   const [activeTab, setActiveTab] = useState('objective-mission');
 
@@ -112,7 +113,7 @@ const initiatives = [
  {/* Image Grid Below - Fullscreen, No Gaps */}
 <div className="w-screen mt-16">
   <div className="grid grid-cols-1 grid-rows-1 w-full h-[60vh] sm:h-[70vh] md:h-[80vh]">
-    {[img1].map((src, idx) => (
+    {[img1].map((src, idx) => ( 
       <div
         key={idx}
         className="group relative w-full h-full overflow-hidden"
@@ -251,8 +252,11 @@ const initiatives = [
         contribute towards the mission of our great country to become the leading
         nation of the world.
       </p>
-      <p className="mt-6 font-medium text-teal-700 italic">
+      <p className="mb-4">
         With good wishes and God's blessings.
+      </p>
+      <p className="mt-2 font-medium text-teal-700 italic">
+        Wg. Cdr Prakash Jethro
       </p>
     </div>
     {/* Flower - Top Left */}

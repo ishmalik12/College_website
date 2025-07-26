@@ -121,14 +121,9 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <select name="ug" required onChange={handleChange} className="p-2 border rounded">
-              <option value="">UG Qualification</option>
+              <option value="">Heighest Qualification</option>
               <option value="B.Sc">B.Sc</option>
               <option value="B.Tech">B.Tech</option>
-            </select>
-            <select name="pg" required onChange={handleChange} className="p-2 border rounded">
-              <option value="">PG Qualification</option>
-              <option value="M.Sc">M.Sc</option>
-              <option value="M.Tech">M.Tech</option>
             </select>
           </div>
 
@@ -148,17 +143,9 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
               <option value="">Academic Experience</option>
               <option value="0-2 years">0-2 years</option>
               <option value="2-5 years">2-5 years</option>
+              <option value="2-5 years">5-10 years</option>
             </select>
-            <select name="phdStatus" onChange={handleChange} className="p-2 border rounded">
-              <option value="">PhD Status</option>
-              <option value="Completed">Completed</option>
-              <option value="Pursuing">Pursuing</option>
-            </select>
-            <select name="ugcNet" onChange={handleChange} className="p-2 border rounded">
-              <option value="">UGC NET Qualified?</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
+            
           </div>
 
           <div>

@@ -98,7 +98,8 @@ export default function AlumniFormPage() {
               <option value="Bachelor of Arts (B.A.)">Bachelor of Arts (B.A.)</option>
               <option value="Bachelor of Commerce (B.Com.)">Bachelor of Commerce (B.Com.)</option>
               <option value="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.)</option>
-              <option value="Skill Development Programs">Skill Development Programs</option>
+              <option value="Skill Development Programs">B.Sc. Maths</option>
+              <option value="Skill Development Programs">B.Sc. Biology</option>
               </select>
             </div>
 
@@ -166,22 +167,21 @@ export default function AlumniFormPage() {
               />
             </div>
 
-            {/* Testimonial */}
+            {/* Job Description*/}
             <div>
-              <label className="block text-sm text-red-700 font-semibold mb-1">
-                Testimonial *
-              </label>
-              <textarea
-                name="testimonial"
-                required
-                rows="4"
-                placeholder="Your testimonial here..."
-                onChange={handleChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
+  <label className="block text-sm text-red-700 font-semibold mb-1">
+    Job Description
+  </label>
+  <textarea
+    name="Job Description"
+    rows="4"
+    placeholder="Your Job Description here..."
+    onChange={handleChange}
+    className="w-full p-2 border rounded"
+  />
+</div>
 
-            {/* LinkedIn & Facebook */}
+            {/* LinkedIn & Facebook
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 name="linkedin"
@@ -190,7 +190,7 @@ export default function AlumniFormPage() {
                 className="p-2 border rounded"
               />
         
-            </div>
+            </div> */}
 
             {/* Photo Upload */}
             <div>

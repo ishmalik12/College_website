@@ -480,7 +480,7 @@ import {
 } from "lucide-react";
 
 import { motion, AnimatePresence } from "framer-motion";
-import sample6 from "../assets/slideshow6.jpeg"
+import sample6 from "../assets/blurimg.jpeg"
 
 const programs = [
   {
@@ -498,7 +498,6 @@ const programs = [
       "Economics",
       "Political Science",
       "Sociology",
-      "Commerce (Minor)",
     ],
     color: "from-purple-500 to-pink-500",
   },
@@ -509,7 +508,7 @@ const programs = [
     eligibility: "10+2 (Commerce/Any Stream)",
     details:
       "Provides deep knowledge in commerce and business studies with minor subject options.",
-    subjects: ["Commerce", "Commerce (Minor)"],
+    subjects: ["Commerce"],
     color: "from-green-500 to-emerald-500",
   },
   {
@@ -520,10 +519,7 @@ const programs = [
     details:
       "Comprehensive science program offering multiple specializations including Mathematics, Life Sciences, and Physical Sciences. Features progressive structure from certificate to diploma to degree level with practical applications in various fields.",
     subjects: [
-      "Mathematics Specialization: Applied Mathematics (Cert), Mathematics (Diploma), Mathematics (Degree)",
-      "Zoology Specialization: Medical Diagnostics (Cert), Molecular Diagnostics (Diploma), Zoology (Degree)",
-      "Botany Specialization: Microbiology & Botany (Cert), Ethnomedicine (Diploma), Botany (Degree)",
-      "Physics & Chemistry Specialization: Physics, Chemistry, Minor Science Subjects",
+      
     ],
     color: "from-blue-500 to-indigo-500",
     specializations: [
@@ -532,12 +528,11 @@ const programs = [
         description:
           "Progressive structure from certificate to diploma to degree in core physical sciences.",
         subjects: [
-          "Applied Mathematics (Cert)",
-          "Mathematics (Diploma)",
-          "Mathematics (Degree)",
+          
+          "Mathematics",
           "Physics",
           "Chemistry",
-          "Minor Science Subjects",
+          
         ],
       },
       {
@@ -545,30 +540,14 @@ const programs = [
         description:
           "Life sciences with applications in diagnostics and public health. Focus on microbiology, ethnomedicine, and applied plant sciences.",
         subjects: [
-          "Medical Diagnostics (Cert)",
-          "Molecular Diagnostics (Diploma)",
+          
           "Zoology (Degree)",
-          "Microbiology & Botany (Cert)",
-          "Ethnomedicine (Diploma)",
+          
           "Botany (Degree)",
           "Chemistry",
         ],
       },
-      // {
-      //   name: "Botany",
-      //   description:
-      //     "In-depth study of plants including microbiology and ethnomedicine.",
-      //   subjects: [
-      //     "Microbiology & Botany (Cert)",
-      //     "Ethnomedicine (Diploma)",
-      //     "Botany (Degree)",
-      //   ],
-      // },
-      // {
-      //   name: "Physics & Chemistry",
-      //   description: "Core study in physical sciences.",
-      //   subjects: ["Physics", "Chemistry", "Minor Science Subjects"],
-      // },
+      
     ],
   },
   {
@@ -753,9 +732,9 @@ export default function Programs() {
                         }
                       </button>
                       
-                      <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-md">
+                      {/* <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-md">
                         Apply Now
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </motion.div>
