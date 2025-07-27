@@ -18,7 +18,7 @@ import TeacherApplicationModal from "./pages/TeacherApplicationForm";
 import StudentApplicationModal from "./pages/StudentApplicationForm";
 import AlumniFormPage from "./pages/AluminiForm";
 import AdminApp from "./admin/AdminApp";
-import InternalQualityAssessment from "./components/InternalQualityAssessment"; // Adjust path if needed
+import InternalQualityAssessment from "./components/InternalQualityAssessment";
 
 
 // ✅ Wrapper to use `useLocation` with Router
@@ -56,7 +56,7 @@ function App() {
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/apply-alumni" element={<AlumniFormPage />} />
           <Route path="/admin/*" element={<AdminApp />} />
-<Route path="/internal-quality-assessment-control" element={<InternalQualityAssessment />} />
+          <Route path="/internal-quality-assessment-control" element={<InternalQualityAssessment />} />
 
         </Routes>
       </main>

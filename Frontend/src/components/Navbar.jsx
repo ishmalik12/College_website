@@ -54,7 +54,7 @@ export default function Navbar() {
            <a href="apply-alumni" className="hover:text-gray-200 uppercase">
             Alumni
           </a>
-          <a href="internal-quality-assessment-" className="hover:text-gray-200 uppercase">
+          <a href="internal-quality-assessment-control" className="hover:text-gray-200 uppercase">
             IQAC
           </a>
           <a href="contact" className="hover:text-gray-200 uppercase">
