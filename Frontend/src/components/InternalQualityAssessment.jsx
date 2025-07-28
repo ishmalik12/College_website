@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   FileText,
   FileCheck2,
@@ -6,28 +7,8 @@ import {
   FilePlus,
   ChevronDown,
   ChevronUp,
-  Info,
+  Users,
 } from "lucide-react";
-
-// Data Section
-const iqacData = {
-  minutes: [
-    { title: "IQAC Meeting - January 2025", link: "#" },
-    { title: "IQAC Meeting - December 2024", link: "#" },
-    { title: "IQAC Meeting - October 2024", link: "#" },
-  ],
-  mou: [
-    { title: "MOU with ABC Institution", link: "#" },
-    { title: "MOU with DEF University", link: "#" },
-    { title: "MOU with XYZ Company", link: "#" },
-  ],
-  circulars: [
-    { title: "Circular - Academic Audit 2025", link: "#" },
-    { title: "Circular - Quality Improvement Drive", link: "#" },
-    { title: "Circular - New Committee Formed", link: "#" },
-  ],
-  
-};
 
 // Collapsible Section Component
 const Section = ({ title, icon: Icon, items }) => {
@@ -70,6 +51,19 @@ const Section = ({ title, icon: Icon, items }) => {
   );
 };
 
+// Member Card Component
+const MemberCard = ({ member }) => (
+  <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl duration-300">
+    <img
+      src={`http://localhost:5000${member.photoUrl}`}
+      alt={member.name}
+      className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-4 border-blue-100 shadow-md"
+    />
+    <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
+    <p className="text-base text-gray-600">{member.designation}</p>
+  </div>
+);
+
 // Hero Section
 const HeaderSection = () => (
   <section className="w-full bg-gradient-to-r from-blue-800 to-blue-600 text-white py-20 px-6 mb-10">
@@ -87,14 +81,61 @@ const HeaderSection = () => (
 
 // Main Component
 const IQAC = () => {
-  const [activeTab, setActiveTab] = useState("about");
+  const [activeTab, setActiveTab] = useState("minutes");
+  const [uploads, setUploads] = useState({
+    minutes: [],
+    mou: [],
+    circulars: [],
+  });
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [minutesRes, mouRes, circularsRes] = await Promise.all([
+        axios.get("http://localhost:5000/api/iqac/uploads/minutes"),
+        axios.get("http://localhost:5000/api/iqac/uploads/mou"),
+        axios.get("http://localhost:5000/api/iqac/uploads/circular"),
+      ]);
+
+      setUploads({
+        minutes: minutesRes.data.files.map((f) => ({
+          title: f.title || "Untitled",
+          link: `http://localhost:5000${f.filePath}`,
+        })),
+        mou: mouRes.data.files.map((f) => ({
+          title: f.title || "Untitled",
+          link: `http://localhost:5000${f.filePath}`,
+        })),
+        circulars: circularsRes.data.files.map((f) => ({
+          title: f.title || "Untitled",
+          link: `http://localhost:5000${f.filePath}`,
+        })),
+      });
+    } catch (err) {
+      console.error("Error fetching IQAC uploads:", err);
+    }
+  };
+
+  const fetchMembers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/iqac/team");
+      setMembers(res.data.team || []); // ✅ Use 'team' instead of 'members'
+    } catch (err) {
+      console.error("Error fetching IQAC members:", err);
+    }
+  };
+
+  fetchData();
+  fetchMembers();
+}, []);
+
 
   const tabs = [
     { id: "minutes", name: "Minutes of Meeting", icon: <ClipboardList /> },
     { id: "mou", name: "MOU", icon: <FileText /> },
     { id: "circulars", name: "Circulars", icon: <FilePlus /> },
-    { id: "Team", name: "The Team", icon: <FilePlus /> },
-
+    { id: "members", name: "The Team", icon: <Users /> },
   ];
 
   return (
@@ -121,23 +162,39 @@ const IQAC = () => {
 
         {/* Content */}
         <div className="mb-20">
-          {activeTab === "about" && (
-            <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 text-gray-700 text-lg leading-relaxed">
-              {iqacData.about}
-            </div>
-          )}
           {activeTab === "minutes" && (
             <Section
               title="Minutes of Meetings"
               icon={ClipboardList}
-              items={iqacData.minutes}
+              items={uploads.minutes}
             />
           )}
           {activeTab === "mou" && (
-            <Section title="Memorandum of Understanding" icon={FileText} items={iqacData.mou} />
+            <Section
+              title="Memorandum of Understanding"
+              icon={FileText}
+              items={uploads.mou}
+            />
           )}
           {activeTab === "circulars" && (
-            <Section title="Circulars" icon={FilePlus} items={iqacData.circulars} />
+            <Section
+              title="Circulars"
+              icon={FilePlus}
+              items={uploads.circulars}
+            />
+          )}
+          {activeTab === "members" && (
+            <div>
+              <h2 className="text-2xl font-semibold mb-6 text-gray-800 flex items-center gap-2">
+                <Users className="text-blue-700 w-6 h-6" />
+                IQAC Team Members
+              </h2>
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {members.map((member) => (
+                  <MemberCard key={member._id} member={member} />
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -8,7 +8,8 @@ import {
   UserCheck, 
   Bell,
   Menu,
-  X
+  X,
+  Info
 } from 'lucide-react';
 import UploadNotice from './UploadNotice';
 import Login from './Login';
@@ -18,6 +19,8 @@ import TeacherApplications from './TeacherApplications';
 import AlumniApplications from './AlumniApplications';
 import FacultyManagement from './Faculty';
 import NoticeManagement from './NoticeManagement';
+import IQACAdminPanel from './IQACAdminPanel';
+
 
 export default function AdminApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -61,6 +64,7 @@ const menuItems = [
   { id: 'alumni', label: 'Alumni Applications', icon: <GraduationCap className="w-5 h-5" /> },
   { id: 'faculty', label: 'Faculty Management', icon: <UserCheck className="w-5 h-5" /> },
   { id: 'notices', label: 'Notice Management', icon: <Bell className="w-5 h-5" /> },
+  { id: 'IQAC', label: 'IQAC Management', icon: <Info className="w-5 h-5" /> }
 ];
 
   const renderPage = () => {
@@ -77,6 +81,8 @@ const menuItems = [
         return <FacultyManagement token={token} />;
       case 'notices':
         return <NoticeManagement token={token} />;
+      case 'IQAC':
+        return <IQACAdminPanel token={token}></IQACAdminPanel>
      
       default:
         return <AdminDashboard token={token} />;

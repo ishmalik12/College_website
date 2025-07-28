@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
+const iqacRoutes = require('./routes/iqacRoutes');
 require('dotenv').config();
 const fs = require('fs');
 
@@ -34,7 +35,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan('combined'));
 
-// Static file serving
+app.use('/uploads/iqac', express.static(path.join(__dirname, 'uploads','iqac')));
 app.use('/uploads/resumes', express.static(path.join(__dirname, 'uploads', 'resumes')));
 app.use('/uploads/notices', express.static(path.join(__dirname, 'uploads/notices'), {
   setHeaders: (res, filePath) => {
@@ -63,9 +64,9 @@ app.use('/api/faculty', require('./routes/faculty'));
 app.use('/api/notices', require('./routes/notices'));
 
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
+app.use('/api/iqac', iqacRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

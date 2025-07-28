@@ -2,27 +2,35 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Ensure uploads directories exist
-const uploadDirs = ['uploads/resumes', 'uploads/photos', 'uploads/notices'];
+// ✅ Ensure uploads directories exist
+const uploadDirs = [
+  'uploads/resumes',
+  'uploads/photos',
+  'uploads/notices',
+  'uploads/iqac'
+];
+
 uploadDirs.forEach(dir => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 });
 
-// Storage configuration
+// ✅ Storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath = 'uploads/';
-    
+
     if (file.fieldname === 'resume') {
       uploadPath += 'resumes/';
     } else if (file.fieldname === 'photo') {
       uploadPath += 'photos/';
     } else if (file.fieldname === 'attachments') {
       uploadPath += 'notices/';
+    } else if (file.fieldname === 'file' || file.fieldname === 'iqacFile') {
+      uploadPath += 'iqac/';
     }
-    
+
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
@@ -31,7 +39,7 @@ const storage = multer.diskStorage({
   }
 });
 
-// File filter
+// ✅ File filter
 const fileFilter = (req, file, cb) => {
   if (file.fieldname === 'resume') {
     if (file.mimetype === 'application/pdf') {
@@ -45,8 +53,18 @@ const fileFilter = (req, file, cb) => {
     } else {
       cb(new Error('Only image files are allowed for photos'), false);
     }
+  } else if (file.fieldname === 'file' || file.fieldname === 'iqacFile') {
+    // Optional check: allow only PDFs and images for IQAC
+    if (
+      file.mimetype === 'application/pdf' ||
+      file.mimetype.startsWith('image/')
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF or image files are allowed for IQAC uploads'), false);
+    }
   } else {
-    cb(null, true);
+    cb(null, true); // Accept all others by default
   }
 };
 
