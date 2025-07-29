@@ -87,7 +87,7 @@ function AdminFacilities({ token }) {
             onChange={handleInputChange}
             className="border p-2 rounded col-span-1 md:col-span-2"
             rows="3"
-            required
+            
           />
         </div>
         <button

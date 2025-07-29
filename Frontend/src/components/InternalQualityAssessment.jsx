@@ -90,11 +90,11 @@ const Section = ({ title, icon: Icon, items }) => {
 // Member Card Component
 const MemberCard = ({ member }) => (
   <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl duration-300">
-    <img
+    {/* <img
       src={`http://localhost:5000${member.photoUrl}`}
       alt={member.name}
       className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-4 border-blue-100 shadow-md"
-    />
+    /> */}
     <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
     <p className="text-base text-gray-600">{member.designation}</p>
   </div>
@@ -153,14 +153,18 @@ const IQAC = () => {
     }
   };
 
-  const fetchMembers = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/iqac/team");
-      setMembers(res.data.team || []); // ✅ Use 'team' instead of 'members'
-    } catch (err) {
-      console.error("Error fetching IQAC members:", err);
-    }
-  };
+ const fetchMembers = async () => {
+  try {
+    const res = await axios.get("http://localhost:5000/api/iqac/team");
+    const sortedTeam = (res.data.team || []).sort(
+      (a, b) => a.displayOrder - b.displayOrder
+    );
+    setMembers(sortedTeam);
+  } catch (err) {
+    console.error("Error fetching IQAC members:", err);
+  }
+};
+
 
   fetchData();
   fetchMembers();
@@ -230,9 +234,38 @@ const IQAC = () => {
                   <MemberCard key={member._id} member={member} />
                 ))}
               </div>
+               <h2 className="text-2xl mt-5 font-semibold mb-6 text-gray-800 flex items-center gap-2">
+                <Users className="text-blue-700 w-6 h-6" />
+                Responsibilities of IQAC
+              </h2>
+              
+              <p className="text-gray-700 leading-relaxed text-justify">
+                The Internal Quality Assurance Cell (IQAC) is committed to
+                fostering and sustaining a culture of excellence within the
+                institution. It plays a vital role in developing and applying
+                quality benchmarks for various academic and administrative
+                activities. The IQAC organizes workshops, seminars, and
+                awareness programs to promote quality enhancement initiatives.
+                It is also responsible for maintaining comprehensive
+                institutional data and documentation. Regular feedback is
+                collected and analyzed from stakeholders to support informed
+                decision-making and continuous improvement. Additionally, the
+                IQAC prepares and submits the Annual Quality Assurance Report
+                (AQAR) to NAAC. The cell convenes biannually, typically in June
+                and December, and may meet additionally as needed. All members
+                are encouraged to extend their full cooperation to ensure the
+                success of this essential quality assurance mechanism.
+              </p>
+              <div className="mt-6 text-gray-800">
+                <p className="font-semibold">Principal</p>
+                <p>Dr. Renu Bansal</p>
+                <p>Ingraham Institute Girls’ Degree College, Ghaziabad</p>
+              </div>
+
             </div>
           )}
         </div>
+        
       </div>
     </div>
   );
