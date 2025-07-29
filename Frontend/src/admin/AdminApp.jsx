@@ -9,7 +9,9 @@ import {
   Bell,
   Menu,
   X,
-  Info
+  Info,
+  Award,
+  Building
 } from 'lucide-react';
 import UploadNotice from './UploadNotice';
 import Login from './Login';
@@ -20,6 +22,9 @@ import AlumniApplications from './AlumniApplications';
 import FacultyManagement from './Faculty';
 import NoticeManagement from './NoticeManagement';
 import IQACAdminPanel from './IQACAdminPanel';
+import AdminStudentAchievements from './Achievements';
+import Facilities from '../components/Facilities';
+import AdminFacilities from './AdminFacilities';
 
 
 export default function AdminApp() {
@@ -64,7 +69,9 @@ const menuItems = [
   { id: 'alumni', label: 'Alumni Applications', icon: <GraduationCap className="w-5 h-5" /> },
   { id: 'faculty', label: 'Faculty Management', icon: <UserCheck className="w-5 h-5" /> },
   { id: 'notices', label: 'Notice Management', icon: <Bell className="w-5 h-5" /> },
-  { id: 'IQAC', label: 'IQAC Management', icon: <Info className="w-5 h-5" /> }
+  { id: 'IQAC', label: 'IQAC Management', icon: <Info className="w-5 h-5" /> },
+  { id: 'Achievements', label: 'Acheivements Management', icon: <Award className="w-5 h-5" /> },
+  { id: 'Facilities', label: 'Facilities Management', icon: <Building className="w-5 h-5" /> }
 ];
 
   const renderPage = () => {
@@ -82,8 +89,11 @@ const menuItems = [
       case 'notices':
         return <NoticeManagement token={token} />;
       case 'IQAC':
-        return <IQACAdminPanel token={token}></IQACAdminPanel>
-     
+        return <IQACAdminPanel token={token}></IQACAdminPanel>;
+      case 'Achievements':
+        return <AdminStudentAchievements token={token}></AdminStudentAchievements>
+      case 'Facilities':
+        return <AdminFacilities token={token}></AdminFacilities>
       default:
         return <AdminDashboard token={token} />;
     }

@@ -14,6 +14,8 @@ import {
 const Section = ({ title, icon: Icon, items }) => {
   const [open, setOpen] = useState(true);
 
+  const isMinutes = title.toLowerCase().includes("minutes");
+
   return (
     <div className="bg-white rounded-xl shadow-md p-6 mb-6 border border-gray-100">
       <div
@@ -30,22 +32,56 @@ const Section = ({ title, icon: Icon, items }) => {
           <ChevronDown className="text-blue-700" />
         )}
       </div>
+
       {open && items && (
-        <ul className="mt-4 space-y-3">
-          {items.map((item, index) => (
-            <li key={index}>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-base flex items-center"
-              >
-                <FileCheck2 className="w-4 h-4 mr-2 text-blue-500" />
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-4">
+          {isMinutes ? (
+            <table className="min-w-full border border-gray-200 rounded overflow-hidden">
+              <thead>
+                <tr className="bg-blue-100 text-gray-700 text-left text-sm">
+                  <th className="py-2 px-4 border-b">Title</th>
+                  <th className="py-2 px-4 border-b text-center">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="border-b hover:bg-gray-50 transition"
+                  >
+                    <td className="py-2 px-4">{item.title}</td>
+                    <td className="py-2 px-4 text-center">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm hover:bg-blue-700 transition"
+                      >
+                        View
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <ul className="space-y-3">
+              {items.map((item, index) => (
+                <li key={index}>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline text-base flex items-center"
+                  >
+                    <FileCheck2 className="w-4 h-4 mr-2 text-blue-500" />
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );

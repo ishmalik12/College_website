@@ -47,6 +47,11 @@ app.use('/uploads/photos', express.static(path.join(__dirname, 'uploads/photos')
     res.set('Content-Disposition', 'inline');
   }
 }));
+app.use('/uploads/facilities', express.static(path.join(__dirname, 'uploads/facilities'), {
+  setHeaders: (res, filePath) => {
+    res.set('Content-Disposition', 'inline');
+  }
+}));
 // Database connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -62,7 +67,8 @@ app.use('/api/teacher-applications', require('./routes/teacherApplications'));
 app.use('/api/alumni-applications', require('./routes/alumniApplications'));
 app.use('/api/faculty', require('./routes/faculty'));
 app.use('/api/notices', require('./routes/notices'));
-
+app.use('/api/achievements', require('./routes/AchievementRoutes'));
+app.use('/api/facilities', require('./routes/facilityRoutes'));
 
 
 

@@ -17,16 +17,26 @@ const [uploads, setUploads] = useState([]);
 
 const fetchUploads = async () => {
   try {
-    const res = await axios.get(`${API_BASE}/uploads/minutes`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (res.data?.success) {
-      setUploads(res.data.files);
+    const types = ['minutes', 'mou', 'circular'];
+    const allUploads = [];
+
+    for (const type of types) {
+      const res = await axios.get(`${API_BASE}/uploads/${type}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.data?.success) {
+        allUploads.push(...res.data.files);
+      }
     }
+
+    // Sort by date
+    allUploads.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    setUploads(allUploads);
   } catch (err) {
     console.error('Error fetching uploads:', err);
   }
 };
+
 
 useEffect(() => {
   fetchTeam();
@@ -317,19 +327,30 @@ useEffect(() => {
           <div>
             <p className="font-medium">{file.title}</p>
             <p className="text-sm text-gray-500">{file.description}</p>
-            <p className="text-xs text-gray-400">{file.fileType}</p>
+            <p className="text-xs text-gray-400 capitalize">{file.type}</p>
           </div>
-          <button
-            onClick={() => deleteUpload(file._id)}
-            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-          >
-            Delete
-          </button>
+          <div className="flex gap-2">
+            <a
+              href={`http://localhost:5000${file.filePath}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+            >
+              View
+            </a>
+            <button
+              onClick={() => deleteUpload(file._id)}
+              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>
   )}
 </div>
+
 
 
   {/* Edit Modal */}
