@@ -50,7 +50,12 @@ const AdminStudentAchievements = ({ token }) => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this achievement?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/achievements/student/${id}`);
+      await axios.delete(`http://localhost:5000/api/achievements/student/${id}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       fetchAchievements();
     } catch (error) {
       console.error('Error deleting:', error);

@@ -85,7 +85,7 @@ const Footer = () => {
                 <div>
                   <p className="text-blue-200">Ingraham Institute Girls’ Degree College
 </p>
-                  <p className="text-blue-200">Hapur Road, Ghaziabad, 201001</p>
+                  <p className="text-blue-200">Sector 11, Raj Kunj, Raj Nagar, Ghaziabad, Uttar Pradesh 201002</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -97,9 +97,24 @@ const Footer = () => {
                 <p className="text-blue-200">info@heritage.edu</p>
               </div>
             </div>
+            
           </div>
-        </div>
+          {/* Map Location */}
+<div className="w-full h-64 lg:h-full rounded-md overflow-hidden">
+  <iframe
+    title="College Location Map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.4639196958847!2d77.45257595!3d28.675766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf196c9efbc6b%3A0x1fb5920aa4478e88!2sRaj%20Kunj%2C%20Raj%20Nagar%2C%20Ghaziabad%2C%20Uttar%20Pradesh%20201002!5e0!3m2!1sen!2sin!4v1753879131013!5m2!1sen!2sin"
+    width="100%"
+    height="100%"
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    className="border-0"
+  ></iframe>
+</div>
 
+        </div>
+        
         {/* Bottom Section */}
         <div className="border-t border-blue-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-blue-200 text-sm">

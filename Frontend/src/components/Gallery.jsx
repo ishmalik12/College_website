@@ -241,7 +241,7 @@ const filteredImages = selectedCategory === "All"
         >
           <button
             onClick={() => setModalOpen(false)}
-            className="absolute top-4 right-4 text-white"
+            className="absolute top-8 right-4 text-white"
           >
             <X size={32} />
           </button>
@@ -256,12 +256,13 @@ const filteredImages = selectedCategory === "All"
             <ChevronLeft size={32} />
           </button>
 
-          <img
-            src={filteredImages[currentIdx].image}
-            alt={filteredImages[currentIdx].category}
-            className="max-w-3xl w-[90vw] max-h-[80vh] object-contain rounded-xl mx-auto"
-            onClick={(e) => e.stopPropagation()}
-          />
+         <img
+  src={`http://localhost:5000${filteredImages[currentIdx].imageUrl}`}
+  alt={filteredImages[currentIdx].category}
+  className="max-w-3xl w-[90vw] max-h-[80vh] object-contain rounded-xl mx-auto"
+  onClick={(e) => e.stopPropagation()}
+/>
+
 
           <button
             onClick={(e) => {

@@ -5,6 +5,7 @@ const path = require('path');
 const upload = require('../middleware/upload');
 const Achievement = require('../models/Achievement');
 const auth = require('../middleware/auth');
+const fs = require('fs');
 
 
 
@@ -35,6 +36,32 @@ router.get('/student', async (req, res) => {
     res.json({ success: true, data });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch achievements' });
+  }
+});
+
+router.delete('/student/:id', auth, async (req, res) => {
+  try {
+    const achievement = await Achievement.findById(req.params.id);
+
+    if (!achievement) {
+      return res.status(404).json({ success: false, message: 'Achievement not found' });
+    }
+
+    // Delete the photo from the file system if it exists
+    if (achievement.photo) {
+      const filePath = path.join(__dirname, '..', achievement.photo);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    // Delete from database
+    await Achievement.findByIdAndDelete(req.params.id);
+
+    res.json({ success: true, message: 'Achievement deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Failed to delete achievement' });
   }
 });
 

@@ -94,11 +94,12 @@ export default function ContactUs() {
 
           <iframe
             className="rounded-lg w-full h-64 border border-cyan-300 shadow-md"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.4012731602716!2d77.21827671429629!3d28.628123181178684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3e2016dcd3%3A0xa64369de1a5b1553!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1623423469860!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.4639196958847!2d77.45257595!3d28.675766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf196c9efbc6b%3A0x1fb5920aa4478e88!2sRaj%20Kunj%2C%20Raj%20Nagar%2C%20Ghaziabad%2C%20Uttar%20Pradesh%20201002!5e0!3m2!1sen!2sin!4v1753879131013!5m2!1sen!2sin"
             allowFullScreen=""
             loading="lazy"
             title="College Location"
           ></iframe>
+          
         </motion.div>
 
         {/* Contact Form */}
