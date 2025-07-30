@@ -52,6 +52,7 @@ app.use('/uploads/facilities', express.static(path.join(__dirname, 'uploads/faci
     res.set('Content-Disposition', 'inline');
   }
 }));
+
 // Database connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -70,6 +71,7 @@ app.use('/api/notices', require('./routes/notices'));
 app.use('/api/achievements', require('./routes/AchievementRoutes'));
 app.use('/api/facilities', require('./routes/facilityRoutes'));
 
+app.use('/api/gallery', require('./routes/galleryRoutes'));
 
 
 app.use('/api/iqac', iqacRoutes);

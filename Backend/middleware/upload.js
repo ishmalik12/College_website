@@ -8,7 +8,7 @@ const uploadDirs = [
   'uploads/photos',
   'uploads/notices',
   'uploads/iqac',
-  'uploads/facilities',
+  'uploads/facilities'
 ];
 
 uploadDirs.forEach(dir => {
@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
       uploadPath += 'iqac/';
     }  else if (file.fieldname === 'image') {
       uploadPath += 'facilities/';
-    } 
+    }
 
     cb(null, uploadPath);
   },

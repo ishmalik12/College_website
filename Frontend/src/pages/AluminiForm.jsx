@@ -15,7 +15,6 @@ export default function AlumniFormPage() {
     organization: "",
     designation: "",
     testimonial: "",
-    linkedin: "",
     photo: null,
   });
   const handleSubmit = async (e) => {
@@ -45,7 +44,6 @@ export default function AlumniFormPage() {
         organization: "",
         designation: "",
         testimonial: "",
-        linkedin: "",
         photo: null,
       });
     } else {
@@ -98,8 +96,8 @@ export default function AlumniFormPage() {
               <option value="Bachelor of Arts (B.A.)">Bachelor of Arts (B.A.)</option>
               <option value="Bachelor of Commerce (B.Com.)">Bachelor of Commerce (B.Com.)</option>
               <option value="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.)</option>
-              <option value="Skill Development Programs">B.Sc. Maths</option>
-              <option value="Skill Development Programs">B.Sc. Biology</option>
+              <option value="B.Sc. Maths">B.Sc. Maths</option>
+              <option value="B.Sc. Biology">B.Sc. Biology</option>
               </select>
             </div>
 
@@ -173,7 +171,7 @@ export default function AlumniFormPage() {
     Job Description
   </label>
   <textarea
-    name="Job Description"
+    name="testimonial"
     rows="4"
     placeholder="Your Job Description here..."
     onChange={handleChange}
@@ -181,16 +179,6 @@ export default function AlumniFormPage() {
   />
 </div>
 
-            {/* LinkedIn & Facebook
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                name="linkedin"
-                placeholder="LinkedIn Profile URL"
-                onChange={handleChange}
-                className="p-2 border rounded"
-              />
-        
-            </div> */}
 
             {/* Photo Upload */}
             <div>
@@ -230,8 +218,6 @@ export default function AlumniFormPage() {
                     organization: "",
                     designation: "",
                     testimonial: "",
-                    linkedin: "",
-                    facebook: "",
                     photo: null,
                   })
                 }

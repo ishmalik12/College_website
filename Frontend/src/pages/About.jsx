@@ -25,7 +25,6 @@ const About = () => {
     { id: 'objective-mission', label: 'Objective & Mission', icon: <Target className="h-5 w-5" /> },
     { id: 'leadership', label: 'Leadership', icon: <Users className="h-5 w-5" /> },
     { id: 'social-initiative', label: 'Social Initiative', icon: <Heart className="h-5 w-5" /> },
-    { id: 'placement', label: 'Placement', icon: <TrendingUp className="h-5 w-5" /> }
   ];
 
 const initiatives = [
@@ -384,75 +383,7 @@ const initiatives = [
     </div>
   </div>
 )}
-          {activeTab === 'placement' && (
-            <div className="space-y-16 animate-fade-in">
-              <div className="text-center">
-                <h3 className="text-4xl font-bold text-blue-900 mb-6">Placement & Career Services</h3>
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                  Our dedicated placement cell ensures that students are well-prepared for successful careers with top employers worldwide.
-                </p>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-16">
-                <div className="space-y-10">
-                  <div className="bg-white rounded-2xl p-10 shadow-xl">
-                    <h4 className="text-3xl font-bold text-blue-900 mb-8">Placement Statistics</h4>
-                    <div className="grid grid-cols-2 gap-8">
-                      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
-                        <div className="text-4xl font-bold text-blue-600 mb-3">95%</div>
-                        <div className="text-gray-600 font-medium">Placement Rate</div>
-                      </div>
-                      <div className="text-center p-6 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
-                        <div className="text-4xl font-bold text-red-600 mb-3">$85K</div>
-                        <div className="text-gray-600 font-medium">Average Package</div>
-                      </div>
-                      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
-                        <div className="text-4xl font-bold text-blue-600 mb-3">500+</div>
-                        <div className="text-gray-600 font-medium">Partner Companies</div>
-                      </div>
-                      <div className="text-center p-6 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
-                        <div className="text-4xl font-bold text-red-600 mb-3">$150K</div>
-                        <div className="text-gray-600 font-medium">Highest Package</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-2xl p-10 shadow-xl">
-                    <h4 className="text-3xl font-bold text-blue-900 mb-8">Top Recruiters</h4>
-                    <div className="grid grid-cols-2 gap-6">
-                      {['Google', 'Microsoft', 'Amazon', 'Apple', 'Meta', 'Tesla'].map((company, idx) => (
-                        <div key={idx} className="p-6 bg-gray-50 rounded-xl text-center font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
-                          {company}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-600 to-red-600 rounded-2xl p-10 text-white">
-                  <h4 className="text-3xl font-bold mb-8">Career Services</h4>
-                  <div className="space-y-6">
-                    {[
-                      'Resume building and interview preparation',
-                      'Industry mentorship programs',
-                      'Internship and job placement assistance',
-                      'Career counseling and guidance',
-                      'Alumni networking opportunities',  
-                      'Skill development workshops'
-                    ].map((service, idx) => (
-                      <div key={idx} className="flex items-center space-x-4">
-                        <div className="w-4 h-4 bg-white rounded-full"></div>
-                        <span className="text-lg">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <button className="mt-10 bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors duration-200 font-bold text-lg transform hover:scale-105">
-                    Contact Career Services
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+         
         </div>
       </div>
     </div>

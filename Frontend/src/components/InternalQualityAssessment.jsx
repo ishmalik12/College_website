@@ -89,16 +89,23 @@ const Section = ({ title, icon: Icon, items }) => {
 
 // Member Card Component
 const MemberCard = ({ member }) => (
-  <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl duration-300">
-    {/* <img
-      src={`http://localhost:5000${member.photoUrl}`}
-      alt={member.name}
-      className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-4 border-blue-100 shadow-md"
-    /> */}
-    <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-    <p className="text-base text-gray-600">{member.designation}</p>
+  <div className="bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 p-6 flex flex-col items-center text-center">
+    
+    {/* Name with fixed height container */}
+    <div className="h-14 flex items-center justify-center">
+      <span className="text-xl font-semibold text-gray-800 tracking-wide">
+        {member.name}
+      </span>
+    </div>
+
+    {/* Stylish Designation Tag */}
+    <div className="mt-3 inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium border border-indigo-200">
+      {member.designation}
+    </div>
   </div>
 );
+
+
 
 // Hero Section
 const HeaderSection = () => (

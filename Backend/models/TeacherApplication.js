@@ -37,12 +37,6 @@ const teacherApplicationSchema = new mongoose.Schema({
   ug: {
     type: String,
     required: true,
-    enum: ['B.Sc', 'B.Tech']
-  },
-  pg: {
-    type: String,
-    required: true,
-    enum: ['M.Sc', 'M.Tech']
   },
   specialization: {
     type: String,
@@ -64,15 +58,7 @@ const teacherApplicationSchema = new mongoose.Schema({
   academicExp: {
     type: String,
     required: true,
-    enum: ['0-2 years', '2-5 years']
-  },
-  phdStatus: {
-    type: String,
-    enum: ['Completed', 'Pursuing']
-  },
-  ugcNet: {
-    type: String,
-    enum: ['Yes', 'No']
+    enum: ['0-2 years', '2-5 years','5-10 years']
   },
   resumeUrl: {
     type: String

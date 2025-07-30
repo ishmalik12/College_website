@@ -51,7 +51,9 @@ function AdminFacilities({ token }) {
   };
 
   const deleteFacility = (id) => {
-    axios.delete(`http://localhost:5000/api/facilities/${id}`).then(() => {
+    axios.delete(`http://localhost:5000/api/facilities/${id}`,{headers: {
+          Authorization: `Bearer ${token}`,
+        }},).then(() => {
       fetchFacilities();
     });
   };

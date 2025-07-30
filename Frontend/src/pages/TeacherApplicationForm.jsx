@@ -10,17 +10,12 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
     dob: "",
     city: "",
     ug: "",
-    pg: "",
     specialization: "",
     otherQual: "",
     org: "",
     designation: "",
-    currentSalary: "",
-    expectedSalary: "",
+    
     academicExp: "",
-    industryExp: "",
-    phdStatus: "",
-    ugcNet: "",
     resume: null,
   });
 
@@ -61,17 +56,11 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
         dob: "",
         city: "",
         ug: "",
-        pg: "",
         specialization: "",
         otherQual: "",
         org: "",
         designation: "",
-        currentSalary: "",
-        expectedSalary: "",
         academicExp: "",
-        industryExp: "",
-        phdStatus: "",
-        ugcNet: "",
         resume: null,
       });
     } else {
@@ -119,12 +108,10 @@ export default function TeacherApplicationModal({ isOpen, onClose }) {
             <input name="city" placeholder="Your Current City" onChange={handleChange} className="p-2 border rounded" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select name="ug" required onChange={handleChange} className="p-2 border rounded">
-              <option value="">Heighest Qualification</option>
-              <option value="B.Sc">B.Sc</option>
-              <option value="B.Tech">B.Tech</option>
-            </select>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+            <input name="ug" required placeholder="Highest Qualification" onChange={handleChange} className="p-2 w-full border rounded">
+             
+            </input>
           </div>
 
           <input name="specialization" required placeholder="Area of Specialization/Key Skills" onChange={handleChange} className="w-full p-2 border rounded" />

@@ -4,7 +4,7 @@ const alumniApplicationSchema = new mongoose.Schema({
   program: {
     type: String,
     required: true,
-    enum: ['Bachelor of Arts (B.A.)', 'Bachelor of Commerce (B.Com.)', 'Bachelor of Science (B.Sc.)', 'Skill Development Programs']
+    enum: ['Bachelor of Arts (B.A.)', 'Bachelor of Commerce (B.Com.)', 'Bachelor of Science (B.Sc.)', 'B.Sc. Maths','B.Sc. Biology']
   },
   fullName: {
     type: String,
@@ -42,10 +42,6 @@ const alumniApplicationSchema = new mongoose.Schema({
   testimonial: {
     type: String,
     required: true,
-    trim: true
-  },
-  linkedin: {
-    type: String,
     trim: true
   },
   photoUrl: {

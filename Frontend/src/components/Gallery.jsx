@@ -1,87 +1,88 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Camera, X, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import axios from 'axios';
 // --- IMAGE IMPORTS ---
-import angawadi1 from "../assets/Angawadi-01.png";
-import angawadi2 from "../assets/Angawadi-02.jpg";
-import angawadi3 from "../assets/Angawadi-03.jpg";
-import fssai1 from "../assets/FSSAI-01.jpg";
-import fssai2 from "../assets/FSSAI-02.jpg";
-import fssai3 from "../assets/FSSAI-03.jpg";
-import shark1 from "../assets/SharkTank-01.png";
-import shark2 from "../assets/SharkTank-02.png";
-import shark3 from "../assets/SharkTank-03.png";
-import shark4 from "../assets/SharkTank-04.png";
-import shark5 from "../assets/SharkTank-05.png";
-import women1 from "../assets/womensday-01.png";
-import women2 from "../assets/womensday-02.png";
-import women3 from "../assets/womensday-03.png";
-import women4 from "../assets/womensday-04.png";
-import women5 from "../assets/womensday-05.png";
-import women6 from "../assets/womensday-06.png";
-import christmas1 from "../assets/Christmas01.png";
-import christmas2 from "../assets/Christmas02.png";
-import christmas3 from "../assets/Christmas03.png";
-import freshers1 from "../assets/Freshers01.png";
-import freshers2 from "../assets/Freshers02.png";
-import freshers3 from "../assets/Freshers03.png";
-import hindi1 from "../assets/HindiDiwas01.png";
-import hindi2 from "../assets/HindiDiwas02.png";
-import independence1 from "../assets/IndependenceDay01.png";
-import independence2 from "../assets/IndependenceDay02.png";
-import poshan1 from "../assets/poshanMela01.png";
-import poshan2 from "../assets/poshanMela02.png";
-import poshan3 from "../assets/poshanMela03.png";
-import poshan4 from "../assets/poshanMela04.png";
-import poshan5 from "../assets/poshanMela05.png";
-import poshan6 from "../assets/poshanMela06.png";
-import poshan7 from "../assets/poshanMela07.png";
-import sadak1 from "../assets/SadakSuraksha01.png";
-import sadak2 from "../assets/SadakSuraksha02.png";
-import teachers1 from "../assets/TeachersDay01.png";
-import yoga1 from "../assets/YogaDay01.png";
-import yoga2 from "../assets/YogaDay02.png";
+// import angawadi1 from "../assets/Angawadi-01.png";
+// import angawadi2 from "../assets/Angawadi-02.jpg";
+// import angawadi3 from "../assets/Angawadi-03.jpg";
+// import fssai1 from "../assets/FSSAI-01.jpg";
+// import fssai2 from "../assets/FSSAI-02.jpg";
+// import fssai3 from "../assets/FSSAI-03.jpg";
+// import shark1 from "../assets/SharkTank-01.png";
+// import shark2 from "../assets/SharkTank-02.png";
+// import shark3 from "../assets/SharkTank-03.png";
+// import shark4 from "../assets/SharkTank-04.png";
+// import shark5 from "../assets/SharkTank-05.png";
+// import women1 from "../assets/womensday-01.png";
+// import women2 from "../assets/womensday-02.png";
+// import women3 from "../assets/womensday-03.png";
+// import women4 from "../assets/womensday-04.png";
+// import women5 from "../assets/womensday-05.png";
+// import women6 from "../assets/womensday-06.png";
+// import christmas1 from "../assets/Christmas01.png";
+// import christmas2 from "../assets/Christmas02.png";
+// import christmas3 from "../assets/Christmas03.png";
+// import freshers1 from "../assets/Freshers01.png";
+// import freshers2 from "../assets/Freshers02.png";
+// import freshers3 from "../assets/Freshers03.png";
+// import hindi1 from "../assets/HindiDiwas01.png";
+// import hindi2 from "../assets/HindiDiwas02.png";
+// import independence1 from "../assets/IndependenceDay01.png";
+// import independence2 from "../assets/IndependenceDay02.png";
+// import poshan1 from "../assets/poshanMela01.png";
+// import poshan2 from "../assets/poshanMela02.png";
+// import poshan3 from "../assets/poshanMela03.png";
+// import poshan4 from "../assets/poshanMela04.png";
+// import poshan5 from "../assets/poshanMela05.png";
+// import poshan6 from "../assets/poshanMela06.png";
+// import poshan7 from "../assets/poshanMela07.png";
+// import sadak1 from "../assets/SadakSuraksha01.png";
+// import sadak2 from "../assets/SadakSuraksha02.png";
+// import teachers1 from "../assets/TeachersDay01.png";
+// import yoga1 from "../assets/YogaDay01.png";
+// import yoga2 from "../assets/YogaDay02.png";
 
-const imageData = [
-  { src: angawadi1, title: "Angawadi", category: "Angawadi" },
-  { src: angawadi2, title: "Angawadi", category: "Angawadi" },
-  { src: angawadi3, title: "Angawadi", category: "Angawadi" },
-  { src: fssai1, title: "FSSAI", category: "FSSAI" },
-  { src: fssai2, title: "FSSAI", category: "FSSAI" },
-  { src: fssai3, title: "FSSAI", category: "FSSAI" },
-  { src: shark1, title: "Shark Tank", category: "Shark Tank" },
-  { src: shark2, title: "Shark Tank", category: "Shark Tank" },
-  { src: shark3, title: "Shark Tank", category: "Shark Tank" },
-  { src: shark4, title: "Shark Tank", category: "Shark Tank" },
-  { src: shark5, title: "Shark Tank", category: "Shark Tank" },
-  { src: women1, title: "Womens Day", category: "Womens Day" },
-  { src: women2, title: "Womens Day", category: "Womens Day" },
-  { src: women3, title: "Womens Day", category: "Womens Day" },
-  { src: women4, title: "Womens Day", category: "Womens Day" },
-  { src: women5, title: "Womens Day", category: "Womens Day" },
-  { src: women6, title: "Womens Day", category: "Womens Day" },
-  { src: christmas1, title: "Christmas Day", category: "Christmas Day" },
-  { src: christmas2, title: "Christmas Day", category: "Christmas Day" },
-  { src: christmas3, title: "Christmas Day", category: "Christmas Day" },
-  { src: freshers1, title: "Freshers Celebration", category: "Freshers Celebration" },
-  { src: freshers2, title: "Freshers Celebration", category: "Freshers Celebration" },
-  { src: freshers3, title: "Freshers Celebration", category: "Freshers Celebration" },
-  { src: hindi1, title: "Hindi Diwas", category: "Hindi Diwas" },
-  { src: hindi2, title: "Hindi Diwas", category: "Hindi Diwas" },
-  { src: independence1, title: "Independence Day", category: "Independence Day" },
-  { src: independence2, title: "Independence Day", category: "Independence Day" },
-  { src: poshan1, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan2, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan3, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan4, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan5, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan6, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: poshan7, title: "Poshan Mela", category: "Poshan Mela" },
-  { src: sadak1, title: "Sadak Suraksha", category: "Sadak Suraksha" },
-  { src: sadak2, title: "Sadak Suraksha", category: "Sadak Suraksha" },
-  { src: teachers1, title: "Teachers Day", category: "Teachers Day" },
-  { src: yoga1, title: "Yoga Day", category: "Yoga Day" },
-  { src: yoga2, title: "Yoga Day", category: "Yoga Day" },
-];
+// const imageData = [
+//   { src: angawadi1, title: "Angawadi", category: "Angawadi" },
+//   { src: angawadi2, title: "Angawadi", category: "Angawadi" },
+//   { src: angawadi3, title: "Angawadi", category: "Angawadi" },
+//   { src: fssai1, title: "FSSAI", category: "FSSAI" },
+//   { src: fssai2, title: "FSSAI", category: "FSSAI" },
+//   { src: fssai3, title: "FSSAI", category: "FSSAI" },
+//   { src: shark1, title: "Shark Tank", category: "Shark Tank" },
+//   { src: shark2, title: "Shark Tank", category: "Shark Tank" },
+//   { src: shark3, title: "Shark Tank", category: "Shark Tank" },
+//   { src: shark4, title: "Shark Tank", category: "Shark Tank" },
+//   { src: shark5, title: "Shark Tank", category: "Shark Tank" },
+//   { src: women1, title: "Womens Day", category: "Womens Day" },
+//   { src: women2, title: "Womens Day", category: "Womens Day" },
+//   { src: women3, title: "Womens Day", category: "Womens Day" },
+//   { src: women4, title: "Womens Day", category: "Womens Day" },
+//   { src: women5, title: "Womens Day", category: "Womens Day" },
+//   { src: women6, title: "Womens Day", category: "Womens Day" },
+//   { src: christmas1, title: "Christmas Day", category: "Christmas Day" },
+//   { src: christmas2, title: "Christmas Day", category: "Christmas Day" },
+//   { src: christmas3, title: "Christmas Day", category: "Christmas Day" },
+//   { src: freshers1, title: "Freshers Celebration", category: "Freshers Celebration" },
+//   { src: freshers2, title: "Freshers Celebration", category: "Freshers Celebration" },
+//   { src: freshers3, title: "Freshers Celebration", category: "Freshers Celebration" },
+//   { src: hindi1, title: "Hindi Diwas", category: "Hindi Diwas" },
+//   { src: hindi2, title: "Hindi Diwas", category: "Hindi Diwas" },
+//   { src: independence1, title: "Independence Day", category: "Independence Day" },
+//   { src: independence2, title: "Independence Day", category: "Independence Day" },
+//   { src: poshan1, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan2, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan3, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan4, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan5, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan6, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: poshan7, title: "Poshan Mela", category: "Poshan Mela" },
+//   { src: sadak1, title: "Sadak Suraksha", category: "Sadak Suraksha" },
+//   { src: sadak2, title: "Sadak Suraksha", category: "Sadak Suraksha" },
+//   { src: teachers1, title: "Teachers Day", category: "Teachers Day" },
+//   { src: yoga1, title: "Yoga Day", category: "Yoga Day" },
+//   { src: yoga2, title: "Yoga Day", category: "Yoga Day" },
+// ];
 
 const accentColors = [
   "bg-blue-500",
@@ -95,7 +96,7 @@ const accentColors = [
   "bg-lime-500",
 ];
 
-const categoryList = ["All", ...Array.from(new Set(imageData.map((img) => img.category)))];
+// const categoryList = ["All", ...Array.from(new Set(imageData.map((img) => img.category)))];
 
 export default function LumiaGalleryDropdown() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -103,12 +104,20 @@ export default function LumiaGalleryDropdown() {
   const [currentIdx, setCurrentIdx] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [imageData, setImageData] = useState([]);
 
-  const filteredImages =
-    selectedCategory === "All"
-      ? imageData
-      : imageData.filter((img) => img.category === selectedCategory);
+useEffect(() => {
+  axios.get("http://localhost:5000/api/gallery").then((res) => {
+    setImageData(res.data);
+  });
+}, []);
 
+const categoryList = ["All", ...Array.from(new Set(imageData.map((img) => img.category)))];
+const filteredImages = selectedCategory === "All"
+  ? imageData
+  : imageData.filter((img) => img.category === selectedCategory);
+
+  
   // Close dropdown on outside click
   useEffect(() => {
     function handler(e) {
@@ -195,7 +204,7 @@ export default function LumiaGalleryDropdown() {
       {/* Lumia Grid */}
       <div className="max-w-7xl  mx-auto px-4 pb-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 auto-rows-[120px] sm:auto-rows-[160px] md:auto-rows-[180px]">
-          {filteredImages.map(({ src, title, category }, idx) => (
+          {filteredImages.map(({ imageUrl, title, category }, idx) => (
             <button
               key={category + idx}
               onClick={() => { setModalOpen(true); setCurrentIdx(idx); }}
@@ -205,7 +214,7 @@ export default function LumiaGalleryDropdown() {
                 transition-transform duration-300 hover:scale-110`}
             >
               <img
-                src={src}
+                src={`http://localhost:5000${imageUrl}`}
                 alt={category}
                 className="w-full h-full object-cover pointer-events-none select-none"
               />
@@ -241,7 +250,7 @@ export default function LumiaGalleryDropdown() {
           </button>
 
           <img
-            src={filteredImages[currentIdx].src}
+            src={filteredImages[currentIdx].imageUrl}
             alt={filteredImages[currentIdx].category}
             className="max-w-3xl w-[90vw] max-h-[80vh] object-contain rounded-xl mx-auto"
             onClick={(e) => e.stopPropagation()}

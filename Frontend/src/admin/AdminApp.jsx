@@ -11,7 +11,8 @@ import {
   X,
   Info,
   Award,
-  Building
+  Building,
+  Image
 } from 'lucide-react';
 import UploadNotice from './UploadNotice';
 import Login from './Login';
@@ -25,6 +26,7 @@ import IQACAdminPanel from './IQACAdminPanel';
 import AdminStudentAchievements from './Achievements';
 import Facilities from '../components/Facilities';
 import AdminFacilities from './AdminFacilities';
+import AdminGalleryManager from './GalleryAdmin';
 
 
 export default function AdminApp() {
@@ -71,7 +73,8 @@ const menuItems = [
   { id: 'notices', label: 'Notice Management', icon: <Bell className="w-5 h-5" /> },
   { id: 'IQAC', label: 'IQAC Management', icon: <Info className="w-5 h-5" /> },
   { id: 'Achievements', label: 'Acheivements Management', icon: <Award className="w-5 h-5" /> },
-  { id: 'Facilities', label: 'Facilities Management', icon: <Building className="w-5 h-5" /> }
+  { id: 'Facilities', label: 'Facilities Management', icon: <Building className="w-5 h-5" /> },
+   { id: 'Gallery', label: 'gallery Management', icon: <Image className="w-5 h-5" /> }
 ];
 
   const renderPage = () => {
@@ -94,6 +97,8 @@ const menuItems = [
         return <AdminStudentAchievements token={token}></AdminStudentAchievements>
       case 'Facilities':
         return <AdminFacilities token={token}></AdminFacilities>
+      case 'Gallery':
+        return <AdminGalleryManager token={token}></AdminGalleryManager>
       default:
         return <AdminDashboard token={token} />;
     }
@@ -106,50 +111,57 @@ const menuItems = [
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className={`bg-white shadow-lg transition-all duration-300 ${
-        sidebarOpen ? 'w-64' : 'w-64 hidden lg:block'
-      }`}>
-        <div className="p-6 border-b border-gray-200">
-          <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
-          <p className="text-sm text-gray-600">College Management</p>
-        </div>
-        
-        <nav className="mt-6">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                setCurrentPage(item.id);
-                setSidebarOpen(false);
-              }}
-              className={`w-full flex items-center px-6 py-3 text-left hover:bg-blue-50 transition-colors duration-200 ${
-                currentPage === item.id 
-                  ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
-                  : 'text-gray-700'
-              }`}
-            >
-              {item.icon}
-              <span className="ml-3">{item.label}</span>
-            </button>
-          ))}
-        </nav>
+    {/* Sidebar */}
+<div
+  className={`bg-white shadow-lg transition-all duration-300 z-50 lg:z-auto fixed lg:relative h-full ${
+    sidebarOpen ? 'w-64' : 'hidden lg:block w-64'
+  }`}
+>
+  <div className="p-6 border-b border-gray-200">
+    <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
+    <p className="text-sm text-gray-600">College Management</p>
+  </div>
 
-        <div className="absolute bottom-0 w-64 p-6 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-800">{admin?.name}</p>
-              <p className="text-xs text-gray-500">{admin?.email}</p>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="text-gray-400 hover:text-red-600 transition-colors duration-200"
-              title="Logout"
-            >
-              <LogOut className="w-5 h-5" />
-            </button>
-          </div>
+  {/* Scrollable nav */}
+  <div className="flex flex-col h-[calc(100vh-8rem)] overflow-y-auto">
+    <nav className="flex-grow mt-6">
+      {menuItems.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => {
+            setCurrentPage(item.id);
+            setSidebarOpen(false);
+          }}
+          className={`w-full flex items-center px-6 py-3 text-left hover:bg-blue-50 transition-colors duration-200 ${
+            currentPage === item.id
+              ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600'
+              : 'text-gray-700'
+          }`}
+        >
+          {item.icon}
+          <span className="ml-3">{item.label}</span>
+        </button>
+      ))}
+    </nav>
+
+    {/* Footer (logout & info) */}
+    <div className="p-6 border-t border-gray-200">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-gray-800">{admin?.name}</p>
+          <p className="text-xs text-gray-500">{admin?.email}</p>
         </div>
+        <button
+          onClick={handleLogout}
+          className="text-gray-400 hover:text-red-600 transition-colors duration-200"
+          title="Logout"
+        >
+          <LogOut className="w-5 h-5" />
+        </button>
       </div>
+    </div>
+  </div>
+</div>
 
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
