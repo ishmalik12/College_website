@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Camera, X, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import axios from 'axios';
+import heroImg from '../assets/blurimg.jpeg';
 // --- IMAGE IMPORTS ---
 // import angawadi1 from "../assets/Angawadi-01.png";
 // import angawadi2 from "../assets/Angawadi-02.jpg";
@@ -146,23 +147,29 @@ const filteredImages = selectedCategory === "All"
   }, [modalOpen, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-white font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
+    <div className="min-h-screen bg-[#FBF5DF] font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-8 flex justify-center">
-            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-3xl shadow-2xl border border-white/20">
-              <Camera className="w-12 h-12 text-white" />
-            </div>
-          </div>
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-            Campus Gallery
-          </h1>
-          
-        </div>
-      </section>
+      
+<section
+  className="relative text-white py-24 overflow-hidden"
+  style={{
+    backgroundImage: `url(${heroImg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+  <div className="relative max-w-7xl mx-auto px-6 text-center">
+    <div className="mb-8 flex justify-center">
+      <div className="bg-white/10 backdrop-blur-lg p-6 rounded-3xl shadow-2xl border border-white/20">
+        <Camera className="w-12 h-12 text-white" />
+      </div>
+    </div>
+    <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+      Campus Gallery
+    </h1>
+  </div>
+</section>
 
       {/* Dropdown Button */}
       <div className="max-w-xl mx-auto mt-8 mb-8 flex justify-center">
@@ -202,7 +209,7 @@ const filteredImages = selectedCategory === "All"
       </div>
 
       {/* Lumia Grid */}
-      <div className="max-w-7xl  mx-auto px-4 pb-16">
+      <div className="max-w-9xl  px-4 pb-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 auto-rows-[120px] sm:auto-rows-[160px] md:auto-rows-[180px]">
           {filteredImages.map(({ imageUrl, title, category }, idx) => (
             <button
@@ -250,7 +257,7 @@ const filteredImages = selectedCategory === "All"
           </button>
 
           <img
-            src={filteredImages[currentIdx].imageUrl}
+            src={filteredImages[currentIdx].image}
             alt={filteredImages[currentIdx].category}
             className="max-w-3xl w-[90vw] max-h-[80vh] object-contain rounded-xl mx-auto"
             onClick={(e) => e.stopPropagation()}
