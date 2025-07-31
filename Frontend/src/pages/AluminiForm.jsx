@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AlumniBanner from "../assets/slideshow3.jpeg";
+import HeroSection from "./HeroSection";
 
 
 
@@ -66,16 +67,12 @@ export default function AlumniFormPage() {
 
   return (
     <>
-      <section
-        className="w-full h-screen bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${AlumniBanner})` }}
-      >
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center m-8 text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Alumni</h1>
-          </div>
-        </div>
-      </section>
+     <HeroSection
+       title="ALUMNI"
+       description=""
+       backgroundImage={AlumniBanner}
+     />
+         
 
       <div className="min-h-screen bg-gray-50 px-4 py-10 md:px-20">
         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">

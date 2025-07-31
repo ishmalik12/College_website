@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CollegeCarousel from './CollegeCarousel';
 import achievementImg from '../assets/achievement.jpg';
+import HeroSection from './HeroSection';
 
 
 const StudentAchievementCard = ({ photo, name, description }) => (
@@ -100,22 +101,13 @@ function StudentAchievementsPage() {
     </div>
   </div>
 </section> */}
-<section
-        className="w-full h-screen bg-cover bg-center relative"  
-        style={{ backgroundImage: `url(${achievementImg})` }}
-      >
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center m-8 text-white px-4">
-           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-        Our Achievements
-      </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-        Celebrating excellence in education, research, and innovation. 
-        Discover how we're shaping the future through outstanding accomplishments.
-      </p>
-          </div>
-        </div>
-      </section>
+
+      <HeroSection
+        title="Our Achievements"
+        description=" Celebrating excellence in education, research, and innovation. 
+        Discover how we're shaping the future through outstanding accomplishments."
+        backgroundImage={achievementImg}
+      />
 
 
 

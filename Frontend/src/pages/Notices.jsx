@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Bell, Calendar,Eye, AlertCircle, Info, CheckCircle, Clock, Download, Pin } from 'lucide-react';
+import NoticeHero from './NoticeHero';
 
 const Notice = () => {
   const [notices, setNotices] = useState([]);
@@ -93,27 +94,7 @@ const closePreview = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl mr-6">
-              <Bell className="h-12 w-12 text-white" />
-            </div>
-            <h1 className="text-5xl lg:text-7xl font-bold text-white">
-              Notice <span className="text-red-400">Board</span>
-            </h1>
-          </div>
-          <p className="text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            Stay updated with the latest announcements, important dates, and campus news. 
-            Check back regularly for new updates and notices from Heritage University.
-          </p>
-        </div>
-      </section>
+    <NoticeHero></NoticeHero>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
@@ -129,59 +110,89 @@ const closePreview = () => {
                   <h2 className="text-3xl font-bold text-blue-900">Pinned Notices</h2>
                 </div>
                 <div className="space-y-6">
-                  {pinnedNotices.map((notice) => (
-                    <div key={notice._id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1`}>
-                      <div className="flex items-start space-x-6">
-                        <div className={`${getIconColor(notice.type)} mt-1 bg-white p-3 rounded-xl shadow-md`}>
-                          {getIcon(notice.type)}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between mb-4">
-                            <h3 className="text-2xl font-bold text-blue-900">{notice.title}</h3>
-                            <div className="flex items-center space-x-3">
-                              <Pin className="h-5 w-5 text-red-600" />
-                              <span className={`px-4 py-2 rounded-full text-sm font-bold ${getPriorityBadge(notice.priority)}`}>
-                                {notice.priority?.toUpperCase()}
-                              </span>
-                              <span className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">
-                                {notice.category}
-                              </span>
-                            </div>
-                          </div>
-                          <p className="text-gray-700 leading-relaxed text-lg mb-6">{notice.content}</p>
-                          <div className="flex justify-between items-end mt-6">
-  {/* Date - Left side */}
-  <div className="text-gray-500 flex items-center text-sm">
-    <Clock className="h-4 w-4 mr-1" />
-    <span>Posted on {formatDate(notice.createdAt)}</span>
+                {pinnedNotices.map((notice) => (
+  <div
+    key={notice._id}
+    className={`rounded-xl shadow-lg border-l-4 p-6 group relative transition-all duration-300 hover:shadow-2xl ${
+      notice.type === 'urgent'
+        ? 'border-red-500 bg-red-50'
+        : notice.type === 'success'
+        ? 'border-green-500 bg-green-50'
+        : 'border-blue-500 bg-blue-50'
+    }`}
+  >
+    {/* Colored dot icon */}
+    <div className="absolute left-4 top-4">
+      <div
+        className={`w-3 h-3 rounded-full ${
+          notice.type === 'urgent'
+            ? 'bg-red-600'
+            : notice.type === 'success'
+            ? 'bg-green-600'
+            : 'bg-blue-600'
+        }`}
+      ></div>
+    </div>
+
+    {/* Notice content */}
+    <div className="pl-8">
+      <div className="flex justify-between items-start">
+        <h3
+          className={`text-lg md:text-xl font-bold ${
+            notice.type === 'urgent'
+              ? 'text-red-700'
+              : notice.type === 'success'
+              ? 'text-green-700'
+              : 'text-blue-700'
+          }`}
+        >
+          📌 {notice.title}
+        </h3>
+        <div className="flex gap-2 items-center">
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              notice.priority === 'high'
+                ? 'bg-red-100 text-red-600'
+                : notice.priority === 'medium'
+                ? 'bg-yellow-100 text-yellow-600'
+                : 'bg-gray-100 text-gray-600'
+            }`}
+          >
+            {notice.priority?.toUpperCase()}
+          </span>
+          <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+            {notice.category}
+          </span>
+        </div>
+      </div>
+
+      <p className="text-sm text-gray-700 mt-2 line-clamp-3">{notice.content}</p>
+
+      <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+        <span className="flex items-center gap-1">
+          <Clock className="h-4 w-4" />
+          {formatDate(notice.createdAt)}
+        </span>
+
+        {notice.attachments?.[0]?.url && (
+          <button
+            onClick={() => openPreview(notice.attachments[0])}
+            className={`font-medium hover:underline ${
+              notice.type === 'urgent'
+                ? 'text-red-600'
+                : notice.type === 'success'
+                ? 'text-green-600'
+                : 'text-blue-600'
+            }`}
+          >
+            Preview
+          </button>
+        )}
+      </div>
+    </div>
   </div>
+))}
 
-  {/* Download button - Right side */}
- {notice.attachments?.[0]?.url && (
-  <button
-  onClick={() => {
-    setPreview(notice.attachments?.[0]);
-    setIsModalOpen(true);
-  }}
-  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
->
-  Preview & Download
-</button>
-
-)}
-
-</div>
-
-
-                    
-
-                        </div>
-                      </div>
-                     
-
-                    </div>
-                    
-                  ))}
                 </div>
               </div>
             )}
@@ -190,53 +201,89 @@ const closePreview = () => {
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-blue-900 mb-8">Recent Notices</h2>
               <div className="space-y-6">
-                {regularNotices.map((notice) => (
-                  <div key={notice._id} className={`${getNoticeStyle(notice.type)} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
-                    <div className="flex items-start space-x-6">
-                      <div className={`${getIconColor(notice.type)} mt-1`}>
-                        {getIcon(notice.type)}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-4">
-                          <h3 className="text-xl font-bold text-blue-900">{notice.title}</h3>
-                          <div className="flex items-center space-x-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getPriorityBadge(notice.priority)}`}>
-                              {notice.priority?.toUpperCase()}
-                            </span>
-                            <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
-                              {notice.category}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="text-gray-700 leading-relaxed mb-4">{notice.content}</p>
-                        <div className="flex justify-between items-end mt-6">
-  {/* Date - Left side */}
-  <div className="text-gray-500 flex items-center text-sm">
-    <Clock className="h-4 w-4 mr-1" />
-    <span>Posted on {formatDate(notice.createdAt)}</span>
+               {regularNotices.map((notice) => (
+  <div
+    key={notice._id}
+    className={`rounded-xl shadow-md border-l-4 p-6 group relative transition-all duration-300 hover:shadow-xl ${
+      notice.type === 'urgent'
+        ? 'border-red-500 bg-red-50'
+        : notice.type === 'success'
+        ? 'border-green-500 bg-green-50'
+        : 'border-blue-500 bg-blue-50'
+    }`}
+  >
+    {/* Colored dot icon */}
+    <div className="absolute left-4 top-4">
+      <div
+        className={`w-3 h-3 rounded-full ${
+          notice.type === 'urgent'
+            ? 'bg-red-600'
+            : notice.type === 'success'
+            ? 'bg-green-600'
+            : 'bg-blue-600'
+        }`}
+      ></div>
+    </div>
+
+    {/* Notice content */}
+    <div className="pl-8">
+      <div className="flex justify-between items-start">
+        <h3
+          className={`text-lg md:text-xl font-semibold ${
+            notice.type === 'urgent'
+              ? 'text-red-700'
+              : notice.type === 'success'
+              ? 'text-green-700'
+              : 'text-blue-700'
+          }`}
+        >
+          {notice.title}
+        </h3>
+        <div className="flex gap-2 items-center">
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-medium ${
+              notice.priority === 'high'
+                ? 'bg-red-100 text-red-600'
+                : notice.priority === 'medium'
+                ? 'bg-yellow-100 text-yellow-600'
+                : 'bg-gray-100 text-gray-600'
+            }`}
+          >
+            {notice.priority?.toUpperCase()}
+          </span>
+          <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+            {notice.category}
+          </span>
+        </div>
+      </div>
+
+      <p className="text-sm text-gray-700 mt-2 line-clamp-3">{notice.content}</p>
+
+      <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+        <span className="flex items-center gap-1">
+          <Clock className="h-4 w-4" />
+          {formatDate(notice.createdAt)}
+        </span>
+
+        {notice.attachments?.[0]?.url && (
+          <button
+            onClick={() => openPreview(notice.attachments[0])}
+            className={`font-medium hover:underline ${
+              notice.type === 'urgent'
+                ? 'text-red-600'
+                : notice.type === 'success'
+                ? 'text-green-600'
+                : 'text-blue-600'
+            }`}
+          >
+            Preview
+          </button>
+        )}
+      </div>
+    </div>
   </div>
+))}
 
-  {/* Download button - Right side */}
- {notice.attachments?.[0]?.url && (
-  <button
-  onClick={() => {
-    setPreview(notice.attachments?.[0]);
-    setIsModalOpen(true);
-  }}
-  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
->
-  Preview & Download
-</button>
-
-)}
-
-</div>
-
-
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </>

@@ -481,6 +481,7 @@ import {
 
 import { motion, AnimatePresence } from "framer-motion";
 import sample6 from "../assets/blurimg.jpeg"
+import HeroSection from "./HeroSection";
 
 const programs = [
   {
@@ -582,20 +583,12 @@ export default function Programs() {
   return (
     <>
       {/* Hero Image Section */}
-      <section
-        className="w-full h-screen bg-cover bg-center relative"  
-        style={{ backgroundImage: `url(${sample6})` }}
-      >
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center m-8 text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">COURSES</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto">
-              Explore a wide range of undergraduate and skill-based programs built for your success.
-            </p>
-          </div>
-        </div>
-      </section>
 
+<HeroSection
+  title="COURSES"
+  description="Explore a wide range of undergraduate and skill-based programs built for your success."
+  backgroundImage={sample6}
+/>
       {/* Programs Section */}
       <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
