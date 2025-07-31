@@ -112,19 +112,28 @@ const menuItems = [
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
     {/* Sidebar */}
-{/* Sidebar */}
 <div
-  className={`bg-white shadow-lg fixed z-40 top-0 left-0 h-full transition-transform duration-300 transform ${
+  className={`bg-white shadow-lg fixed z-40 top-0 left-0 h-full w-screen max-w-full transition-transform duration-300 transform ${
     sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-  } lg:relative lg:translate-x-0 w-64`}
+  } lg:relative lg:translate-x-0 lg:w-64`}
 >
-  <div className="p-6 border-b border-gray-200 sticky top-0 bg-white z-10">
-    <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
-    <p className="text-sm text-gray-600">College Management</p>
+  {/* Header */}
+  <div className="p-8 border-b border-gray-200 sticky top-0 bg-white z-10 flex justify-between items-center">
+    <div>
+      <h1 className="text-3xl font-extrabold text-gray-800">Admin Panel</h1>
+      <p className="text-lg text-gray-600">College Management</p>
+    </div>
+    <button
+      onClick={() => setSidebarOpen(false)}
+      className="lg:hidden text-gray-600 hover:text-red-600"
+    >
+      <X className="w-9 h-9" />
+    </button>
   </div>
 
+  {/* Navigation */}
   <div className="flex flex-col h-[calc(100vh-8rem)] overflow-y-auto">
-    <nav className="flex-grow mt-6 space-y-1">
+    <nav className="flex-grow mt-6 space-y-2 px-2">
       {menuItems.map((item) => (
         <button
           key={item.id}
@@ -132,36 +141,37 @@ const menuItems = [
             setCurrentPage(item.id);
             setSidebarOpen(false);
           }}
-          className={`w-full flex items-center px-6 py-3 text-left text-base hover:bg-blue-50 transition-colors duration-200 ${
+          className={`w-full flex items-center px-6 py-5 text-left text-xl font-semibold hover:bg-blue-50 transition-colors duration-200 ${
             currentPage === item.id
               ? 'bg-blue-100 text-blue-700 border-r-4 border-blue-600'
               : 'text-gray-700'
           }`}
         >
-          {item.icon}
-          <span className="ml-3">{item.label}</span>
+          <span className="text-2xl">{item.icon}</span>
+          <span className="ml-5">{item.label}</span>
         </button>
       ))}
     </nav>
 
     {/* Footer */}
-    <div className="p-6 border-t border-gray-200">
+    <div className="p-6 border-t border-gray-200 mt-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-800">{admin?.name}</p>
-          <p className="text-xs text-gray-500">{admin?.email}</p>
+          <p className="text-lg font-semibold text-gray-800">{admin?.name}</p>
+          <p className="text-sm text-gray-500">{admin?.email}</p>
         </div>
         <button
           onClick={handleLogout}
           className="text-gray-400 hover:text-red-600 transition-colors duration-200"
           title="Logout"
         >
-          <LogOut className="w-5 h-5" />
+          <LogOut className="w-7 h-7" />
         </button>
       </div>
     </div>
   </div>
 </div>
+
 
 
       {/* Mobile sidebar overlay */}
