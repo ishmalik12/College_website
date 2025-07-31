@@ -68,7 +68,7 @@ const initiatives = [
     {
       icon: <Users className="mx-auto text-green-600" size={36} />,
       title: "Students",
-      desc: "320+ enrolled",
+      desc: "500+ enrolled",
     },
     {
       icon: <Globe2 className="mx-auto text-pink-600" size={36} />,

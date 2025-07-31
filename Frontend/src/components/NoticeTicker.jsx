@@ -22,6 +22,7 @@ const NoticeTicker = () => {
       .then((data) => {
         if (data.success) {
           setNotices(data.notices);
+
         }
       })
       .catch((error) => {
@@ -34,18 +35,18 @@ const NoticeTicker = () => {
       {/* Notice Ticker Strip */}
       <div className="w-full bg-yellow-100 border-y border-yellow-300 py-2 overflow-hidden relative">
         <div className="absolute left-2 top-2 text-yellow-800 font-bold flex items-center gap-1 z-10">
-          <ScrollText size={18} /> Notices
         </div>
 
         <div className="pl-28 whitespace-nowrap animate-marquee">
           {notices.map((notice, index) => (
             notice.attachments?.[0]?.url && (
               <span
-                key={index}
-                onClick={() => openPreview(notice.attachments[0])}
-                className="inline-block mx-6 cursor-pointer text-sm text-blue-800 hover:underline"
+              key={index}
+              onClick={() => openPreview(notice.attachments[0])}
+              className="inline-block mx-6 cursor-pointer text-sm text-red-500 font-bold hover:underline"
               >
-                📌 {notice.title}
+                 {/* <ScrollText size={18} /> */}
+                 {notice.title}
               </span>
             )
           ))}
