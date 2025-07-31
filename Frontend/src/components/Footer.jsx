@@ -49,16 +49,16 @@ const Footer = () => {
                 <Link to="/programs" className="text-blue-200 hover:text-white transition-colors duration-200">Academic Programs</Link>
               </li>
               <li>
-                <Link to="/contact" className="text-blue-200 hover:text-white transition-colors duration-200">Admissions</Link>
-              </li>
-              <li>
                 <Link to="/facilities" className="text-blue-200 hover:text-white transition-colors duration-200">Campus Life</Link>
               </li>
               <li>
-                <Link to="/notices" className="text-blue-200 hover:text-white transition-colors duration-200">Research</Link>
+                <Link to="/notices" className="text-blue-200 hover:text-white transition-colors duration-200">Notice</Link>
               </li>
               <li>
                 <Link to="/apply-alumni" className="text-blue-200 hover:text-white transition-colors duration-200">Alumni</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-blue-200 hover:text-white transition-colors duration-200">Contact Us</Link>
               </li>
             </ul>
           </div>
