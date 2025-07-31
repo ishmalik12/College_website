@@ -112,19 +112,19 @@ const menuItems = [
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
     {/* Sidebar */}
+{/* Sidebar */}
 <div
-  className={`bg-white shadow-lg transition-all duration-300 z-50 lg:z-auto fixed lg:relative h-full ${
-    sidebarOpen ? 'w-64' : 'hidden lg:block w-64'
-  }`}
+  className={`bg-white shadow-lg fixed z-40 top-0 left-0 h-full transition-transform duration-300 transform ${
+    sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+  } lg:relative lg:translate-x-0 w-64`}
 >
-  <div className="p-6 border-b border-gray-200">
+  <div className="p-6 border-b border-gray-200 sticky top-0 bg-white z-10">
     <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
     <p className="text-sm text-gray-600">College Management</p>
   </div>
 
-  {/* Scrollable nav */}
   <div className="flex flex-col h-[calc(100vh-8rem)] overflow-y-auto">
-    <nav className="flex-grow mt-6">
+    <nav className="flex-grow mt-6 space-y-1">
       {menuItems.map((item) => (
         <button
           key={item.id}
@@ -132,9 +132,9 @@ const menuItems = [
             setCurrentPage(item.id);
             setSidebarOpen(false);
           }}
-          className={`w-full flex items-center px-6 py-3 text-left hover:bg-blue-50 transition-colors duration-200 ${
+          className={`w-full flex items-center px-6 py-3 text-left text-base hover:bg-blue-50 transition-colors duration-200 ${
             currentPage === item.id
-              ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600'
+              ? 'bg-blue-100 text-blue-700 border-r-4 border-blue-600'
               : 'text-gray-700'
           }`}
         >
@@ -144,7 +144,7 @@ const menuItems = [
       ))}
     </nav>
 
-    {/* Footer (logout & info) */}
+    {/* Footer */}
     <div className="p-6 border-t border-gray-200">
       <div className="flex items-center justify-between">
         <div>
@@ -162,6 +162,7 @@ const menuItems = [
     </div>
   </div>
 </div>
+
 
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
