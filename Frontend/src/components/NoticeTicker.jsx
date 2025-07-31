@@ -33,25 +33,22 @@ const NoticeTicker = () => {
   return (
     <>
       {/* Notice Ticker Strip */}
-      <div className="w-full bg-yellow-100 border-y border-yellow-300 py-2 overflow-hidden relative">
-        <div className="absolute left-2 top-2 text-yellow-800 font-bold flex items-center gap-1 z-10">
-        </div>
+     <div className="group bg-yellow-200 overflow-hidden">
+  <div className="pl-28 whitespace-nowrap animate-marquee group-hover:[animation-play-state:paused]">
+    {notices.map((notice, index) => (
+      notice.attachments?.[0]?.url && (
+        <span
+          key={index}
+          onClick={() => openPreview(notice.attachments[0])}
+          className="inline-block mx-6 cursor-pointer text-sm text-red-500 font-bold hover:underline"
+        >
+          {notice.title}
+        </span>
+      )
+    ))}
+  </div>
+</div>
 
-        <div className="pl-28 whitespace-nowrap animate-marquee">
-          {notices.map((notice, index) => (
-            notice.attachments?.[0]?.url && (
-              <span
-              key={index}
-              onClick={() => openPreview(notice.attachments[0])}
-              className="inline-block mx-6 cursor-pointer text-sm text-red-500 font-bold hover:underline"
-              >
-                 {/* <ScrollText size={18} /> */}
-                 {notice.title}
-              </span>
-            )
-          ))}
-        </div>
-      </div>
 
       {/* Modal Preview */}
       {isModalOpen && preview && (
