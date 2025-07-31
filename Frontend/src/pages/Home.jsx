@@ -40,53 +40,132 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      {/* ✅ Hero Section */}
+//     <>
+//       ✅ Hero Section
+//       <section className="relative min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
+//         <div className="w-full h-screen relative overflow-hidden">
+//   {/* Slides */}
+//   {slides.map((slide, index) => (
+//     <div
+//       key={index}
+//       className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+//         index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+//       }`}
+//     >
+//       <img
+//         src={slide.image}
+//         alt={`Slide ${index}`}
+//         className="w-full h-full object-cover opacity-60"
+//       />
+//     </div>
+//   ))}
+
+//   {/* ✅ Static College Name Over Carousel */}
+//   <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-center px-4 transition duration-300 whitespace-nowrap">
+//     <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-wide drop-shadow-xl inline-block">
+//       Ingraham Institute Girls Degree College
+//     </h1>
+   
+//   </div>
+
+//   {/* ⬇️ Scroll Down Animation */}
+//   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
+//     <ChevronsDown size={32} />
+//   </div>
+
+//   {/* ⬅️➡️ Navigation Buttons */}
+//   <button
+//     onClick={prevSlide}
+//     className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-30"
+//   >
+//     <ChevronLeft size={24} />
+//   </button>
+//   <button
+//     onClick={nextSlide}
+//     className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-30"
+//   >
+//     <ChevronRight size={24} />
+//   </button>
+// </div>
+  <>
+      {/* Hero Section - Mobile Optimized */}
       <section className="relative min-h-screen flex items-center justify-center text-white bg-black overflow-hidden">
         <div className="w-full h-screen relative overflow-hidden">
-  {/* Slides */}
-  {slides.map((slide, index) => (
-    <div
-      key={index}
-      className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-        index === current ? "opacity-100 z-10" : "opacity-0 z-0"
-      }`}
-    >
-      <img
-        src={slide.image}
-        alt={`Slide ${index}`}
-        className="w-full h-full object-cover opacity-60"
-      />
+          {/* Slides */}
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={`Slide ${index}`}
+                className="w-full h-full object-cover opacity-60"
+              />
+            </div>
+          ))}
+
+          {/* College Name - Mobile Responsive */}
+          <div className="absolute inset-0 z-20 px-4 sm:px-6 lg:px-8">
+  <div className="relative w-full h-full">
+    
+    {/* On mobile (below md): show at bottom */}
+    <div className="md:hidden absolute bottom-6 w-full text-center px-4">
+      <h1 className="text-xl font-bold uppercase tracking-wide drop-shadow-2xl leading-tight">
+        <span className="block">Ingraham Institute</span>
+        <span className="block">Girls Degree College</span>
+      </h1>
     </div>
-  ))}
 
-  {/* ✅ Static College Name Over Carousel */}
-  <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-center px-4 transition duration-300 whitespace-nowrap">
-    <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-wide drop-shadow-xl inline-block">
-      Ingraham Institute Girls Degree College
-    </h1>
-   
+    {/* On md and above: center vertically */}
+    <div className="hidden md:flex items-center justify-center h-full text-center">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase tracking-wide drop-shadow-2xl leading-tight">
+        <span className="block sm:inline">Ingraham Institute</span>
+        <span className="block sm:inline sm:ml-2">Girls Degree College</span>
+      </h1>
+    </div>
+
   </div>
-
-  {/* ⬇️ Scroll Down Animation */}
-  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
-    <ChevronsDown size={32} />
-  </div>
-
-  {/* ⬅️➡️ Navigation Buttons */}
-  <button
-    onClick={prevSlide}
-    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-30"
-  >
-    <ChevronLeft size={24} />
-  </button>
-  <button
-    onClick={nextSlide}
-    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-30"
-  >
-    <ChevronRight size={24} />
-  </button>
 </div>
+
+
+          {/* Scroll Down Animation - Mobile Positioned */}
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
+            <ChevronsDown size={28} className="sm:w-8 sm:h-8" />
+          </div>
+
+          {/* Navigation Buttons - Mobile Optimized */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 sm:p-3 rounded-full z-30 transition-all duration-200"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-2 sm:right-4 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 sm:p-3 rounded-full z-30 transition-all duration-200"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+          </button>
+
+          {/* Slide Indicators - Mobile Friendly */}
+          <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  index === current ? "bg-white scale-110" : "bg-white/50 hover:bg-white/75"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
       </section>
 
