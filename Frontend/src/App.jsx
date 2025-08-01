@@ -70,7 +70,7 @@ function App() {
         <div className="fixed bottom-2 right-6 z-50 text-right">
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="bg-secondary text-white px-5 py-3 rounded-full shadow-lg hover:bg-primary transition duration-300"
+            className="bg-secondary text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-900 transition duration-300"
           >
             Apply Now ⮟
           </button>
@@ -79,12 +79,12 @@ function App() {
             <div className="mt-2 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden text-left">
               <button
                 onClick={() => setShowStudentModal(true)}
-                className="block px-4 py-2 hover:bg-gray-100 text-primary font-medium"
+                className="block px-4 py-2 hover:bg-gray-100 text-blue-900 font-medium"
               >
                 Apply as Student
               </button>
               <button
-                className="block px-4 py-2 hover:bg-gray-100 text-primary font-medium"
+                className="block px-4 py-2 hover:bg-gray-100 text-blue-900 font-medium"
                 onClick={() => setModalOpen(true)}
               >
                 Apply as Teacher

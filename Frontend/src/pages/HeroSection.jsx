@@ -14,7 +14,7 @@ const HeroSection = ({ title, description, backgroundImage }) => {
         scale: 1,
         transition: {
           duration: 1,
-          ease: [0.25, 0.1, 0.25, 1], // smooth cubic-bezier
+          ease: [0.25, 0.1, 0.25, 1],
         },
       });
     }
@@ -32,17 +32,17 @@ const HeroSection = ({ title, description, backgroundImage }) => {
       }}
     >
       {/* Overlay + Content */}
-      <div className="absolute inset-0 bg-black/40 flex items-center justify-center transform-gpu">
+      <div className="absolute inset-0 bg-black/50 flex items-center justify-center px-4 sm:px-6 md:px-8 text-white">
         <motion.div
           initial={{ y: 10 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center m-8 text-white px-4 transform transition-transform duration-700 hover:scale-[1.02]"
+          className="text-center max-w-[90vw] sm:max-w-[80vw] md:max-w-2xl transition-transform duration-700 hover:scale-[1.02]"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 drop-shadow-md leading-tight">
             {title}
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto drop-shadow-sm">
+          <p className="text-base sm:text-lg md:text-xl drop-shadow-sm leading-relaxed">
             {description}
           </p>
         </motion.div>
@@ -54,7 +54,7 @@ const HeroSection = ({ title, description, backgroundImage }) => {
       </div>
 
       {/* Elevated Bottom Border */}
-      <div className="absolute bottom-0 left-0 w-full h-12 bg-white rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.15)] z-10" />
+     
     </motion.section>
   );
 };

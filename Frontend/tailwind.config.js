@@ -7,7 +7,7 @@ export default {
         secondary: "#E63946"
       },
       animation: {
-        marquee: 'marquee 20s linear infinite',
+        marquee: 'marquee 10s linear infinite',
       },
       keyframes: {
         marquee: {

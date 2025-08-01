@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const achievementSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  photo: { type: String }, // store relative file path
+  photo: { type: String }, 
   type: { type: String, enum: ['student', 'academic', 'research'], default: 'student' }
 });
 

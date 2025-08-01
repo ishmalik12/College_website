@@ -148,7 +148,7 @@ const filteredImages = selectedCategory === "All"
   }, [modalOpen, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-[#FBF5DF] font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
+    <div className="min-h-screen bg-[#FFFFFF] font-sans" style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}>
       {/* Hero Section */}
       
 

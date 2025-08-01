@@ -3,8 +3,7 @@ import {
   LogOut, 
   LayoutDashboard, 
   Mail, 
-  Users, 
-  GraduationCap, 
+  Users,  
   UserCheck, 
   Bell,
   Menu,
@@ -12,7 +11,8 @@ import {
   Info,
   Award,
   Building,
-  Image
+  Image,
+  GraduationCap
 } from 'lucide-react';
 import UploadNotice from './UploadNotice';
 import Login from './Login';
@@ -27,6 +27,7 @@ import AdminStudentAchievements from './Achievements';
 import Facilities from '../components/Facilities';
 import AdminFacilities from './AdminFacilities';
 import AdminGalleryManager from './GalleryAdmin';
+import AdminAlumniData from './AlumniData';
 
 
 export default function AdminApp() {
@@ -74,7 +75,8 @@ const menuItems = [
   { id: 'IQAC', label: 'IQAC Management', icon: <Info className="w-5 h-5" /> },
   { id: 'Achievements', label: 'Acheivements Management', icon: <Award className="w-5 h-5" /> },
   { id: 'Facilities', label: 'Facilities Management', icon: <Building className="w-5 h-5" /> },
-   { id: 'Gallery', label: 'gallery Management', icon: <Image className="w-5 h-5" /> }
+   { id: 'Gallery', label: 'Gallery Management', icon: <Image className="w-5 h-5" /> },
+    { id: 'Alumni', label: 'Alumni Management', icon: <GraduationCap className="w-5 h-5" /> }
 ];
 
   const renderPage = () => {
@@ -99,6 +101,8 @@ const menuItems = [
         return <AdminFacilities token={token}></AdminFacilities>
       case 'Gallery':
         return <AdminGalleryManager token={token}></AdminGalleryManager>
+      case 'Alumni':
+        return <AdminAlumniData token={token}></AdminAlumniData>
       default:
         return <AdminDashboard token={token} />;
     }
@@ -111,9 +115,10 @@ const menuItems = [
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-    {/* Sidebar */}
+   
+{/* Sidebar */}
 <div
-  className={`bg-white shadow-lg fixed z-40 top-0 left-0 h-full w-screen max-w-full transition-transform duration-300 transform ${
+  className={`bg-white shadow-lg fixed z-40 top-0 left-0 h-full w-[80%] max-w-xs transition-transform duration-300 transform ${
     sidebarOpen ? 'translate-x-0' : '-translate-x-full'
   } lg:relative lg:translate-x-0 lg:w-64`}
 >
@@ -175,12 +180,14 @@ const menuItems = [
 
 
       {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+   {/* Mobile sidebar overlay */}
+{sidebarOpen && (
+  <div 
+    className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+    onClick={() => setSidebarOpen(false)}
+  />
+)}
+
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">

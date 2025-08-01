@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AlumniBanner from "../assets/slideshow3.jpeg";
 import HeroSection from "./HeroSection";
+import AlumniCarousel from "./AlumniCarousel";
 
 
 
@@ -73,7 +74,8 @@ export default function AlumniFormPage() {
        backgroundImage={AlumniBanner}
      />
          
-
+    <AlumniCarousel />
+    
       <div className="min-h-screen bg-gray-50 px-4 py-10 md:px-20">
         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-6 text-center text-red-700">

@@ -92,7 +92,7 @@ const initiatives = [
   ))}
 </section>
 
-   <section className="relative py-32 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
+  <section className="relative py-24 sm:py-28 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
   {/* Background effects */}
   <div className="absolute inset-0">
     <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
@@ -100,33 +100,38 @@ const initiatives = [
   </div>
 
   {/* Content Container */}
-  <div className="relative max-w-6xl mx-auto px-2 sm:px-2 lg:px-2 ">
-    <h1 className="text-5xl font-bold text-white mb-6">About</h1>
-    <p className="text-lg lg:text-xl text-blue-100 leading-relaxed">
-    Realizing the importance of girls education Ingraham Institute Girls degree College started its girls degree college from July 2017 with B.A (Eng. Eco., Pol. Sci. Education, History, Sociology and Hindi with 140 seats for all) B.Sc. (Bio with 60 seats) and B.Sc. (Maths with 60 seats) & B. Com. (with 60 seats) courses. Since then it is constantly progressing to develop young girls through enquiry based learning.
-     The institution has wide reputation for its quality of learning and a holistic approach towards grooming the students. Infact, an Institution is known well by its highly qualified and ideal teachers and not merely by its building and infrastructure alone. The citizens of Ghaziabad metropolis and its enviros feel proud of the Ingraham Institute Girls degree college Ghaziabad, because it does not consist of only adequate space , modern building but it has highly qualified and ideal teachers also to impart girls education through the best use of modern technology. 
-     <br></br><br></br>The Institution basically aims to make and Endeavour to mould the young mind in such a way that they evolve and emerge as potential individuals, who push the convectional boundaries and harness their potential to become a force to make a better tomorrow. The approach of the Institution does not make it's student succeed in the competitive scenario only but inculcate in them the spirit of positive mind and soul also, so that they become ideal citizens of the country.
+  <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 text-center sm:text-left">
+      About
+    </h1>
+
+    <p className="text-base sm:text-lg lg:text-xl text-blue-100 leading-relaxed text-justify">
+      Realizing the importance of girls education, Ingraham Institute Girls Degree College started in July 2017 with B.A (Eng., Eco., Pol. Sci., Education, History, Sociology, and Hindi), B.Sc. (Bio & Maths), and B.Com. courses. Since then, it has been constantly progressing to develop young girls through enquiry-based learning.
+
+      <br /><br />
+
+      The institution is known for its quality education and holistic approach toward student development. It stands out not just for its infrastructure, but for its highly qualified and ideal teachers who use modern technology to deliver impactful learning.
+
+      <br /><br />
+
+      The institution aims to mold young minds to evolve as individuals who challenge conventional boundaries and harness their potential for a better tomorrow. It instills not only academic success but also a positive mindset, nurturing responsible citizens of the country.
     </p>
   </div>
 
- {/* Image Grid Below - Fullscreen, No Gaps */}
-<div className="w-screen mt-16">
-  <div className="grid grid-cols-1 grid-rows-1 w-full h-[60vh] sm:h-[70vh] md:h-[80vh]">
-    {[img1].map((src, idx) => ( 
-      <div
-        key={idx}
-        className="group relative w-full h-full overflow-hidden"
-      >
-        <img
-          src={src}
-          alt={`Image ${idx + 1}`}
-          className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
-        />
-      </div>
-    ))}
+  {/* Image Grid */}
+  <div className="w-full mt-12">
+    <div className="grid grid-cols-1 grid-rows-1 w-full h-[40vh] sm:h-[60vh] md:h-[70vh]">
+      {[img1].map((src, idx) => (
+        <div key={idx} className="group relative w-full h-full overflow-hidden">
+          <img
+            src={src}
+            alt={`Image ${idx + 1}`}
+            className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+      ))}
+    </div>
   </div>
-</div>
-
 </section>
 
 

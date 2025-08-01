@@ -290,36 +290,49 @@ const closePreview = () => {
         )}
       </div>
  {isModalOpen && preview && (
-  <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-    <div className="bg-[whitesmoke] rounded-lg shadow-lg max-w-2xl w-full p-4 relative">
-      <button
-        onClick={() => setIsModalOpen(false)}
-        className="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl"
-      >
-        &times;
-      </button>
-
-     <div className="mb-4 max-h-[75vh] overflow-auto flex justify-center items-center">
-  {preview.url.match(/\.(jpeg|jpg|png|gif)$/i) ? (
-    <div className="relative group">
-      <img
-        src={`http://localhost:5000${preview.url}`}
-        alt="Preview"
-        className="max-w-full max-h-[70vh] rounded-lg transition-transform duration-300 group-hover:scale-110 object-contain"
-      />
-      <p className="text-xs text-gray-500 text-center mt-2">Hover to zoom</p>
-    </div>
-  ) : preview.url.match(/\.pdf$/i) ? (
-    <a href={`http://localhost:5000${preview.url}`} target="_blank" rel="noopener noreferrer" className='bg-black rounded-md text-white px-3 py-3'>
-  Click to Veiw 
-</a>
-  ) : (
-    <p className="text-center text-gray-500">No preview available.</p>
-  )}
-</div>
+  <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-2">
+    <div className="bg-[whitesmoke] rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto p-4 relative">
+      
+      {/* Close Button */}
+    <button
+  onClick={() => setIsModalOpen(false)}
+  className="absolute top-2 right-3 z-50 bg-white/80 text-gray-800 hover:text-black hover:bg-white p-1 rounded-full text-xl transition duration-200"
+>
+  &times;
+</button>
 
 
-      <div className="text-right">
+      {/* Preview Content */}
+      <div className="mb-4 flex justify-center items-center">
+        {preview.url.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+          <div className="relative group w-full flex flex-col items-center">
+            <img
+              src={`http://localhost:5000${preview.url}`}
+              alt="Preview"
+              className="max-w-full max-h-[60vh] rounded-lg transition-transform duration-300 group-hover:scale-105 object-contain"
+            />
+            <p className="text-xs text-gray-500 text-center mt-2">
+              Hover to zoom
+            </p>
+          </div>
+        ) : preview.url.match(/\.pdf$/i) ? (
+          <a
+            href={`http://localhost:5000${preview.url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black text-white px-4 py-2 rounded-md text-sm"
+          >
+            Click to View PDF
+          </a>
+        ) : (
+          <p className="text-center text-gray-500">
+            No preview available.
+          </p>
+        )}
+      </div>
+
+      {/* Download Button */}
+      <div className="text-center md:text-right">
         <a
           href={`http://localhost:5000/download/${preview.url.split('/').pop()}`}
           className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
