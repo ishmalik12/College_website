@@ -10,13 +10,22 @@ const Carousel = ({ data }) => {
   const next = () => setIndex((prev) => (prev + 1) % data.length);
   const prev = () => setIndex((prev) => (prev - 1 + data.length) % data.length);
 
+  // Auto-slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % data.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [data.length]);
+
   return (
     <div className="relative w-full max-w-5xl mx-auto mt-12 px-4">
       <h2 className="text-center text-3xl font-bold text-blue-800 mb-6 flex items-center justify-center gap-2">
         <Trophy className="text-yellow-500" /> Top Achievers
       </h2>
 
-      {/* Single Card Carousel */}
+      {/* Carousel Card */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row items-center gap-6 px-6 py-8 transition-all duration-500">
         <img
           src={`http://localhost:5000${data[index].photo}`}

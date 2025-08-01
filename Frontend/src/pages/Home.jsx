@@ -111,7 +111,7 @@ export default function Home() {
     <div className="absolute inset-0 z-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-end md:justify-center">
     {/* Mobile Title - More Above Bottom */}
 <div className="md:hidden absolute bottom-32 w-full text-center px-4">
-  <h1 className="text-2xl sm:text-3xl font-bold uppercase tracking-wide drop-shadow-2xl leading-snug">
+  <h1 className="text-2xl sm:text-3xl font-bold uppercase tracking-wide drop-shadow-2xl leading-snug ">
     <span className="block">Ingraham Institute</span>
     <span className="block">Girls Degree College</span>
   </h1>
@@ -119,8 +119,8 @@ export default function Home() {
 
 
       {/* Desktop Title - Centered */}
-      <div className="hidden md:flex items-center justify-center h-full text-center">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase tracking-wide drop-shadow-2xl leading-tight">
+      <div className="hidden md:flex items-end mb-[10rem] justify-center h-full text-center">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase tracking-wide drop-shadow-2xl leading-tight">
           <span className="block sm:inline">Ingraham Institute</span>
           <span className="block sm:inline sm:ml-2">Girls Degree College</span>
         </h1>

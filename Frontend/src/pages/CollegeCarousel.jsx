@@ -6,7 +6,6 @@ const Carousel = () => {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
 
-  // Fetch from backend
   useEffect(() => {
     axios.get('http://localhost:5000/api/achievements/student')
       .then(res => {
