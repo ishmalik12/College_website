@@ -194,30 +194,7 @@ export default function AdminDashboard({ token }) {
 
 
 
-        {/* Recent Activity */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-            <Calendar className="w-6 h-6 mr-2 text-blue-600" />
-            Recent Activity
-          </h2>
-          <div className="space-y-4">
-            {recentActivity.map((activity, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                <div className="flex-shrink-0">
-                  {activity.type === 'contact' && <Mail className="w-5 h-5 text-blue-500" />}
-                  {activity.type === 'application' && <FileText className="w-5 h-5 text-green-500" />}
-                  {activity.type === 'notice' && <Bell className="w-5 h-5 text-red-500" />}
-                  {activity.type === 'alumni' && <GraduationCap className="w-5 h-5 text-purple-500" />}
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-800 font-medium">{activity.message}</p>
-                  <p className="text-gray-500 text-sm">{activity.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+     
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
@@ -234,14 +211,7 @@ export default function AdminDashboard({ token }) {
   <p className="text-green-800 font-medium">Add Faculty</p>
 </button>
 
-            <button className="bg-purple-50 hover:bg-purple-100 border border-purple-200 rounded-lg p-4 text-center transition-colors duration-200">
-              <Mail className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-              <p className="text-purple-800 font-medium">View Messages</p>
-            </button>
-            <button className="bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg p-4 text-center transition-colors duration-200">
-              <FileText className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-              <p className="text-orange-800 font-medium">Applications</p>
-            </button>
+          
           </div>
         </div>
       </div>
