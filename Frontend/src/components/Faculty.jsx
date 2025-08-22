@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { GraduationCap, Award, Users, Star } from 'lucide-react';
-import facultyBanner from '../assets/womensday-04.png';
+import facultyBanner from '../assets/Facultyy.jpeg';
 import HeroSection from '../pages/HeroSection';
+import TeacherApplicationModal from '../pages/TeacherApplicationForm';
 
 const Faculty = () => {
   const [facultyList, setFacultyList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchFaculty = async () => {
@@ -24,7 +26,10 @@ const Faculty = () => {
 
   return (
     <>
-
+              <TeacherApplicationModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+              />
 <HeroSection
   title="OUR FACULTY"
   description="Learn from world-class educators, researchers, and industry experts who are passionate about nurturing the next generation of leaders and innovators."
@@ -154,7 +159,8 @@ const Faculty = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button className="group bg-white text-blue-600 px-12 py-5 rounded-2xl hover:bg-gray-50 transition-all duration-300 font-bold text-xl shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1">
+                <button className="group bg-white text-blue-600 px-12 py-5 rounded-2xl hover:bg-gray-50 transition-all duration-300 font-bold text-xl shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1"
+               onClick={() => setModalOpen(true)}>
                   <span className="flex items-center justify-center gap-3">
                     Apply Now
                     <Award className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />

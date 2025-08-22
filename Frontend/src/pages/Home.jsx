@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Testimonials from "../components/Testimonials";
-import sample1 from "../assets/slideshow1.jpeg"
+import sample1 from "../assets/slideshoww.jpeg"
+import sample8 from "../assets/slideshow8.jpeg"
+import sample7 from "../assets/slideshow1.jpeg"
 import sample2 from "../assets/slideshow2.jpeg"
 import sample3 from "../assets/slideshow3.jpeg"
 import sample4 from "../assets/slideshow4.jpeg"
@@ -19,6 +21,8 @@ const slides = [
   { image: sample4 },
   { image: sample5 },
   { image: sample6 },
+  { image: sample7 },
+  { image: sample8 },
 ];
 
 export default function Home() {

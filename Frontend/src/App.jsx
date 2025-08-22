@@ -77,12 +77,7 @@ function App() {
 
           {showMenu && (
             <div className="mt-2 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden text-left">
-              <button
-                onClick={() => setShowStudentModal(true)}
-                className="block px-4 py-2 hover:bg-gray-100 text-blue-900 font-medium"
-              >
-                Apply as Student
-              </button>
+             
               <button
                 className="block px-4 py-2 hover:bg-gray-100 text-blue-900 font-medium"
                 onClick={() => setModalOpen(true)}
@@ -93,10 +88,7 @@ function App() {
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
               />
-              <StudentApplicationModal
-                isOpen={showStudentModal}
-                onClose={() => setShowStudentModal(false)}
-              />
+            
             </div>
           )}
         </div>
